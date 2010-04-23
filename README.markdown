@@ -18,8 +18,8 @@ You need to install the following plugins for Hudson:
 * [Violations](http://wiki.hudson-ci.org/display/HUDSON/Violations) (for processing various logfiles)
 * [xUnit](http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin) (for processing PHPUnit logfiles in JUnit format)
 
-Installation of the PHP Toolset
--------------------------------
+Required PHP Tools
+------------------
 
     pear channel-discover pear.pdepend.org 
     pear channel-discover pear.phpmd.org 
