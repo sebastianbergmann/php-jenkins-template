@@ -139,3 +139,17 @@ Executing the `build.xml` script above will produce the following `build` direct
         `-- 09-overview-pyramid.svg
 
 These build artifacts will be processed by Hudson.
+
+Using the Job Template
+----------------------
+
+Check out `php-hudson-template` from Git:
+
+    cd $HUDSON_HOME/jobs
+    git clone git://github.com/sebastianbergmann/php-hudson-template.git
+
+* Restart Hudson.
+* Create a new "free-style software project" job
+* Fill in your "Source Code Management" information
+* Configure an Ant-based build
+* Activate "Use publishers from another project" and select `php-hudson-template` as the "Template Project".
