@@ -4,6 +4,20 @@ Template for Hudson Jobs for PHP Projects
 [Hudson](http://hudson-ci.org/) is an extensible [continuous integration](http://martinfowler.com/articles/continuousIntegration.html) server that starts to see widespread adoption in the PHP community.
 The goal of the `php-hudson-template` project is to provide a standard template ([Template Project Plugin for Hudson](http://wiki.hudson-ci.org//display/HUDSON/Template+Project+Plugin)) for Hudson jobs for PHP projects.
 
+Required Hudson Plugins
+-----------------------
+
+You need to install the following plugins for Hudson:
+
+* [Checkstyle](http://wiki.hudson-ci.org/display/HUDSON/Checkstyle+Plugin) (for processing `PHP_CodeSniffer` logfiles in Checkstyle format)
+* [DRY](http://wiki.hudson-ci.org/display/HUDSON/DRY+Plugin) (for processing `phpcpd` logfiles in PMD-CPD format)
+* [HTML Publisher](http://wiki.hudson-ci.org/display/HUDSON/HTML+Publisher+Plugin) (for publishing the PHPUnit code coverage report, for instance)
+* [JDepend](http://wiki.hudson-ci.org/display/HUDSON/JDepend+Plugin) (for processing `PHP_Depend` logfiles in JDepend format)
+* [PMD](http://wiki.hudson-ci.org/display/HUDSON/PMD+Plugin) (for processing `phpmd` logfiles in PMD format)
+* [Template Project](http://wiki.hudson-ci.org/display/HUDSON/Template+Project+Plugin) (for using `php-hudson-template` as a template for Hudson jobs)
+* [Violations](http://wiki.hudson-ci.org/display/HUDSON/Violations) (for processing various logfiles)
+* [xUnit](http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin) (for processing PHPUnit logfiles in JUnit format)
+
 Installation of the PHP Toolset
 -------------------------------
 
