@@ -71,10 +71,7 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
      <!-- Generate jdepend.xml and software metrics charts -->
      <target name="pdepend">
       <exec executable="pdepend">
-       <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
-                  --jdepend-chart=${basedir}/build/pdepend/08-dependencies.svg
-                  --overview-pyramid=${basedir}/build/pdepend/09-overview-pyramid.svg
-                  Object" />
+       <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml Object" />
       </exec>
      </target>
 
@@ -127,16 +124,13 @@ Executing the `build.xml` script above will produce the following `build` direct
     |-- api ...
     |-- code-browser ...
     |-- coverage ...
-    |-- logs
-    |   |-- checkstyle.xml
-    |   |-- clover.xml
-    |   |-- jdepend.xml
-    |   |-- junit.xml
-    |   |-- pmd-cpd.xml
-    |   `-- pmd.xml
-    `-- pdepend
-        |-- 08-dependencies.svg
-        `-- 09-overview-pyramid.svg
+    `-- logs
+        |-- checkstyle.xml
+        |-- clover.xml
+        |-- jdepend.xml
+        |-- junit.xml
+        |-- pmd-cpd.xml
+        `-- pmd.xml
 
 These build artifacts will be processed by Hudson.
 
