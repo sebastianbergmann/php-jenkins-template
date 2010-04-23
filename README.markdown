@@ -29,6 +29,7 @@ Required PHP Tools
     pear install pdepend/PHP_Depend-beta
     pear install --alldeps phpmd/PHP_PMD-alpha
     pear install phpunit/phpcpd
+    pear install PHPDocumentor
     pear install PHP_CodeSniffer
     pear install --alldeps phpunit/PHP_CodeBrowser
     pear install --alldeps phpunit/PHPUnit
@@ -63,6 +64,7 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
        <antcall target="phpmd"/>
        <antcall target="phpcpd"/>
        <antcall target="phpcs"/>
+       <antcall target="phpdoc"/>
       </parallel>
      </target>
 
@@ -101,6 +103,13 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
       </exec>
      </target>
 
+     <!-- Generate API documentation -->
+     <target name="phpdoc">
+      <exec executable="phpdoc">
+       <arg line="-d Object -t build/api" />
+      </exec>
+     </target>
+
      <target name="phpcb">
       <exec executable="phpcb">
        <arg line="--log    ${basedir}/build/logs
@@ -115,7 +124,7 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
 Executing the `build.xml` script above will produce the following `build` directory:
 
     build
-    |-- api
+    |-- api ...
     |-- code-browser ...
     |-- coverage ...
     |-- logs

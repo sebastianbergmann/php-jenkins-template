@@ -184,6 +184,13 @@
     <htmlpublisher.HtmlPublisher>
       <reportTargets>
         <htmlpublisher.HtmlPublisherTarget>
+          <reportName>API Documentation</reportName>
+          <reportDir>build/api</reportDir>
+          <reportFiles>index.html</reportFiles>
+          <keepAll>true</keepAll>
+          <wrapperName>htmlpublisher-wrapper.html</wrapperName>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
           <reportName>Code Browser</reportName>
           <reportDir>build/code-browser</reportDir>
           <reportFiles>index.html</reportFiles>
