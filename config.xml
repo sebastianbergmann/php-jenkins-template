@@ -28,6 +28,7 @@
       <thresholdLimit>low</thresholdLimit>
       <defaultEncoding></defaultEncoding>
       <useDeltaValues>false</useDeltaValues>
+      <canRunOnFailed>false</canRunOnFailed>
       <pattern>build/logs/pmd.xml</pattern>
     </hudson.plugins.pmd.PmdPublisher>
     <hudson.plugins.checkstyle.CheckStylePublisher>
@@ -41,6 +42,7 @@
       <thresholdLimit>low</thresholdLimit>
       <defaultEncoding></defaultEncoding>
       <useDeltaValues>false</useDeltaValues>
+      <canRunOnFailed>false</canRunOnFailed>
       <pattern>build/logs/checkstyle.xml</pattern>
     </hudson.plugins.checkstyle.CheckStylePublisher>
     <hudson.plugins.dry.DryPublisher>
@@ -54,7 +56,10 @@
       <thresholdLimit>low</thresholdLimit>
       <defaultEncoding></defaultEncoding>
       <useDeltaValues>false</useDeltaValues>
+      <canRunOnFailed>false</canRunOnFailed>
       <pattern>build/logs/pmd-cpd.xml</pattern>
+      <highThreshold>0</highThreshold>
+      <normalThreshold>0</normalThreshold>
     </hudson.plugins.dry.DryPublisher>
     <com.thalesgroup.hudson.plugins.xunit.XUnitPublisher>
       <types>
