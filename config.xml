@@ -70,6 +70,17 @@
         </com.thalesgroup.hudson.plugins.xunit.types.PHPUnitType>
       </types>
     </com.thalesgroup.hudson.plugins.xunit.XUnitPublisher>
+    <hudson.plugins.clover.CloverPublisher>
+      <cloverReportDir>build/logs</cloverReportDir>
+      <cloverReportFileName>clover.xml</cloverReportFileName>
+      <healthyTarget>
+        <methodCoverage>70</methodCoverage>
+        <conditionalCoverage>80</conditionalCoverage>
+        <statementCoverage>80</statementCoverage>
+      </healthyTarget>
+      <unhealthyTarget/>
+      <failingTarget/>
+    </hudson.plugins.clover.CloverPublisher>
     <hudson.plugins.jdepend.JDependRecorder>
       <configuredJDependFile>build/logs/jdepend.xml</configuredJDependFile>
     </hudson.plugins.jdepend.JDependRecorder>
