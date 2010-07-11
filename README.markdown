@@ -118,6 +118,16 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
      <target name="build" depends="clean,parallelTasks,phpunit,phpcb"/>
     </project>
 
+The `build.xml` script above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:
+
+    <logging>
+     <log type="coverage-html" target="build/coverage" title="Object_Freezer"
+          charset="UTF-8" yui="true" highlight="true"
+          lowUpperBound="35" highLowerBound="70"/>
+     <log type="coverage-clover" target="build/logs/clover.xml"/>
+     <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
+    </logging>
+
 Executing the `build.xml` script above will produce the following `build` directory:
 
     build
