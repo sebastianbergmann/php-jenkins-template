@@ -25,9 +25,10 @@ Required PHP Tools
     pear channel-discover pear.phpmd.org 
     pear channel-discover pear.phpunit.de
     pear channel-discover components.ez.no
+    pear channel-discover pear.symfony-project.com
 
     pear install pdepend/PHP_Depend-beta
-    pear install --alldeps phpmd/PHP_PMD-alpha
+    pear install phpmd/PHP_PMD-alpha
     pear install phpunit/phpcpd
     pear install PHPDocumentor
     pear install PHP_CodeSniffer
