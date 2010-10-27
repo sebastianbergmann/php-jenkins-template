@@ -17,6 +17,7 @@ You need to install the following plugins for Hudson:
 * [Template Project](http://wiki.hudson-ci.org/display/HUDSON/Template+Project+Plugin) (for using `php-hudson-template` as a template for Hudson jobs)
 * [Violations](http://wiki.hudson-ci.org/display/HUDSON/Violations) (for processing various logfiles)
 * [xUnit](http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin) (for processing PHPUnit logfiles in JUnit format)
+* [Clover](http://wiki.hudson-ci.org/display/HUDSON/Clover+Plugin) (for processing PHPUnit code coverage xml output)
 
 Required PHP Tools
 ------------------
