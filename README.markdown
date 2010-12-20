@@ -19,6 +19,21 @@ You need to install the following plugins for Hudson:
 * [xUnit](http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin) (for processing PHPUnit logfiles in JUnit format)
 * [Clover](http://wiki.hudson-ci.org/display/HUDSON/Clover+Plugin) (for processing PHPUnit code coverage xml output)
 
+You can install these plugins using the webfrontend http://SERVER/pluginManager/available or using the hudson-cli
+
+Download: http://SERVER/jnlpJars/hudson-cli.jar and execute
+
+    java -jar hudson-cli.jar -s http://SERVER install-plugin checkstyle
+    java -jar hudson-cli.jar -s http://SERVER install-plugin dry
+    java -jar hudson-cli.jar -s http://SERVER install-plugin htmlpublisher
+    java -jar hudson-cli.jar -s http://SERVER install-plugin jdepend
+    java -jar hudson-cli.jar -s http://SERVER install-plugin pmd
+    java -jar hudson-cli.jar -s http://SERVER install-plugin template-project
+    java -jar hudson-cli.jar -s http://SERVER install-plugin violations
+    java -jar hudson-cli.jar -s http://SERVER install-plugin xunit
+    java -jar hudson-cli.jar -s http://SERVER install-plugin clover
+
+
 Required PHP Tools
 ------------------
 
