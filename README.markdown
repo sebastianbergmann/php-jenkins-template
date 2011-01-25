@@ -59,14 +59,13 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
     <project name="php-object-freezer" default="build" basedir=".">
      <target name="clean">
       <!-- Clean up -->
-      <delete dir="build"/>
+      <delete dir="${basedir}/build"/>
 
       <!-- Create build directories -->
       <mkdir dir="${basedir}/build/api"/>
       <mkdir dir="${basedir}/build/code-browser"/>
       <mkdir dir="${basedir}/build/coverage"/>
       <mkdir dir="${basedir}/build/logs"/>
-      <mkdir dir="${basedir}/build/pdepend"/>
      </target>
 
      <!-- Run unit tests and generate junit.xml and clover.xml -->
@@ -120,7 +119,7 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
      <!-- Generate API documentation -->
      <target name="phpdoc">
       <exec executable="phpdoc">
-       <arg line="-d Object -t build/api" />
+       <arg line="-d Object -t ${basedir}/build/api" />
       </exec>
      </target>
 
