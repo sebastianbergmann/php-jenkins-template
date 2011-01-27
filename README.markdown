@@ -10,30 +10,30 @@ Required Hudson Plugins
 You need to install the following plugins for Hudson:
 
 * [Checkstyle](http://wiki.hudson-ci.org/display/HUDSON/Checkstyle+Plugin) (for processing `PHP_CodeSniffer` logfiles in Checkstyle format)
+* [Clover](http://wiki.hudson-ci.org/display/HUDSON/Clover+Plugin) (for processing PHPUnit code coverage xml output)
 * [DRY](http://wiki.hudson-ci.org/display/HUDSON/DRY+Plugin) (for processing `phpcpd` logfiles in PMD-CPD format)
 * [HTML Publisher](http://wiki.hudson-ci.org/display/HUDSON/HTML+Publisher+Plugin) (for publishing the PHPUnit code coverage report, for instance)
 * [JDepend](http://wiki.hudson-ci.org/display/HUDSON/JDepend+Plugin) (for processing `PHP_Depend` logfiles in JDepend format)
+* [Plot](http://wiki.hudson-ci.org/display/HUDSON/Plot+Plugin) (for processing phploc CSV output)
 * [PMD](http://wiki.hudson-ci.org/display/HUDSON/PMD+Plugin) (for processing `phpmd` logfiles in PMD format)
 * [Template Project](http://wiki.hudson-ci.org/display/HUDSON/Template+Project+Plugin) (for using `php-hudson-template` as a template for Hudson jobs)
 * [Violations](http://wiki.hudson-ci.org/display/HUDSON/Violations) (for processing various logfiles)
 * [xUnit](http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin) (for processing PHPUnit logfiles in JUnit format)
-* [Clover](http://wiki.hudson-ci.org/display/HUDSON/Clover+Plugin) (for processing PHPUnit code coverage xml output)
-* [Plot](http://wiki.hudson-ci.org/display/HUDSON/Plot+Plugin) (for processing phploc CSV output)
 
 You can install these plugins using the webfrontend http://SERVER/pluginManager/available or using the hudson-cli
 
 Download: http://SERVER/jnlpJars/hudson-cli.jar and execute
 
     java -jar hudson-cli.jar -s http://SERVER install-plugin checkstyle
+    java -jar hudson-cli.jar -s http://SERVER install-plugin clover
     java -jar hudson-cli.jar -s http://SERVER install-plugin dry
     java -jar hudson-cli.jar -s http://SERVER install-plugin htmlpublisher
     java -jar hudson-cli.jar -s http://SERVER install-plugin jdepend
+    java -jar hudson-cli.jar -s http://SERVER install-plugin plot
     java -jar hudson-cli.jar -s http://SERVER install-plugin pmd
     java -jar hudson-cli.jar -s http://SERVER install-plugin template-project
     java -jar hudson-cli.jar -s http://SERVER install-plugin violations
     java -jar hudson-cli.jar -s http://SERVER install-plugin xunit
-    java -jar hudson-cli.jar -s http://SERVER install-plugin clover
-    java -jar hudson-cli.jar -s http://SERVER install-plugin plot
 
 
 Required PHP Tools
