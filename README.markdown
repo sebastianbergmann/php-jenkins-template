@@ -51,7 +51,7 @@ Required PHP Tools
     pear install phpunit/phploc
     pear install PHPDocumentor
     pear install PHP_CodeSniffer
-    pear install --alldeps phpunit/PHP_CodeBrowser-alpha
+    pear install --alldeps phpunit/PHP_CodeBrowser
     pear install --alldeps phpunit/PHPUnit
 
 Build Automation
