@@ -166,6 +166,7 @@ Executing the `build.xml` script above will produce the following `build` direct
         |-- clover.xml
         |-- jdepend.xml
         |-- junit.xml
+        |-- phploc.csv
         |-- pmd-cpd.xml
         `-- pmd.xml
 
