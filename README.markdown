@@ -2,7 +2,7 @@ Template for Hudson Jobs for PHP Projects
 =========================================
 
 [Hudson](http://hudson-ci.org/) is an extensible [continuous integration](http://martinfowler.com/articles/continuousIntegration.html) server that starts to see widespread adoption in the PHP community.
-The goal of the `php-hudson-template` project is to provide a standard template ([Template Project Plugin for Hudson](http://wiki.hudson-ci.org//display/HUDSON/Template+Project+Plugin)) for Hudson jobs for PHP projects.
+The goal of the `php-hudson-template` project is to provide a standard template for Hudson jobs for PHP projects.
 
 Required Hudson Plugins
 -----------------------
@@ -16,7 +16,6 @@ You need to install the following plugins for Hudson:
 * [JDepend](http://wiki.hudson-ci.org/display/HUDSON/JDepend+Plugin) (for processing `PHP_Depend` logfiles in JDepend format)
 * [Plot](http://wiki.hudson-ci.org/display/HUDSON/Plot+Plugin) (for processing `phploc` CSV output)
 * [PMD](http://wiki.hudson-ci.org/display/HUDSON/PMD+Plugin) (for processing `phpmd` logfiles in PMD format)
-* [Template Project](http://wiki.hudson-ci.org/display/HUDSON/Template+Project+Plugin) (for using `php-hudson-template` as a template for Hudson jobs)
 * [Violations](http://wiki.hudson-ci.org/display/HUDSON/Violations) (for processing various logfiles)
 * [xUnit](http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin) (for processing PHPUnit logfiles in JUnit format)
 
@@ -31,7 +30,6 @@ Download: http://SERVER/jnlpJars/hudson-cli.jar and execute
     java -jar hudson-cli.jar -s http://SERVER install-plugin jdepend
     java -jar hudson-cli.jar -s http://SERVER install-plugin plot
     java -jar hudson-cli.jar -s http://SERVER install-plugin pmd
-    java -jar hudson-cli.jar -s http://SERVER install-plugin template-project
     java -jar hudson-cli.jar -s http://SERVER install-plugin violations
     java -jar hudson-cli.jar -s http://SERVER install-plugin xunit
 
@@ -178,10 +176,13 @@ Using the Job Template
 Check out `php-hudson-template` from Git:
 
     cd $HUDSON_HOME/jobs
-    git clone git://github.com/sebastianbergmann/php-hudson-template.git
+    git clone git://github.com/sebastianbergmann/php-hudson-template.git php-template
 
 * Restart Hudson.
-* Create a new "free-style software project" job
-* Fill in your "Source Code Management" information
-* Configure an Ant-based build
-* Activate "Use publishers from another project" and select `php-hudson-template` as the "Template Project".
+* Click on "New Job".
+* Enter a "Job name".
+* Select "Copy existing job" and enter "php-template" into the "Copy from" field.
+* Click "OK".
+* Fill in your "Source Code Management" information.
+* Configure an Ant-based build.
+* Click "Save".
