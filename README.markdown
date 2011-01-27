@@ -18,6 +18,7 @@ You need to install the following plugins for Hudson:
 * [Violations](http://wiki.hudson-ci.org/display/HUDSON/Violations) (for processing various logfiles)
 * [xUnit](http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin) (for processing PHPUnit logfiles in JUnit format)
 * [Clover](http://wiki.hudson-ci.org/display/HUDSON/Clover+Plugin) (for processing PHPUnit code coverage xml output)
+* [Plot](http://wiki.hudson-ci.org/display/HUDSON/Plot+Plugin) (for processing phploc CSV output)
 
 You can install these plugins using the webfrontend http://SERVER/pluginManager/available or using the hudson-cli
 
@@ -32,6 +33,7 @@ Download: http://SERVER/jnlpJars/hudson-cli.jar and execute
     java -jar hudson-cli.jar -s http://SERVER install-plugin violations
     java -jar hudson-cli.jar -s http://SERVER install-plugin xunit
     java -jar hudson-cli.jar -s http://SERVER install-plugin clover
+    java -jar hudson-cli.jar -s http://SERVER install-plugin plot
 
 
 Required PHP Tools
@@ -46,6 +48,7 @@ Required PHP Tools
     pear install pdepend/PHP_Depend-beta
     pear install phpmd/PHP_PMD-alpha
     pear install phpunit/phpcpd
+    pear install phpunit/phploc
     pear install PHPDocumentor
     pear install PHP_CodeSniffer
     pear install --alldeps phpunit/PHP_CodeBrowser-alpha
@@ -73,7 +76,7 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
       <exec executable="phpunit" failonerror="true"/>
      </target>
 
-     <!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
+     <!-- Run pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc in parallel -->
      <target name="parallelTasks">
       <parallel>
        <antcall target="pdepend"/>
@@ -81,6 +84,7 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
        <antcall target="phpcpd"/>
        <antcall target="phpcs"/>
        <antcall target="phpdoc"/>
+       <antcall target="phploc"/>
       </parallel>
      </target>
 
@@ -103,6 +107,13 @@ For example, refer to the `build.xml` script of the [Object_Freezer](http://gith
      <target name="phpcpd">
       <exec executable="phpcpd">
        <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml Object" />
+      </exec>
+     </target>
+
+     <!-- Generate phploc.csv -->
+     <target name="phploc">
+      <exec executable="phploc">
+       <arg line="--log-csv ${basedir}/build/logs/phploc.csv Object" />
       </exec>
      </target>
 

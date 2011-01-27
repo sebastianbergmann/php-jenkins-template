@@ -61,6 +61,31 @@
       <highThreshold>0</highThreshold>
       <normalThreshold>0</normalThreshold>
     </hudson.plugins.dry.DryPublisher>
+    <hudson.plugins.plot.PlotPublisher>
+      <plots>
+        <hudson.plugins.plot.Plot>
+          <title>phploc</title>
+          <yaxis></yaxis>
+          <series>
+            <hudson.plugins.plot.CSVSeries>
+              <file>build/logs/phploc.csv</file>
+              <label></label>
+              <fileType>csv</fileType>
+              <inclusionFlag>OFF</inclusionFlag>
+              <exclusionValues></exclusionValues>
+              <url></url>
+              <displayTableFlag>false</displayTableFlag>
+            </hudson.plugins.plot.CSVSeries>
+          </series>
+          <group>phploc</group>
+          <numBuilds>10</numBuilds>
+          <csvFileName>123.csv</csvFileName>
+          <csvLastModification>0</csvLastModification>
+          <style>line</style>
+          <useDescr>false</useDescr>
+        </hudson.plugins.plot.Plot>
+      </plots>
+    </hudson.plugins.plot.PlotPublisher>
     <com.thalesgroup.hudson.plugins.xunit.XUnitPublisher>
       <types>
         <com.thalesgroup.hudson.plugins.xunit.types.PHPUnitType>
