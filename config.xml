@@ -518,11 +518,5 @@
       <configuredJDependFile>build/logs/jdepend.xml</configuredJDependFile>
     </hudson.plugins.jdepend.JDependRecorder>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.clover.CloverBuildWrapper>
-      <historical>false</historical>
-      <json>false</json>
-      <licenseCert></licenseCert>
-    </hudson.plugins.clover.CloverBuildWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
