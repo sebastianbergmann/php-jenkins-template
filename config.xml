@@ -7,108 +7,111 @@
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Ant>
       <targets></targets>
-      <antName>(Default)</antName>
     </hudson.tasks.Ant>
   </builders>
   <publishers>
-    <hudson.plugins.pmd.PmdPublisher>
-      <threshold></threshold>
-      <newThreshold></newThreshold>
-      <failureThreshold></failureThreshold>
-      <newFailureThreshold></newFailureThreshold>
+    <hudson.plugins.dry.DryPublisher>
       <healthy></healthy>
       <unHealthy></unHealthy>
-      <pluginName>[PMD] </pluginName>
       <thresholdLimit>low</thresholdLimit>
+      <pluginName>[DRY] </pluginName>
       <defaultEncoding></defaultEncoding>
-      <useDeltaValues>false</useDeltaValues>
       <canRunOnFailed>false</canRunOnFailed>
-      <pattern>build/logs/pmd.xml</pattern>
-    </hudson.plugins.pmd.PmdPublisher>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds>
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
+      <pattern>build/logs/pmd-cpd.xml</pattern>
+      <highThreshold>50</highThreshold>
+      <normalThreshold>25</normalThreshold>
+    </hudson.plugins.dry.DryPublisher>
     <hudson.plugins.checkstyle.CheckStylePublisher>
-      <threshold></threshold>
-      <newThreshold></newThreshold>
-      <failureThreshold></failureThreshold>
-      <newFailureThreshold></newFailureThreshold>
       <healthy></healthy>
       <unHealthy></unHealthy>
-      <pluginName>[CHECKSTYLE] </pluginName>
       <thresholdLimit>low</thresholdLimit>
+      <pluginName>[CHECKSTYLE] </pluginName>
       <defaultEncoding></defaultEncoding>
-      <useDeltaValues>false</useDeltaValues>
       <canRunOnFailed>false</canRunOnFailed>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds>
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
       <pattern>build/logs/checkstyle.xml</pattern>
     </hudson.plugins.checkstyle.CheckStylePublisher>
-    <hudson.plugins.dry.DryPublisher>
-      <threshold></threshold>
-      <newThreshold></newThreshold>
-      <failureThreshold></failureThreshold>
-      <newFailureThreshold></newFailureThreshold>
+    <hudson.plugins.pmd.PmdPublisher>
       <healthy></healthy>
       <unHealthy></unHealthy>
-      <pluginName>[DRY] </pluginName>
       <thresholdLimit>low</thresholdLimit>
+      <pluginName>[PMD] </pluginName>
       <defaultEncoding></defaultEncoding>
-      <useDeltaValues>false</useDeltaValues>
       <canRunOnFailed>false</canRunOnFailed>
-      <pattern>build/logs/pmd-cpd.xml</pattern>
-      <highThreshold>0</highThreshold>
-      <normalThreshold>0</normalThreshold>
-    </hudson.plugins.dry.DryPublisher>
-    <hudson.plugins.plot.PlotPublisher>
-      <plots>
-        <hudson.plugins.plot.Plot>
-          <title>phploc</title>
-          <yaxis></yaxis>
-          <series>
-            <hudson.plugins.plot.CSVSeries>
-              <file>build/logs/phploc.csv</file>
-              <label></label>
-              <fileType>csv</fileType>
-              <inclusionFlag>OFF</inclusionFlag>
-              <exclusionValues></exclusionValues>
-              <url></url>
-              <displayTableFlag>false</displayTableFlag>
-            </hudson.plugins.plot.CSVSeries>
-          </series>
-          <group>phploc</group>
-          <numBuilds>10</numBuilds>
-          <csvFileName>123.csv</csvFileName>
-          <csvLastModification>0</csvLastModification>
-          <style>line</style>
-          <useDescr>false</useDescr>
-        </hudson.plugins.plot.Plot>
-      </plots>
-    </hudson.plugins.plot.PlotPublisher>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds>
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
+      <pattern>build/logs/pmd.xml</pattern>
+    </hudson.plugins.pmd.PmdPublisher>
     <com.thalesgroup.hudson.plugins.xunit.XUnitPublisher>
       <types>
-        <com.thalesgroup.hudson.plugins.xunit.types.PHPUnitType>
+        <com.thalesgroup.dtkit.metrics.hudson.model.PHPUnitJunitHudsonTestType>
           <pattern>build/logs/junit.xml</pattern>
           <faildedIfNotNew>true</faildedIfNotNew>
-          <deleteJUnitFiles>true</deleteJUnitFiles>
-        </com.thalesgroup.hudson.plugins.xunit.types.PHPUnitType>
+          <deleteOutputFiles>true</deleteOutputFiles>
+        </com.thalesgroup.dtkit.metrics.hudson.model.PHPUnitJunitHudsonTestType>
       </types>
     </com.thalesgroup.hudson.plugins.xunit.XUnitPublisher>
-    <hudson.plugins.clover.CloverPublisher>
-      <cloverReportDir>build/logs</cloverReportDir>
-      <cloverReportFileName>clover.xml</cloverReportFileName>
-      <healthyTarget>
-        <methodCoverage>70</methodCoverage>
-        <conditionalCoverage>80</conditionalCoverage>
-        <statementCoverage>80</statementCoverage>
-      </healthyTarget>
-      <unhealthyTarget/>
-      <failingTarget/>
-    </hudson.plugins.clover.CloverPublisher>
-    <hudson.plugins.jdepend.JDependRecorder>
-      <configuredJDependFile>build/logs/jdepend.xml</configuredJDependFile>
-    </hudson.plugins.jdepend.JDependRecorder>
     <hudson.plugins.violations.ViolationsPublisher>
       <config>
         <suppressions class="tree-set">
@@ -125,6 +128,17 @@
               <unstable>999</unstable>
               <usePattern>false</usePattern>
               <pattern>build/logs/checkstyle.xml</pattern>
+            </hudson.plugins.violations.TypeConfig>
+          </entry>
+          <entry>
+            <string>codenarc</string>
+            <hudson.plugins.violations.TypeConfig>
+              <type>codenarc</type>
+              <min>10</min>
+              <max>999</max>
+              <unstable>999</unstable>
+              <usePattern>false</usePattern>
+              <pattern></pattern>
             </hudson.plugins.violations.TypeConfig>
           </entry>
           <entry>
@@ -164,6 +178,28 @@
             <string>gendarme</string>
             <hudson.plugins.violations.TypeConfig>
               <type>gendarme</type>
+              <min>10</min>
+              <max>999</max>
+              <unstable>999</unstable>
+              <usePattern>false</usePattern>
+              <pattern></pattern>
+            </hudson.plugins.violations.TypeConfig>
+          </entry>
+          <entry>
+            <string>jcreport</string>
+            <hudson.plugins.violations.TypeConfig>
+              <type>jcreport</type>
+              <min>10</min>
+              <max>999</max>
+              <unstable>999</unstable>
+              <usePattern>false</usePattern>
+              <pattern></pattern>
+            </hudson.plugins.violations.TypeConfig>
+          </entry>
+          <entry>
+            <string>jslint</string>
+            <hudson.plugins.violations.TypeConfig>
+              <type>jslint</type>
               <min>10</min>
               <max>999</max>
               <unstable>999</unstable>
@@ -222,6 +258,42 @@
         <encoding>default</encoding>
       </config>
     </hudson.plugins.violations.ViolationsPublisher>
+    <hudson.plugins.clover.CloverPublisher>
+      <cloverReportDir>build/logs</cloverReportDir>
+      <cloverReportFileName>clover.xml</cloverReportFileName>
+      <healthyTarget>
+        <methodCoverage>70</methodCoverage>
+        <conditionalCoverage>80</conditionalCoverage>
+        <statementCoverage>80</statementCoverage>
+      </healthyTarget>
+      <unhealthyTarget/>
+      <failingTarget/>
+    </hudson.plugins.clover.CloverPublisher>
+    <hudson.plugins.plot.PlotPublisher>
+      <plots>
+        <hudson.plugins.plot.Plot>
+          <title>phploc</title>
+          <yaxis></yaxis>
+          <series>
+            <hudson.plugins.plot.CSVSeries>
+              <file>build/logs/phploc.csv</file>
+              <label></label>
+              <fileType>csv</fileType>
+              <inclusionFlag>OFF</inclusionFlag>
+              <exclusionValues></exclusionValues>
+              <url></url>
+              <displayTableFlag>false</displayTableFlag>
+            </hudson.plugins.plot.CSVSeries>
+          </series>
+          <group>phploc</group>
+          <numBuilds>10</numBuilds>
+          <csvFileName>123.csv</csvFileName>
+          <csvLastModification>0</csvLastModification>
+          <style>line</style>
+          <useDescr>false</useDescr>
+        </hudson.plugins.plot.Plot>
+      </plots>
+    </hudson.plugins.plot.PlotPublisher>
     <htmlpublisher.HtmlPublisher>
       <reportTargets>
         <htmlpublisher.HtmlPublisherTarget>
@@ -247,6 +319,9 @@
         </htmlpublisher.HtmlPublisherTarget>
       </reportTargets>
     </htmlpublisher.HtmlPublisher>
+    <hudson.plugins.jdepend.JDependRecorder>
+      <configuredJDependFile>build/logs/jdepend.xml</configuredJDependFile>
+    </hudson.plugins.jdepend.JDependRecorder>
   </publishers>
   <buildWrappers/>
 </project>
