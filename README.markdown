@@ -185,5 +185,6 @@ Check out `php-hudson-template` from Git:
 * Select "Copy existing job" and enter "php-template" into the "Copy from" field.
 * Click "OK".
 * Fill in your "Source Code Management" information.
+* Configure a "Build Trigger", for instance "Poll SCM".
 * Configure an Ant-based build.
 * Click "Save".
