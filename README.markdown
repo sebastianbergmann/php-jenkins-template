@@ -32,6 +32,7 @@ Download: http://SERVER/jnlpJars/hudson-cli.jar and execute
     java -jar hudson-cli.jar -s http://SERVER install-plugin pmd
     java -jar hudson-cli.jar -s http://SERVER install-plugin violations
     java -jar hudson-cli.jar -s http://SERVER install-plugin xunit
+    java -jar hudson-cli.jar -s http://SERVER safe-restart
 
 
 Required PHP Tools
