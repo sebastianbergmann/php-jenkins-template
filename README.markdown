@@ -19,20 +19,21 @@ You need to install the following plugins for Hudson:
 * [Violations](http://wiki.hudson-ci.org/display/HUDSON/Violations) (for processing various logfiles)
 * [xUnit](http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin) (for processing PHPUnit logfiles in JUnit format)
 
-You can install these plugins using the webfrontend http://SERVER/pluginManager/available or using the hudson-cli
+You can install these plugins using the web frontend `http://localhost:8080/pluginManager/available` or using the [Hudson CLI](http://wiki.hudson-ci.org/display/HUDSON/Hudson+CLI).
 
-Download: http://SERVER/jnlpJars/hudson-cli.jar and execute
+    wget http://localhost:8080/jnlpJars/hudson-cli.jar
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin checkstyle
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin clover
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin dry
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin htmlpublisher
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin jdepend
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin plot
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin pmd
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin violations
+    java -jar hudson-cli.jar -s http://localhost:8080 install-plugin xunit
+    java -jar hudson-cli.jar -s http://localhost:8080 safe-restart
 
-    java -jar hudson-cli.jar -s http://SERVER install-plugin checkstyle
-    java -jar hudson-cli.jar -s http://SERVER install-plugin clover
-    java -jar hudson-cli.jar -s http://SERVER install-plugin dry
-    java -jar hudson-cli.jar -s http://SERVER install-plugin htmlpublisher
-    java -jar hudson-cli.jar -s http://SERVER install-plugin jdepend
-    java -jar hudson-cli.jar -s http://SERVER install-plugin plot
-    java -jar hudson-cli.jar -s http://SERVER install-plugin pmd
-    java -jar hudson-cli.jar -s http://SERVER install-plugin violations
-    java -jar hudson-cli.jar -s http://SERVER install-plugin xunit
-    java -jar hudson-cli.jar -s http://SERVER safe-restart
+In the above, replace `localhost:8080` with the hostname and port of your Hudson installation.
 
 
 Required PHP Tools
