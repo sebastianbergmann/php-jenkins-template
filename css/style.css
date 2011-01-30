@@ -1,0 +1,34 @@
+body {
+ margin-top: 1.0em;
+ background-color: #fff;
+ font-family: "Helvetica,Arial,FreeSans";
+ color: #000;
+}
+
+#container {
+ margin: 0 auto;
+ width: 700px;
+}
+
+h1 {
+ font-size: 1.75em;
+ margin-bottom: 3px;
+}
+
+h1 a {
+ text-decoration: none;
+}
+
+h2 {
+ color: #000;
+}
+
+a {
+ color: #000;
+}
+
+pre {
+ background: #000;
+ color: #fff;
+ padding: 15px;
+}
