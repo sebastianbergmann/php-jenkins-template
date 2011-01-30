@@ -1,5 +1,5 @@
 body {
- background: #fff;
+ background: #eeeeec;
  color: #444;
  font-family: Helvetica, Arial, Verdana, sans-serif;
  font-size: 16px;
@@ -36,14 +36,12 @@ h2 {
 }
 
 a {
- color: #369;
- color: #06A;
+ color: #204a87;
  text-decoration: none;
 }
 
 a:hover {
- color: #008200;
- color: #06A;
+ color: #729fcf;
  text-decoration: underline;
 }
 
@@ -52,7 +50,7 @@ p {
 }
 
 pre {
- background: #000;
+ background: #2e3436;
  color: #fff;
  font-family: Monaco, Consolas, monospace;
  font-size: 14px;
