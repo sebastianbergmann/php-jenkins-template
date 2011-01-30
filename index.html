@@ -170,12 +170,10 @@ pear install --alldeps phpunit/PHPUnit</pre>
     `-- pmd.xml</pre>
    <p>These build artifacts will be processed by Hudson.</p>
    <h2>Using the Job Template</h2>
-   <ul>
-    <li>Check out <code>php-hudson-template</code> project from Git:</li>
-   </ul>
+   <ol>
+    <li>Check out <code>php-hudson-template</code> project from Git:
    <pre>cd $HUDSON_HOME/jobs
-git clone git://github.com/sebastianbergmann/php-hudson-template.git php-template</pre>
-   <ul>
+git clone git://github.com/sebastianbergmann/php-hudson-template.git php-template</pre></li>
     <li>Restart Hudson.</li>
     <li>Click on "New Job".</li>
     <li>Enter a "Job name".</li>
@@ -185,7 +183,7 @@ git clone git://github.com/sebastianbergmann/php-hudson-template.git php-templat
     <li>Configure a "Build Trigger", for instance "Poll SCM".</li>
     <li>Configure an Ant-based build.</li>
     <li>Click "Save".</li>
-   </ul>
+   </ol>
    <h2>Screenshots</h2>
    <a href="img/new_job.png" rel="lightbox[screenshots]" title="Creating a new PHP job in Hudson"><img alt="Creating a new PHP job in Hudson" src="img/new_job_thumbnail.png"/></a>
    <a href="img/configure_job.png" rel="lightbox[screenshots]" title="Configuring a PHP job in Hudson"><img alt="Configuring a PHP job in Hudson" src="img/configure_job_thumbnail.png"/></a>
