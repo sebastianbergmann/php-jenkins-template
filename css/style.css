@@ -45,6 +45,11 @@ a:hover {
  text-decoration: underline;
 }
 
+img {
+ border: none;
+ padding: 15px;
+}
+
 p {
  margin: .5em 0 .75em 0;
 }
