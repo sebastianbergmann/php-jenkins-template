@@ -1,8 +1,10 @@
 body {
- margin-top: 1.0em;
- background-color: #fff;
- font-family: "Helvetica,Arial,FreeSans";
- color: #000;
+ background: #fff;
+ color: #444;
+ font-family: Helvetica, Arial, Verdana, sans-serif;
+ font-size: 16px;
+ line-height: 1.6;
+ margin: 0;
 }
 
 #container {
@@ -10,25 +12,50 @@ body {
  width: 700px;
 }
 
-h1 {
- font-size: 1.75em;
- margin-bottom: 3px;
+h1, h2 {
+ color: #000;
+ font-family: Georgia, "bitstream vera serif", Times, serif;
+ font-weight: normal;
+ letter-spacing: -.03em;
 }
 
 h1 a {
  text-decoration: none;
 }
 
+h1 {
+ font-size: 220%;
+ line-height: 1.25em;
+ margin: 1em 0 .5em 0;
+}
+
 h2 {
- color: #000;
+ font-size: 160%;
+ line-height: 1.25em;
+ margin: .75em 0 .5em 0;
 }
 
 a {
- color: #000;
+ color: #369;
+ color: #06A;
+ text-decoration: none;
+}
+
+a:hover {
+ color: #008200;
+ color: #06A;
+ text-decoration: underline;
+}
+
+p {
+ margin: .5em 0 .75em 0;
 }
 
 pre {
  background: #000;
  color: #fff;
+ font-family: Monaco, Consolas, monospace;
+ font-size: 14px;
+ line-height: 150%;
  padding: 15px;
 }
