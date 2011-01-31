@@ -61,6 +61,19 @@ p {
  margin: .5em 0 .75em 0;
 }
 
+footer p {
+ font-size: 80%;
+ text-align: center;
+}
+
+footer a {
+ color: #444;
+}
+
+footer a:hover {
+ color: #444;
+}
+
 pre {
  background: #2e3436;
  color: #fff;
@@ -68,4 +81,12 @@ pre {
  font-size: 14px;
  line-height: 150%;
  padding: 15px;
+}
+
+hr {
+ background-color: #2e3436;
+ border: 0;
+ height: 1px;
+ margin: 0;
+ padding: 0;
 }
