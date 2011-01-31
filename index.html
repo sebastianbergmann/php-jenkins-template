@@ -1,7 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content="The goal of this project is to provide a standard template for Hudson jobs for PHP projects." />
@@ -13,30 +11,34 @@
   <meta property="og:url" content="http://jenkins-php.org/" />
   <link rel="canonical" href="http://jenkins-php.org/" />
   <title>Template for Hudson Jobs for PHP Projects</title>
+  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
   <script type="text/javascript">var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-68261-16']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
  </head>
  <body>
   <a href="http://github.com/sebastianbergmann/php-hudson-template"><img class="github" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
   <div id="container">
-   <h1><a href="http://github.com/sebastianbergmann/php-hudson-template">Template for Hudson Jobs for PHP Projects</a></h1>
-   <a href="http://hudson-ci.org/">Hudson</a> is the leading <a href="http://en.wikipedia.org/wiki/Open_Source">open-source</a> <a href="http://martinfowler.com/articles/continuousIntegration.html">continuous integration</a> server. Thanks to its thriving plugin ecosystem, it supports building and testing virtually any project.</p>
-   <p>The goal of this project is to provide a standard template for Hudson jobs for PHP projects.</p>
-   <h2>Required Hudson Plugins</h2>
-   <p>You need to install the following plugins for Hudson:</p>
-   <ul>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Checkstyle+Plugin">Checkstyle</a> (for processing <a href="http://pear.php.net/PHP_CodeSniffer">PHP_CodeSniffer</a> logfiles in Checkstyle format)</li>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Clover+Plugin">Clover</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> code coverage xml output)</li>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/DRY+Plugin">DRY</a> (for processing <a href="https://github.com/sebastianbergmann/phpcpd">phpcpd</a> logfiles in PMD-CPD format)</li>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/HTML+Publisher+Plugin">HTML Publisher</a> (for publishing the <a href="http://www.phpunit.de/">PHPUnit</a> code coverage report, for instance)</li>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/JDepend+Plugin">JDepend</a> (for processing <a href="http://pdepend.org/">PHP_Depend</a> logfiles in JDepend format)</li>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Plot+Plugin">Plot</a> (for processing <a href="https://github.com/sebastianbergmann/phploc">phploc</a> CSV output)</li>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/PMD+Plugin">PMD</a> (for processing <a href="http://phpmd.org/">PHPMD</a> logfiles in PMD format)</li>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Violations">Violations</a> (for processing various logfiles)</li>
-    <li><a href="http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin">xUnit</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> logfiles in JUnit format)</li>
-   </ul>
-   <p>You can install these plugins using the web frontend at <dl><dd><code>http://localhost:8080/pluginManager/available</code></dd></dl> or using the <a href="http://wiki.hudson-ci.org/display/HUDSON/Hudson+CLI">Hudson CLI</a>:</p>
-   <pre>wget http://localhost:8080/jnlpJars/hudson-cli.jar
+   <header>
+    <h1><a href="http://github.com/sebastianbergmann/php-hudson-template">Template for Hudson Jobs for PHP Projects</a></h1>
+   </header>
+   <article>
+    <a href="http://hudson-ci.org/">Hudson</a> is the leading <a href="http://en.wikipedia.org/wiki/Open_Source">open-source</a> <a href="http://martinfowler.com/articles/continuousIntegration.html">continuous integration</a> server. Thanks to its thriving plugin ecosystem, it supports building and testing virtually any project.</p>
+    <p>The goal of this project is to provide a standard template for Hudson jobs for PHP projects.</p>
+    <h2>Required Hudson Plugins</h2>
+    <p>You need to install the following plugins for Hudson:</p>
+    <ul>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Checkstyle+Plugin">Checkstyle</a> (for processing <a href="http://pear.php.net/PHP_CodeSniffer">PHP_CodeSniffer</a> logfiles in Checkstyle format)</li>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Clover+Plugin">Clover</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> code coverage xml output)</li>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/DRY+Plugin">DRY</a> (for processing <a href="https://github.com/sebastianbergmann/phpcpd">phpcpd</a> logfiles in PMD-CPD format)</li>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/HTML+Publisher+Plugin">HTML Publisher</a> (for publishing the <a href="http://www.phpunit.de/">PHPUnit</a> code coverage report, for instance)</li>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/JDepend+Plugin">JDepend</a> (for processing <a href="http://pdepend.org/">PHP_Depend</a> logfiles in JDepend format)</li>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Plot+Plugin">Plot</a> (for processing <a href="https://github.com/sebastianbergmann/phploc">phploc</a> CSV output)</li>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/PMD+Plugin">PMD</a> (for processing <a href="http://phpmd.org/">PHPMD</a> logfiles in PMD format)</li>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Violations">Violations</a> (for processing various logfiles)</li>
+     <li><a href="http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin">xUnit</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> logfiles in JUnit format)</li>
+    </ul>
+    <p>You can install these plugins using the web frontend at <dl><dd><code>http://localhost:8080/pluginManager/available</code></dd></dl> or using the <a href="http://wiki.hudson-ci.org/display/HUDSON/Hudson+CLI">Hudson CLI</a>:</p>
+    <pre>wget http://localhost:8080/jnlpJars/hudson-cli.jar
 java -jar hudson-cli.jar -s http://localhost:8080 install-plugin checkstyle
 java -jar hudson-cli.jar -s http://localhost:8080 install-plugin clover
 java -jar hudson-cli.jar -s http://localhost:8080 install-plugin dry
@@ -47,9 +49,9 @@ java -jar hudson-cli.jar -s http://localhost:8080 install-plugin pmd
 java -jar hudson-cli.jar -s http://localhost:8080 install-plugin violations
 java -jar hudson-cli.jar -s http://localhost:8080 install-plugin xunit
 java -jar hudson-cli.jar -s http://localhost:8080 safe-restart</pre>
-   <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Hudson installation.</p>
-   <h2>Required PHP Tools</h2>
-   <pre>pear channel-discover pear.pdepend.org
+    <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Hudson installation.</p>
+    <h2>Required PHP Tools</h2>
+    <pre>pear channel-discover pear.pdepend.org
 pear channel-discover pear.phpmd.org
 pear channel-discover pear.phpunit.de
 pear channel-discover components.ez.no
@@ -63,9 +65,9 @@ pear install PHPDocumentor
 pear install PHP_CodeSniffer
 pear install --alldeps phpunit/PHP_CodeBrowser
 pear install --alldeps phpunit/PHPUnit</pre>
-   <h2>Build Automation</h2>
-   <p>For example, refer to the <code>build.xml</code> script of the <a href="http://github.com/sebastianbergmann/php-object-freezer">Object_Freezer</a> project:</p>
-   <pre>&lt;project name="php-object-freezer" default="build" basedir="."&gt;
+    <h2>Build Automation</h2>
+    <p>For example, refer to the <code>build.xml</code> script of the <a href="http://github.com/sebastianbergmann/php-object-freezer">Object_Freezer</a> project:</p>
+    <pre>&lt;project name="php-object-freezer" default="build" basedir="."&gt;
  &lt;target name="clean"&gt;
   &lt;!-- Clean up --&gt;
   &lt;delete dir="${basedir}/build"/&gt;
@@ -151,16 +153,16 @@ pear install --alldeps phpunit/PHPUnit</pre>
  &lt;target name="build" depends="clean,parallelTasks,phpunit,phpcb"/&gt;
 &lt;/project&gt;</pre>
 
-   <p>The <code>build.xml</code> script above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
-   <pre>&lt;logging&gt;
+    <p>The <code>build.xml</code> script above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
+    <pre>&lt;logging&gt;
  &lt;log type="coverage-html" target="build/coverage" title="Object_Freezer"
       charset="UTF-8" yui="true" highlight="true"
       lowUpperBound="35" highLowerBound="70"/&gt;
  &lt;log type="coverage-clover" target="build/logs/clover.xml"/&gt;
  &lt;log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/&gt;
 &lt;/logging&gt;</pre>
-   <p>Executing the <code>build.xml</code> script above will produce the following <code>build</code> directory:</p>
-   <pre>build
+    <p>Executing the <code>build.xml</code> script above will produce the following <code>build</code> directory:</p>
+    <pre>build
 |-- api ...
 |-- code-browser ...
 |-- coverage ...
@@ -172,33 +174,34 @@ pear install --alldeps phpunit/PHPUnit</pre>
     |-- phploc.csv
     |-- pmd-cpd.xml
     `-- pmd.xml</pre>
-   <p>These build artifacts will be processed by Hudson.</p>
-   <h2>Using the Job Template</h2>
-   <ol>
-    <li>Check out the <code>php-hudson-template</code> project from Git:
-   <pre>cd $HUDSON_HOME/jobs
+    <p>These build artifacts will be processed by Hudson.</p>
+    <h2>Using the Job Template</h2>
+    <ol>
+     <li>Check out the <code>php-hudson-template</code> project from Git:
+    <pre>cd $HUDSON_HOME/jobs
 git clone git://github.com/sebastianbergmann/php-hudson-template.git php-template</pre></li>
-    <li>Restart Hudson.</li>
-    <li>Click on "New Job".</li>
-    <li>Enter a "Job name".</li>
-    <li>Select "Copy existing job" and enter "php-template" into the "Copy from" field.</li>
-    <li>Click "OK".</li>
-    <li>Replace "localhost:8080" with the hostname and port of your Hudson installation and replace the two occurrences of "job-name" with the name of your job in the "Description" text box.</li>
-    <li>Disable the "Disable Build" option.</li>
-    <li>Fill in your "Source Code Management" information.</li>
-    <li>Configure a "Build Trigger", for instance "Poll SCM".</li>
-    <li>Configure an Ant-based build.</li>
-    <li>Click "Save".</li>
-   </ol>
-   <h2>Screenshots</h2>
-   <a href="img/new_job.png" title="Creating a new PHP job in Hudson"><img alt="Creating a new PHP job in Hudson" src="img/new_job_thumbnail.png"/></a>
-   <a href="img/configure_job.png" title="Configuring a PHP job in Hudson"><img alt="Configuring a PHP job in Hudson" src="img/configure_job_thumbnail.png"/></a>
-   <a href="img/job_overview.png" title="Overview page for a PHP job in Hudson"><img alt="Overview page for a PHP job in Hudson" src="img/job_overview_thumbnail.png"/></a>
-   <a href="img/build_overview.png" title="Build overview page for a PHP job in Hudson"><img alt="Build overview page for a PHP job in Hudson" src="img/build_overview_thumbnail.png"/></a>
-   <a href="img/pmd.png" title="Results from PHP Mess Detector (PMD)"><img alt="Results from PHP Mess Detector (PMD)" src="img/pmd_thumbnail.png"/></a>
-   <a href="img/pdepend.png" title="Results from PHP_Depend"><img alt="Results from PHP_Depend" src="img/pdepend_thumbnail.png"/></a>
-   <a href="img/checkstyle.png" title="Results from PHP_CodeSniffer"><img alt="Results from PHP_CodeSniffer" src="img/checkstyle_thumbnail.png"/></a>
-   <a href="img/phploc.png" title="Results from PHPLOC"><img alt="Results from PHPLOC" src="img/phploc_thumbnail.png"/></a>
+     <li>Restart Hudson.</li>
+     <li>Click on "New Job".</li>
+     <li>Enter a "Job name".</li>
+     <li>Select "Copy existing job" and enter "php-template" into the "Copy from" field.</li>
+     <li>Click "OK".</li>
+     <li>Replace "localhost:8080" with the hostname and port of your Hudson installation and replace the two occurrences of "job-name" with the name of your job in the "Description" text box.</li>
+     <li>Disable the "Disable Build" option.</li>
+     <li>Fill in your "Source Code Management" information.</li>
+     <li>Configure a "Build Trigger", for instance "Poll SCM".</li>
+     <li>Configure an Ant-based build.</li>
+     <li>Click "Save".</li>
+    </ol>
+    <h2>Screenshots</h2>
+    <a href="img/new_job.png" title="Creating a new PHP job in Hudson"><img alt="Creating a new PHP job in Hudson" src="img/new_job_thumbnail.png"/></a>
+    <a href="img/configure_job.png" title="Configuring a PHP job in Hudson"><img alt="Configuring a PHP job in Hudson" src="img/configure_job_thumbnail.png"/></a>
+    <a href="img/job_overview.png" title="Overview page for a PHP job in Hudson"><img alt="Overview page for a PHP job in Hudson" src="img/job_overview_thumbnail.png"/></a>
+    <a href="img/build_overview.png" title="Build overview page for a PHP job in Hudson"><img alt="Build overview page for a PHP job in Hudson" src="img/build_overview_thumbnail.png"/></a>
+    <a href="img/pmd.png" title="Results from PHP Mess Detector (PMD)"><img alt="Results from PHP Mess Detector (PMD)" src="img/pmd_thumbnail.png"/></a>
+    <a href="img/pdepend.png" title="Results from PHP_Depend"><img alt="Results from PHP_Depend" src="img/pdepend_thumbnail.png"/></a>
+    <a href="img/checkstyle.png" title="Results from PHP_CodeSniffer"><img alt="Results from PHP_CodeSniffer" src="img/checkstyle_thumbnail.png"/></a>
+    <a href="img/phploc.png" title="Results from PHPLOC"><img alt="Results from PHPLOC" src="img/phploc_thumbnail.png"/></a>
+   </article>
   </div>
  </body>
 </html>
