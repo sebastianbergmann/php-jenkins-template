@@ -66,8 +66,10 @@ pear install PHP_CodeSniffer
 pear install --alldeps phpunit/PHP_CodeBrowser
 pear install --alldeps phpunit/PHPUnit</pre>
     <h2>Build Automation</h2>
-    <p>For example, refer to the <code>build.xml</code> script of the <a href="http://github.com/sebastianbergmann/php-object-freezer">Object_Freezer</a> project:</p>
-    <pre>&lt;project name="php-object-freezer" default="build" basedir="."&gt;
+    <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script below assumes that a <code>build.properties</code> file exists in the same directory that configures the sourcecode directory (<code>source=${basedir}/src</code>, for instance).</p>
+    <pre>&lt;project name="name-of-project" default="build" basedir="."&gt;
+ &lt;property file="build.properties"/&gt;
+
  &lt;target name="clean"&gt;
   &lt;!-- Clean up --&gt;
   &lt;delete dir="${basedir}/build"/&gt;
@@ -77,6 +79,7 @@ pear install --alldeps phpunit/PHPUnit</pre>
   &lt;mkdir dir="${basedir}/build/code-browser"/&gt;
   &lt;mkdir dir="${basedir}/build/coverage"/&gt;
   &lt;mkdir dir="${basedir}/build/logs"/&gt;
+  &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
  &lt;/target&gt;
 
  &lt;!-- Run unit tests and generate junit.xml and clover.xml --&gt;
@@ -100,14 +103,19 @@ pear install --alldeps phpunit/PHPUnit</pre>
  &lt;!-- Generate jdepend.xml and software metrics charts --&gt;
  &lt;target name="pdepend"&gt;
   &lt;exec executable="pdepend"&gt;
-   &lt;arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml Object" /&gt;
+   &lt;arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
+              --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
+              --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
+              ${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;!-- Generate pmd.xml --&gt;
  &lt;target name="phpmd"&gt;
   &lt;exec executable="phpmd"&gt;
-   &lt;arg line="Object xml codesize,unusedcode
+   &lt;arg line="${source}
+              xml
+              codesize,design,naming,unusedcode
               --reportfile ${basedir}/build/logs/pmd.xml" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
@@ -115,14 +123,14 @@ pear install --alldeps phpunit/PHPUnit</pre>
  &lt;!-- Generate pmd-cpd.xml --&gt;
  &lt;target name="phpcpd"&gt;
   &lt;exec executable="phpcpd"&gt;
-   &lt;arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml Object" /&gt;
+   &lt;arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml ${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;!-- Generate phploc.csv --&gt;
  &lt;target name="phploc"&gt;
   &lt;exec executable="phploc"&gt;
-   &lt;arg line="--log-csv ${basedir}/build/logs/phploc.csv Object" /&gt;
+   &lt;arg line="--log-csv ${basedir}/build/logs/phploc.csv ${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
@@ -132,21 +140,21 @@ pear install --alldeps phpunit/PHPUnit</pre>
    &lt;arg line="--report=checkstyle
               --report-file=${basedir}/build/logs/checkstyle.xml
               --standard=Sebastian
-              Object" /&gt;
+              ${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;!-- Generate API documentation --&gt;
  &lt;target name="phpdoc"&gt;
   &lt;exec executable="phpdoc"&gt;
-   &lt;arg line="-d Object -t ${basedir}/build/api" /&gt;
+   &lt;arg line="-d ${source} -t ${basedir}/build/api" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="phpcb"&gt;
   &lt;exec executable="phpcb"&gt;
    &lt;arg line="--log    ${basedir}/build/logs
-              --source ${basedir}/Object
+              --source ${source}
               --output ${basedir}/build/code-browser" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
@@ -156,7 +164,7 @@ pear install --alldeps phpunit/PHPUnit</pre>
 
     <p>The <code>build.xml</code> script above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
     <pre>&lt;logging&gt;
- &lt;log type="coverage-html" target="build/coverage" title="Object_Freezer"
+ &lt;log type="coverage-html" target="build/coverage" title="Name of Project"
       charset="UTF-8" yui="true" highlight="true"
       lowUpperBound="35" highLowerBound="70"/&gt;
  &lt;log type="coverage-clover" target="build/logs/clover.xml"/&gt;
