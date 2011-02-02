@@ -187,9 +187,10 @@ pear install --alldeps phpunit/PHPUnit</pre>
     <h2>Using the Job Template</h2>
     <ol>
      <li>Check out the <code>php-jenkins-template</code> project from Git:
-    <pre>cd $JENKINS_HOME/jobs
+     <pre>cd $JENKINS_HOME/jobs
 git clone git://github.com/sebastianbergmann/php-jenkins-template.git php-template</pre></li>
-     <li>Restart Jenkins.</li>
+     <li>Reload Jenkins' configuration, for instance using the Jenkins CLI:
+     <pre>java -jar jenkins-cli.jar -s http://localhost:8080 reload-configuration</pre></li>
      <li>Click on "New Job".</li>
      <li>Enter a "Job name".</li>
      <li>Select "Copy existing job" and enter "php-template" into the "Copy from" field.</li>
