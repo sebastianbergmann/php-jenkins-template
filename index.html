@@ -2,30 +2,30 @@
 <html lang="en">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="description" content="The goal of this project is to provide a standard template for Hudson jobs for PHP projects." />
+  <meta name="description" content="The goal of this project is to provide a standard template for Jenkins jobs for PHP projects." />
   <meta name="author" content="Sebastian Bergmann" />
   <meta property="og:email" content="sb@sebastian-bergmann.de" />
-  <meta property="og:site_name" content="Template for Hudson Jobs for PHP Projects" />
-  <meta property="og:title" content="Template for Hudson Jobs for PHP Projects" />
+  <meta property="og:site_name" content="Template for Jenkins Jobs for PHP Projects" />
+  <meta property="og:title" content="Template for Jenkins Jobs for PHP Projects" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="http://jenkins-php.org/" />
   <link rel="canonical" href="http://jenkins-php.org/" />
-  <title>Template for Hudson Jobs for PHP Projects</title>
+  <title>Template for Jenkins Jobs for PHP Projects</title>
   <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
   <script type="text/javascript">var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-68261-16']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
  </head>
  <body>
-  <a href="http://github.com/sebastianbergmann/php-hudson-template"><img class="github" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <a href="http://github.com/sebastianbergmann/php-jenkins-template"><img class="github" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
   <div id="container">
    <header>
-    <h1><a href="http://github.com/sebastianbergmann/php-hudson-template">Template for Hudson Jobs for PHP Projects</a></h1>
+    <h1><a href="http://github.com/sebastianbergmann/php-jenkins-template">Template for Jenkins Jobs for PHP Projects</a></h1>
    </header>
    <article>
-    <a href="http://hudson-ci.org/">Hudson</a> is the leading <a href="http://en.wikipedia.org/wiki/Open_Source">open-source</a> <a href="http://martinfowler.com/articles/continuousIntegration.html">continuous integration</a> server. Thanks to its thriving plugin ecosystem, it supports building and testing virtually any project.</p>
-    <p>The goal of this project is to provide a standard template for Hudson jobs for PHP projects.</p>
-    <h2>Required Hudson Plugins</h2>
-    <p>You need to install the following plugins for Hudson:</p>
+    <a href="http://jenkins-ci.org/">Jenkins</a> is the leading <a href="http://en.wikipedia.org/wiki/Open_Source">open-source</a> <a href="http://martinfowler.com/articles/continuousIntegration.html">continuous integration</a> server. Thanks to its thriving plugin ecosystem, it supports building and testing virtually any project.</p>
+    <p>The goal of this project is to provide a standard template for Jenkins jobs for PHP projects.</p>
+    <h2>Required Jenkins Plugins</h2>
+    <p>You need to install the following plugins for Jenkins:</p>
     <ul>
      <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Checkstyle+Plugin">Checkstyle</a> (for processing <a href="http://pear.php.net/PHP_CodeSniffer">PHP_CodeSniffer</a> logfiles in Checkstyle format)</li>
      <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Clover+Plugin">Clover</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> code coverage xml output)</li>
@@ -37,19 +37,19 @@
      <li><a href="http://wiki.hudson-ci.org/display/HUDSON/Violations">Violations</a> (for processing various logfiles)</li>
      <li><a href="http://wiki.hudson-ci.org/display/HUDSON/xUnit+Plugin">xUnit</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> logfiles in JUnit format)</li>
     </ul>
-    <p>You can install these plugins using the web frontend at <dl><dd><code>http://localhost:8080/pluginManager/available</code></dd></dl> or using the <a href="http://wiki.hudson-ci.org/display/HUDSON/Hudson+CLI">Hudson CLI</a>:</p>
-    <pre>wget http://localhost:8080/jnlpJars/hudson-cli.jar
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin checkstyle
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin clover
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin dry
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin htmlpublisher
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin jdepend
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin plot
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin pmd
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin violations
-java -jar hudson-cli.jar -s http://localhost:8080 install-plugin xunit
-java -jar hudson-cli.jar -s http://localhost:8080 safe-restart</pre>
-    <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Hudson installation.</p>
+    <p>You can install these plugins using the web frontend at <dl><dd><code>http://localhost:8080/pluginManager/available</code></dd></dl> or using the <a href="http://wiki.hudson-ci.org/display/HUDSON/Hudson+CLI">Jenkins CLI</a>:</p>
+    <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin checkstyle
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin clover
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin dry
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin htmlpublisher
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin jdepend
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin plot
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin pmd
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin violations
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin xunit
+java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
+    <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Jenkins installation.</p>
     <h2>Required PHP Tools</h2>
     <pre>pear channel-discover pear.pdepend.org
 pear channel-discover pear.phpmd.org
@@ -183,18 +183,18 @@ pear install --alldeps phpunit/PHPUnit</pre>
     |-- phploc.csv
     |-- pmd-cpd.xml
     `-- pmd.xml</pre>
-    <p>These build artifacts will be processed by Hudson.</p>
+    <p>These build artifacts will be processed by Jenkins.</p>
     <h2>Using the Job Template</h2>
     <ol>
-     <li>Check out the <code>php-hudson-template</code> project from Git:
-    <pre>cd $HUDSON_HOME/jobs
-git clone git://github.com/sebastianbergmann/php-hudson-template.git php-template</pre></li>
-     <li>Restart Hudson.</li>
+     <li>Check out the <code>php-jenkins-template</code> project from Git:
+    <pre>cd $JENKINS_HOME/jobs
+git clone git://github.com/sebastianbergmann/php-jenkins-template.git php-template</pre></li>
+     <li>Restart Jenkins.</li>
      <li>Click on "New Job".</li>
      <li>Enter a "Job name".</li>
      <li>Select "Copy existing job" and enter "php-template" into the "Copy from" field.</li>
      <li>Click "OK".</li>
-     <li>Replace "localhost:8080" with the hostname and port of your Hudson installation and replace the two occurrences of "job-name" with the name of your job in the "Description" text box.</li>
+     <li>Replace "localhost:8080" with the hostname and port of your Jenkins installation and replace the two occurrences of "job-name" with the name of your job in the "Description" text box.</li>
      <li>Disable the "Disable Build" option.</li>
      <li>Fill in your "Source Code Management" information.</li>
      <li>Configure a "Build Trigger", for instance "Poll SCM".</li>
@@ -202,10 +202,10 @@ git clone git://github.com/sebastianbergmann/php-hudson-template.git php-templat
      <li>Click "Save".</li>
     </ol>
     <h2>Screenshots</h2>
-    <a href="img/new_job.png" title="Creating a new PHP job in Hudson"><img alt="Creating a new PHP job in Hudson" src="img/new_job_thumbnail.png"/></a>
-    <a href="img/configure_job.png" title="Configuring a PHP job in Hudson"><img alt="Configuring a PHP job in Hudson" src="img/configure_job_thumbnail.png"/></a>
-    <a href="img/job_overview.png" title="Overview page for a PHP job in Hudson"><img alt="Overview page for a PHP job in Hudson" src="img/job_overview_thumbnail.png"/></a>
-    <a href="img/build_overview.png" title="Build overview page for a PHP job in Hudson"><img alt="Build overview page for a PHP job in Hudson" src="img/build_overview_thumbnail.png"/></a>
+    <a href="img/new_job.png" title="Creating a new PHP job in Jenkins"><img alt="Creating a new PHP job in Jenkins" src="img/new_job_thumbnail.png"/></a>
+    <a href="img/configure_job.png" title="Configuring a PHP job in Jenkins"><img alt="Configuring a PHP job in Jenkins" src="img/configure_job_thumbnail.png"/></a>
+    <a href="img/job_overview.png" title="Overview page for a PHP job in Jenkins"><img alt="Overview page for a PHP job in Jenkins" src="img/job_overview_thumbnail.png"/></a>
+    <a href="img/build_overview.png" title="Build overview page for a PHP job in Jenkins"><img alt="Build overview page for a PHP job in Jenkins" src="img/build_overview_thumbnail.png"/></a>
     <a href="img/pmd.png" title="Results from PHP Mess Detector (PMD)"><img alt="Results from PHP Mess Detector (PMD)" src="img/pmd_thumbnail.png"/></a>
     <a href="img/pdepend.png" title="Results from PHP_Depend"><img alt="Results from PHP_Depend" src="img/pdepend_thumbnail.png"/></a>
     <a href="img/checkstyle.png" title="Results from PHP_CodeSniffer"><img alt="Results from PHP_CodeSniffer" src="img/checkstyle_thumbnail.png"/></a>
@@ -213,7 +213,7 @@ git clone git://github.com/sebastianbergmann/php-hudson-template.git php-templat
    </article>
    <footer>
     <hr/>
-    <p>The "<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type"><a xmlns:cc="http://creativecommons.org/ns#" href="http://jenkins-php.org/" property="cc:attributionName" rel="cc:attributionURL">Template for Hudson Jobs for PHP Projects</a></span>" by <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a> and his contributors is licensed under a<br/><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+    <p>The "<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type"><a xmlns:cc="http://creativecommons.org/ns#" href="http://jenkins-php.org/" property="cc:attributionName" rel="cc:attributionURL">Template for Jenkins Jobs for PHP Projects</a></span>" by <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a> and his contributors is licensed under a<br/><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
    </footer>
   </div>
  </body>
