@@ -137,7 +137,7 @@ pear install --alldeps phpunit/PHPUnit</pre>
 
  &lt;!-- Generate checkstyle.xml --&gt;
  &lt;target name="phpcs"&gt;
-  &lt;exec executable="phpcs" output="/dev/null"&gt;
+  &lt;exec executable="phpcs"&gt;
    &lt;arg line="--report=checkstyle
               --report-file=${basedir}/build/logs/checkstyle.xml
               --standard=PEAR
