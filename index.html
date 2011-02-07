@@ -148,7 +148,8 @@ pear install --alldeps phpunit/PHPUnit</pre>
  &lt;!-- Generate API documentation --&gt;
  &lt;target name="phpdoc"&gt;
   &lt;exec executable="phpdoc"&gt;
-   &lt;arg line="-d ${source} -t ${basedir}/build/api" /&gt;
+   &lt;arg line="--directory ${source}
+                 --target    ${basedir}/build/api" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
