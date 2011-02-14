@@ -92,8 +92,10 @@ pear install --alldeps phpunit/PHPUnit</pre>
       in parallel using a maximum of 2 threads. --&gt;
  &lt;target name="parallelTasks"&gt;
   &lt;parallel threadCount="2"&gt;
-   &lt;antcall target="pdepend"/&gt;
-   &lt;antcall target="phpmd"/&gt;
+   &lt;sequential&gt;
+    &lt;antcall target="pdepend"/&gt;
+    &lt;antcall target="phpmd"/&gt;
+   &lt;/sequential&gt;
    &lt;antcall target="phpcpd"/&gt;
    &lt;antcall target="phpcs"/&gt;
    &lt;antcall target="phpdoc"/&gt;
