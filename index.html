@@ -67,15 +67,20 @@ pear install PHP_CodeSniffer
 pear install --alldeps phpunit/PHP_CodeBrowser
 pear install --alldeps phpunit/PHPUnit</pre>
     <h2>Build Automation</h2>
-    <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script below assumes that a <code>build.properties</code> file exists in the same directory that configures the sourcecode directory (<code>source=${basedir}/src</code>, for instance).</p>
-    <pre>&lt;project name="name-of-project" default="build" basedir="."&gt;
- &lt;property file="build.properties"/&gt;
+    <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
+    <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
- &lt;target name="clean"&gt;
-  &lt;!-- Clean up --&gt;
-  &lt;delete dir="${basedir}/build"/&gt;
+&lt;project name="name-of-project" default="build" basedir="."&gt;
+ &lt;property name="source" value="src"/&gt;
 
-  &lt;!-- Create build directories --&gt;
+ &lt;target name="clean"
+         description="Clean up and create artifact directories"&gt;
+  &lt;delete dir="${basedir}/build/api"/&gt;
+  &lt;delete dir="${basedir}/build/code-browser"/&gt;
+  &lt;delete dir="${basedir}/build/coverage"/&gt;
+  &lt;delete dir="${basedir}/build/logs"/&gt;
+  &lt;delete dir="${basedir}/build/pdepend"/&gt;
+
   &lt;mkdir dir="${basedir}/build/api"/&gt;
   &lt;mkdir dir="${basedir}/build/code-browser"/&gt;
   &lt;mkdir dir="${basedir}/build/coverage"/&gt;
@@ -83,14 +88,13 @@ pear install --alldeps phpunit/PHPUnit</pre>
   &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
  &lt;/target&gt;
 
- &lt;!-- Run unit tests and generate junit.xml and clover.xml --&gt;
- &lt;target name="phpunit"&gt;
+ &lt;target name="phpunit"
+         description="Run unit tests using PHPUnit and generates junit.xml and clover.xml"&gt;
   &lt;exec executable="phpunit" failonerror="true"/&gt;
  &lt;/target&gt;
 
- &lt;!-- Run the pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc tasks
-      in parallel using a maximum of 2 threads. --&gt;
- &lt;target name="parallelTasks"&gt;
+ &lt;target name="parallelTasks"
+         description="Run the pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc tasks in parallel using a maximum of 2 threads."&gt;
   &lt;parallel threadCount="2"&gt;
    &lt;sequential&gt;
     &lt;antcall target="pdepend"/&gt;
@@ -103,8 +107,8 @@ pear install --alldeps phpunit/PHPUnit</pre>
   &lt;/parallel&gt;
  &lt;/target&gt;
 
- &lt;!-- Generate jdepend.xml and software metrics charts --&gt;
- &lt;target name="pdepend"&gt;
+ &lt;target name="pdepend"
+         description="Generate jdepend.xml and software metrics charts using PHP_Depend"&gt;
   &lt;exec executable="pdepend"&gt;
    &lt;arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
               --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
@@ -113,53 +117,52 @@ pear install --alldeps phpunit/PHPUnit</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;!-- Generate pmd.xml --&gt;
- &lt;target name="phpmd"&gt;
+ &lt;target name="phpmd"
+         description="Generate pmd.xml using PHPMD"&gt;
   &lt;exec executable="phpmd"&gt;
    &lt;arg line="${source}
               xml
-              codesize,design,naming,unusedcode
+              build/phpmd.xml
               --reportfile ${basedir}/build/logs/pmd.xml" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;!-- Generate pmd-cpd.xml --&gt;
- &lt;target name="phpcpd"&gt;
+ &lt;target name="phpcpd"
+         description="Generate pmd-cpd.xml using PHPCPD"&gt;
   &lt;exec executable="phpcpd"&gt;
-   &lt;arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml
-              ${source}" /&gt;
+   &lt;arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml ${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;!-- Generate phploc.csv --&gt;
- &lt;target name="phploc"&gt;
+ &lt;target name="phploc"
+         description="Generate phploc.csv"&gt;
   &lt;exec executable="phploc"&gt;
-   &lt;arg line="--log-csv ${basedir}/build/logs/phploc.csv
-              ${source}" /&gt;
+   &lt;arg line="--log-csv ${basedir}/build/logs/phploc.csv ${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;!-- Generate checkstyle.xml --&gt;
- &lt;target name="phpcs"&gt;
-  &lt;exec executable="phpcs"&gt;
+ &lt;target name="phpcs"
+         description="Generate checkstyle.xml using PHP_CodeSniffer"&gt;
+  &lt;exec executable="phpcs" output="/dev/null"&gt;
    &lt;arg line="--report=checkstyle
               --report-file=${basedir}/build/logs/checkstyle.xml
-              --standard=PEAR
+              --standard=build/phpcs.xml
               ${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;!-- Generate API documentation --&gt;
- &lt;target name="phpdoc"&gt;
+ &lt;target name="phpdoc"
+         description="Generate API documentation using PHPDocumentor"&gt;
   &lt;exec executable="phpdoc"&gt;
-   &lt;arg line="--directory ${source}
-                 --target    ${basedir}/build/api" /&gt;
+   &lt;arg line="-d ${source} -t ${basedir}/build/api" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;target name="phpcb"&gt;
+ &lt;target name="phpcb"
+         description="Aggregate tool output with PHP_CodeBrowser"&gt;
   &lt;exec executable="phpcb"&gt;
    &lt;arg line="--log    ${basedir}/build/logs
+              --source ${source}
               --output ${basedir}/build/code-browser" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
