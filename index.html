@@ -196,7 +196,8 @@ pear install --alldeps phpunit/PHPUnit</pre>
     <ol>
      <li>Check out the <code>php-jenkins-template</code> project from Git:
      <pre>cd $JENKINS_HOME/jobs
-git clone git://github.com/sebastianbergmann/php-jenkins-template.git php-template</pre></li>
+git clone git://github.com/sebastianbergmann/php-jenkins-template.git php-template
+chown -R jenkins:nogroup</pre></li>
      <li>Reload Jenkins' configuration, for instance using the Jenkins CLI:
      <pre>java -jar jenkins-cli.jar -s http://localhost:8080 reload-configuration</pre></li>
      <li>Click on "New Job".</li>
