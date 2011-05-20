@@ -329,11 +329,15 @@
       <cloverReportFileName>clover.xml</cloverReportFileName>
       <healthyTarget>
         <methodCoverage>70</methodCoverage>
-        <conditionalCoverage>80</conditionalCoverage>
+        <conditionalCoverage>-1</conditionalCoverage>
         <statementCoverage>80</statementCoverage>
       </healthyTarget>
-      <unhealthyTarget/>
-      <failingTarget/>
+      <unhealthyTarget>
+        <conditionalCoverage>-1</conditionalCoverage>
+      </unhealthyTarget>
+      <failingTarget>
+        <conditionalCoverage>-1</conditionalCoverage>
+      </failingTarget>
     </hudson.plugins.clover.CloverPublisher>
     <htmlpublisher.HtmlPublisher>
       <reportTargets>
