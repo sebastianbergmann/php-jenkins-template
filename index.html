@@ -29,7 +29,7 @@
     <p>You need to install the following plugins for Jenkins:</p>
     <ul>
      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Checkstyle</a> (for processing <a href="http://pear.php.net/PHP_CodeSniffer">PHP_CodeSniffer</a> logfiles in Checkstyle format)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Clover+Plugin">Clover</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> code coverage xml output)</li>
+     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Clover+PHP+Plugin">Clover PHP</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> code coverage xml output)</li>
      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/DRY+Plugin">DRY</a> (for processing <a href="https://github.com/sebastianbergmann/phpcpd">phpcpd</a> logfiles in PMD-CPD format)</li>
      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin">HTML Publisher</a> (for publishing the <a href="http://www.phpunit.de/">PHPUnit</a> code coverage report, for instance)</li>
      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/JDepend+Plugin">JDepend</a> (for processing <a href="http://pdepend.org/">PHP_Depend</a> logfiles in JDepend format)</li>
@@ -41,7 +41,7 @@
     <p>You can install these plugins using the web frontend at <dl><dd><code>http://localhost:8080/pluginManager/available</code></dd></dl> or using the <a href="http://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CLI">Jenkins CLI</a>:</p>
     <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin checkstyle
-java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin clover
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin cloverphp
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin dry
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin htmlpublisher
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin jdepend
