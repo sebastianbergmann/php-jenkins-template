@@ -327,21 +327,18 @@
         </hudson.plugins.plot.Plot>
       </plots>
     </hudson.plugins.plot.PlotPublisher>
-    <hudson.plugins.clover.CloverPublisher>
-      <cloverReportDir>build/logs</cloverReportDir>
-      <cloverReportFileName>clover.xml</cloverReportFileName>
+    <org.jenkinsci.plugins.cloverphp.CloverPublisher>
+      <publishHtmlReport>true</publishHtmlReport>
+      <reportDir>build/coverage</reportDir>
+      <xmlLocation>build/logs/clover.xml</xmlLocation>
+      <disableArchiving>false</disableArchiving>
       <healthyTarget>
         <methodCoverage>70</methodCoverage>
-        <conditionalCoverage>-1</conditionalCoverage>
         <statementCoverage>80</statementCoverage>
       </healthyTarget>
-      <unhealthyTarget>
-        <conditionalCoverage>-1</conditionalCoverage>
-      </unhealthyTarget>
-      <failingTarget>
-        <conditionalCoverage>-1</conditionalCoverage>
-      </failingTarget>
-    </hudson.plugins.clover.CloverPublisher>
+      <unhealthyTarget/>
+      <failingTarget/>
+    </org.jenkinsci.plugins.cloverphp.CloverPublisher>
     <htmlpublisher.HtmlPublisher>
       <reportTargets>
         <htmlpublisher.HtmlPublisherTarget>
