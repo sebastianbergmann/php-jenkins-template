@@ -110,60 +110,71 @@ pear install --alldeps phpunit/PHPUnit</pre>
  &lt;target name="pdepend"
          description="Generate jdepend.xml and software metrics charts using PHP_Depend"&gt;
   &lt;exec executable="pdepend"&gt;
-   &lt;arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
-              --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
-              --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
-              ${source}" /&gt;
+   &lt;arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" /&gt;
+   &lt;arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" /&gt;
+   &lt;arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" /&gt;
+   &lt;arg path="${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="phpmd"
          description="Generate pmd.xml using PHPMD"&gt;
   &lt;exec executable="phpmd"&gt;
-   &lt;arg line="${source}
-              xml
-              build/phpmd.xml
-              --reportfile ${basedir}/build/logs/pmd.xml" /&gt;
+   &lt;arg path="${source}" /&gt;
+   &lt;arg value="xml" /&gt;
+   &lt;arg value="${basedir}/build/phpmd.xml" /&gt;
+   &lt;arg value="--reportfile" /&gt;
+   &lt;arg value="${basedir}/build/logs/pmd.xml" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="phpcpd"
          description="Generate pmd-cpd.xml using PHPCPD"&gt;
   &lt;exec executable="phpcpd"&gt;
-   &lt;arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml ${source}" /&gt;
+   &lt;arg value="--log-pmd" /&gt;
+   &lt;arg value="${basedir}/build/logs/pmd-cpd.xml" /&gt;
+   &lt;arg path="${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="phploc"
          description="Generate phploc.csv"&gt;
   &lt;exec executable="phploc"&gt;
-   &lt;arg line="--log-csv ${basedir}/build/logs/phploc.csv ${source}" /&gt;
+   &lt;arg value="--log-csv" /&gt;
+   &lt;arg value="${basedir}/build/logs/phploc.csv" /&gt;
+   &lt;arg path="${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="phpcs"
          description="Generate checkstyle.xml using PHP_CodeSniffer"&gt;
   &lt;exec executable="phpcs" output="/dev/null"&gt;
-   &lt;arg line="--report=checkstyle
-              --report-file=${basedir}/build/logs/checkstyle.xml
-              --standard=build/phpcs.xml
-              ${source}" /&gt;
+   &lt;arg value="--report=checkstyle" /&gt;
+   &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
+   &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
+   &lt;arg path="${source}" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="phpdoc"
          description="Generate API documentation using PHPDocumentor"&gt;
   &lt;exec executable="phpdoc"&gt;
-   &lt;arg line="-d ${source} -t ${basedir}/build/api" /&gt;
+   &lt;arg value="--directory" /&gt;
+   &lt;arg path="${source}" /&gt;
+   &lt;arg value="--target" /&gt;
+   &lt;arg path="${basedir}/build/api" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="phpcb"
          description="Aggregate tool output with PHP_CodeBrowser"&gt;
   &lt;exec executable="phpcb"&gt;
-   &lt;arg line="--log    ${basedir}/build/logs
-              --source ${source}
-              --output ${basedir}/build/code-browser" /&gt;
+   &lt;arg value="--log" /&gt;
+   &lt;arg path="${basedir}/build/logs" /&gt;
+   &lt;arg value="--source" /&gt;
+   &lt;arg path="${source}" /&gt;
+   &lt;arg value="--output" /&gt;
+   &lt;arg path="${basedir}/build/code-browser" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
