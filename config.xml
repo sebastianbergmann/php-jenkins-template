@@ -355,13 +355,6 @@
           <keepAll>true</keepAll>
           <wrapperName>htmlpublisher-wrapper.html</wrapperName>
         </htmlpublisher.HtmlPublisherTarget>
-        <htmlpublisher.HtmlPublisherTarget>
-          <reportName>Code Coverage</reportName>
-          <reportDir>build/coverage</reportDir>
-          <reportFiles>index.html</reportFiles>
-          <keepAll>true</keepAll>
-          <wrapperName>htmlpublisher-wrapper.html</wrapperName>
-        </htmlpublisher.HtmlPublisherTarget>
       </reportTargets>
     </htmlpublisher.HtmlPublisher>
     <com.thalesgroup.hudson.plugins.xunit.XUnitPublisher>
