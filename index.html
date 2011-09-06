@@ -52,20 +52,8 @@ java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin xunit
 java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
     <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Jenkins installation.</p>
     <h2>Required PHP Tools</h2>
-    <pre>pear channel-discover pear.pdepend.org
-pear channel-discover pear.phpmd.org
-pear channel-discover pear.phpunit.de
-pear channel-discover components.ez.no
-pear channel-discover pear.symfony-project.com
-
-pear install pdepend/PHP_Depend
-pear install phpmd/PHP_PMD
-pear install phpunit/phpcpd
-pear install phpunit/phploc
-pear install PHPDocumentor
-pear install PHP_CodeSniffer
-pear install --alldeps phpunit/PHP_CodeBrowser
-pear install --alldeps phpunit/PHPUnit</pre>
+    <pre>pear config-set auto_discover 1
+pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
     <h2>Build Automation</h2>
     <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
     <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
