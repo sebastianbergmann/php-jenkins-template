@@ -55,7 +55,8 @@ java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
     <pre>pear config-set auto_discover 1
 pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
     <h2>Build Automation</h2>
-    <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
+    <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script orchestrates the execution of the various tools. 
+    	It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
     <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;project name="name-of-project" default="build" basedir="."&gt;
@@ -76,6 +77,16 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
  &lt;/target&gt;
 
+ &lt;target name="phplint"
+         description="Lint any PHP files that have been changed since last time"&gt;
+  &lt;apply executable="php" failonerror="true" logerror="on"&gt;
+  		&lt;arg line="-ln"/&gt;
+  		&lt;fileset dir="${source}" includes="**/*.php"&gt;
+  			&lt;modified /&gt;
+  		&lt;/fileset&gt;
+  &lt;/apply&gt;
+ &lt;/target&gt;
+ 
  &lt;target name="phpunit"
          description="Run unit tests using PHPUnit and generates junit.xml and clover.xml"&gt;
   &lt;exec executable="phpunit" failonerror="true"/&gt;
@@ -166,7 +177,7 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;target name="build" depends="clean,parallelTasks,phpunit,phpcb"/&gt;
+ &lt;target name="build" depends="clean,phplint,parallelTasks,phpunit,phpcb"/&gt;
 &lt;/project&gt;</pre>
 
     <p>The <code>build.xml</code> script above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
