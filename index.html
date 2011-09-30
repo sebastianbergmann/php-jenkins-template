@@ -58,31 +58,15 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
     <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
     <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
-&lt;project name="name-of-project" default="build" basedir="."&gt;
- &lt;property name="source" value="src"/&gt;
+&lt;project name="BankAccount" default="build"&gt;
+ &lt;target name="build"
+   depends="prepare,lint,phploc,pdepend,phpmd,phpcs,phpcpd,phpdoc,phpunit,phpcb"/&gt;
 
- &lt;target name="clean"
-         description="Clean up and create artifact directories"&gt;
-  &lt;delete dir="${basedir}/build/api"/&gt;
-  &lt;delete dir="${basedir}/build/code-browser"/&gt;
-  &lt;delete dir="${basedir}/build/coverage"/&gt;
-  &lt;delete dir="${basedir}/build/logs"/&gt;
-  &lt;delete dir="${basedir}/build/pdepend"/&gt;
+ &lt;target name="build-parallel"
+   depends="prepare,lint,tools-parallel,phpunit,phpcb"/&gt;
 
-  &lt;mkdir dir="${basedir}/build/api"/&gt;
-  &lt;mkdir dir="${basedir}/build/code-browser"/&gt;
-  &lt;mkdir dir="${basedir}/build/coverage"/&gt;
-  &lt;mkdir dir="${basedir}/build/logs"/&gt;
-  &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
- &lt;/target&gt;
-
- &lt;target name="phpunit"
-         description="Run unit tests using PHPUnit and generates junit.xml and clover.xml"&gt;
-  &lt;exec executable="phpunit" failonerror="true"/&gt;
- &lt;/target&gt;
-
- &lt;target name="parallelTasks"
-         description="Run the pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc tasks in parallel using a maximum of 2 threads."&gt;
+ &lt;target name="tools-parallel"
+         description="Run tools in parallel"&gt;
   &lt;parallel threadCount="2"&gt;
    &lt;sequential&gt;
     &lt;antcall target="pdepend"/&gt;
@@ -90,25 +74,82 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
    &lt;/sequential&gt;
    &lt;antcall target="phpcpd"/&gt;
    &lt;antcall target="phpcs"/&gt;
-   &lt;antcall target="phpdoc"/&gt;
    &lt;antcall target="phploc"/&gt;
+   &lt;antcall target="phpdoc"/&gt;
   &lt;/parallel&gt;
  &lt;/target&gt;
 
+ &lt;target name="clean" description="Cleanup build artifacts"&gt;
+  &lt;delete dir="${basedir}/build/api"/&gt;
+  &lt;delete dir="${basedir}/build/code-browser"/&gt;
+  &lt;delete dir="${basedir}/build/coverage"/&gt;
+  &lt;delete dir="${basedir}/build/logs"/&gt;
+  &lt;delete dir="${basedir}/build/pdepend"/&gt;
+ &lt;/target&gt;
+
+ &lt;target name="prepare" depends="clean,phpab"
+         description="Prepare for build"&gt;
+  &lt;mkdir dir="${basedir}/build/api"/&gt;
+  &lt;mkdir dir="${basedir}/build/code-browser"/&gt;
+  &lt;mkdir dir="${basedir}/build/coverage"/&gt;
+  &lt;mkdir dir="${basedir}/build/logs"/&gt;
+  &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpab" description="Generate autoloader scripts"&gt;
+  &lt;exec executable="phpab"&gt;
+   &lt;arg value="--output" /&gt;
+   &lt;arg path="${basedir}/src/autoload.php" /&gt;
+   &lt;arg value="--template" /&gt;
+   &lt;arg path="${basedir}/build/src_autoload.php.in" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+
+  &lt;exec executable="phpab"&gt;
+   &lt;arg value="--output" /&gt;
+   &lt;arg path="${basedir}/tests/autoload.php" /&gt;
+   &lt;arg value="--template" /&gt;
+   &lt;arg path="${basedir}/build/tests_autoload.php.in" /&gt;
+   &lt;arg path="${basedir}/tests" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="lint"&gt;
+  &lt;apply executable="php" failonerror="true"&gt;
+   &lt;arg value="-l" /&gt;
+
+   &lt;fileset dir="${basedir}/src"&gt;
+    &lt;include name="**/*.php" /&gt;
+   &lt;/fileset&gt;
+
+   &lt;fileset dir="${basedir}/tests"&gt;
+    &lt;include name="**/*.php" /&gt;
+   &lt;/fileset&gt;
+  &lt;/apply&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phploc" description="Measure project size using PHPLOC"&gt;
+  &lt;exec executable="phploc"&gt;
+   &lt;arg value="--log-csv" /&gt;
+   &lt;arg value="${basedir}/build/logs/phploc.csv" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
  &lt;target name="pdepend"
-         description="Generate jdepend.xml and software metrics charts using PHP_Depend"&gt;
+         description="Calculate software metrics using PHP_Depend"&gt;
   &lt;exec executable="pdepend"&gt;
    &lt;arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" /&gt;
    &lt;arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" /&gt;
    &lt;arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" /&gt;
-   &lt;arg path="${source}" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="phpmd"
-         description="Generate pmd.xml using PHPMD"&gt;
+         description="Perform project mess detection using PHPMD"&gt;
   &lt;exec executable="phpmd"&gt;
-   &lt;arg path="${source}" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="xml" /&gt;
    &lt;arg value="${basedir}/build/phpmd.xml" /&gt;
    &lt;arg value="--reportfile" /&gt;
@@ -116,31 +157,21 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;target name="phpcpd"
-         description="Generate pmd-cpd.xml using PHPCPD"&gt;
-  &lt;exec executable="phpcpd"&gt;
-   &lt;arg value="--log-pmd" /&gt;
-   &lt;arg value="${basedir}/build/logs/pmd-cpd.xml" /&gt;
-   &lt;arg path="${source}" /&gt;
-  &lt;/exec&gt;
- &lt;/target&gt;
-
- &lt;target name="phploc"
-         description="Generate phploc.csv"&gt;
-  &lt;exec executable="phploc"&gt;
-   &lt;arg value="--log-csv" /&gt;
-   &lt;arg value="${basedir}/build/logs/phploc.csv" /&gt;
-   &lt;arg path="${source}" /&gt;
-  &lt;/exec&gt;
- &lt;/target&gt;
-
  &lt;target name="phpcs"
-         description="Generate checkstyle.xml using PHP_CodeSniffer"&gt;
+         description="Find coding standard violations using PHP_CodeSniffer"&gt;
   &lt;exec executable="phpcs" output="/dev/null"&gt;
    &lt;arg value="--report=checkstyle" /&gt;
    &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
    &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
-   &lt;arg path="${source}" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpcpd" description="Find duplicate code using PHPCPD"&gt;
+  &lt;exec executable="phpcpd"&gt;
+   &lt;arg value="--log-pmd" /&gt;
+   &lt;arg value="${basedir}/build/logs/pmd-cpd.xml" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
 
@@ -154,19 +185,21 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 
+ &lt;target name="phpunit" description="Run unit tests with PHPUnit"&gt;
+  &lt;exec executable="phpunit" failonerror="true"/&gt;
+ &lt;/target&gt;
+
  &lt;target name="phpcb"
          description="Aggregate tool output with PHP_CodeBrowser"&gt;
   &lt;exec executable="phpcb"&gt;
    &lt;arg value="--log" /&gt;
    &lt;arg path="${basedir}/build/logs" /&gt;
    &lt;arg value="--source" /&gt;
-   &lt;arg path="${source}" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="--output" /&gt;
    &lt;arg path="${basedir}/build/code-browser" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
-
- &lt;target name="build" depends="clean,parallelTasks,phpunit,phpcb"/&gt;
 &lt;/project&gt;</pre>
 
     <p>The <code>build.xml</code> script above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
