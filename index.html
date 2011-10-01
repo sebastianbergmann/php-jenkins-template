@@ -58,9 +58,9 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
     <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
     <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
-&lt;project name="BankAccount" default="build"&gt;
+&lt;project name="name-of-project" default="build"&gt;
  &lt;target name="build"
-   depends="prepare,lint,phploc,pdepend,phpmd,phpcs,phpcpd,phpdoc,phpunit,phpcb"/&gt;
+   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdoc,phpunit,phpcb"/&gt;
 
  &lt;target name="build-parallel"
    depends="prepare,lint,tools-parallel,phpunit,phpcb"/&gt;
@@ -70,10 +70,10 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;parallel threadCount="2"&gt;
    &lt;sequential&gt;
     &lt;antcall target="pdepend"/&gt;
-    &lt;antcall target="phpmd"/&gt;
+    &lt;antcall target="phpmd-ci"/&gt;
    &lt;/sequential&gt;
    &lt;antcall target="phpcpd"/&gt;
-   &lt;antcall target="phpcs"/&gt;
+   &lt;antcall target="phpcs-ci"/&gt;
    &lt;antcall target="phploc"/&gt;
    &lt;antcall target="phpdoc"/&gt;
   &lt;/parallel&gt;
@@ -150,6 +150,15 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
          description="Perform project mess detection using PHPMD"&gt;
   &lt;exec executable="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
+   &lt;arg value="text" /&gt;
+   &lt;arg value="${basedir}/build/phpmd.xml" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpmd-ci"
+         description="Perform project mess detection using PHPMD"&gt;
+  &lt;exec executable="phpmd"&gt;
+   &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="xml" /&gt;
    &lt;arg value="${basedir}/build/phpmd.xml" /&gt;
    &lt;arg value="--reportfile" /&gt;
@@ -159,10 +168,20 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
 
  &lt;target name="phpcs"
          description="Find coding standard violations using PHP_CodeSniffer"&gt;
+  &lt;exec executable="phpcs"&gt;
+   &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
+   &lt;arg value="--ignore=autoload.php" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpcs-ci"
+         description="Find coding standard violations using PHP_CodeSniffer"&gt;
   &lt;exec executable="phpcs" output="/dev/null"&gt;
    &lt;arg value="--report=checkstyle" /&gt;
    &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
    &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
+   &lt;arg value="--ignore=autoload.php" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
