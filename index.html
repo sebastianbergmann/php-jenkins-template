@@ -87,31 +87,13 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;delete dir="${basedir}/build/pdepend"/&gt;
  &lt;/target&gt;
 
- &lt;target name="prepare" depends="clean,phpab"
+ &lt;target name="prepare" depends="clean"
          description="Prepare for build"&gt;
   &lt;mkdir dir="${basedir}/build/api"/&gt;
   &lt;mkdir dir="${basedir}/build/code-browser"/&gt;
   &lt;mkdir dir="${basedir}/build/coverage"/&gt;
   &lt;mkdir dir="${basedir}/build/logs"/&gt;
   &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
- &lt;/target&gt;
-
- &lt;target name="phpab" description="Generate autoloader scripts"&gt;
-  &lt;exec executable="phpab"&gt;
-   &lt;arg value="--output" /&gt;
-   &lt;arg path="${basedir}/src/autoload.php" /&gt;
-   &lt;arg value="--template" /&gt;
-   &lt;arg path="${basedir}/build/src_autoload.php.in" /&gt;
-   &lt;arg path="${basedir}/src" /&gt;
-  &lt;/exec&gt;
-
-  &lt;exec executable="phpab"&gt;
-   &lt;arg value="--output" /&gt;
-   &lt;arg path="${basedir}/tests/autoload.php" /&gt;
-   &lt;arg value="--template" /&gt;
-   &lt;arg path="${basedir}/build/tests_autoload.php.in" /&gt;
-   &lt;arg path="${basedir}/tests" /&gt;
-  &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="lint"&gt;
@@ -170,7 +152,6 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
          description="Find coding standard violations using PHP_CodeSniffer"&gt;
   &lt;exec executable="phpcs"&gt;
    &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
-   &lt;arg value="--ignore=autoload.php" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
@@ -181,7 +162,6 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
    &lt;arg value="--report=checkstyle" /&gt;
    &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
    &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
-   &lt;arg value="--ignore=autoload.php" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
