@@ -58,9 +58,9 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
     <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
     <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
-&lt;project name="BankAccount" default="build"&gt;
+&lt;project name="name-of-project" default="build"&gt;
  &lt;target name="build"
-   depends="prepare,lint,phploc,pdepend,phpmd,phpcs,phpcpd,phpdoc,phpunit,phpcb"/&gt;
+   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdoc,phpunit,phpcb"/&gt;
 
  &lt;target name="build-parallel"
    depends="prepare,lint,tools-parallel,phpunit,phpcb"/&gt;
@@ -70,10 +70,10 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;parallel threadCount="2"&gt;
    &lt;sequential&gt;
     &lt;antcall target="pdepend"/&gt;
-    &lt;antcall target="phpmd"/&gt;
+    &lt;antcall target="phpmd-ci"/&gt;
    &lt;/sequential&gt;
    &lt;antcall target="phpcpd"/&gt;
-   &lt;antcall target="phpcs"/&gt;
+   &lt;antcall target="phpcs-ci"/&gt;
    &lt;antcall target="phploc"/&gt;
    &lt;antcall target="phpdoc"/&gt;
   &lt;/parallel&gt;
@@ -87,31 +87,13 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;delete dir="${basedir}/build/pdepend"/&gt;
  &lt;/target&gt;
 
- &lt;target name="prepare" depends="clean,phpab"
+ &lt;target name="prepare" depends="clean"
          description="Prepare for build"&gt;
   &lt;mkdir dir="${basedir}/build/api"/&gt;
   &lt;mkdir dir="${basedir}/build/code-browser"/&gt;
   &lt;mkdir dir="${basedir}/build/coverage"/&gt;
   &lt;mkdir dir="${basedir}/build/logs"/&gt;
   &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
- &lt;/target&gt;
-
- &lt;target name="phpab" description="Generate autoloader scripts"&gt;
-  &lt;exec executable="phpab"&gt;
-   &lt;arg value="--output" /&gt;
-   &lt;arg path="${basedir}/src/autoload.php" /&gt;
-   &lt;arg value="--template" /&gt;
-   &lt;arg path="${basedir}/build/src_autoload.php.in" /&gt;
-   &lt;arg path="${basedir}/src" /&gt;
-  &lt;/exec&gt;
-
-  &lt;exec executable="phpab"&gt;
-   &lt;arg value="--output" /&gt;
-   &lt;arg path="${basedir}/tests/autoload.php" /&gt;
-   &lt;arg value="--template" /&gt;
-   &lt;arg path="${basedir}/build/tests_autoload.php.in" /&gt;
-   &lt;arg path="${basedir}/tests" /&gt;
-  &lt;/exec&gt;
  &lt;/target&gt;
 
  &lt;target name="lint"&gt;
@@ -150,6 +132,15 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
          description="Perform project mess detection using PHPMD"&gt;
   &lt;exec executable="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
+   &lt;arg value="text" /&gt;
+   &lt;arg value="${basedir}/build/phpmd.xml" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpmd-ci"
+         description="Perform project mess detection using PHPMD"&gt;
+  &lt;exec executable="phpmd"&gt;
+   &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="xml" /&gt;
    &lt;arg value="${basedir}/build/phpmd.xml" /&gt;
    &lt;arg value="--reportfile" /&gt;
@@ -158,6 +149,14 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
  &lt;/target&gt;
 
  &lt;target name="phpcs"
+         description="Find coding standard violations using PHP_CodeSniffer"&gt;
+  &lt;exec executable="phpcs"&gt;
+   &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpcs-ci"
          description="Find coding standard violations using PHP_CodeSniffer"&gt;
   &lt;exec executable="phpcs" output="/dev/null"&gt;
    &lt;arg value="--report=checkstyle" /&gt;
@@ -242,15 +241,8 @@ chown -R jenkins:nogroup php-template/</pre></li>
      <li>Configure a "Build Trigger", for instance "Poll SCM".</li>
      <li>Click "Save".</li>
     </ol>
-    <h2>Screenshots</h2>
-    <a href="img/new_job.png" title="Creating a new PHP job in Jenkins"><img alt="Creating a new PHP job in Jenkins" src="img/new_job_thumbnail.png"/></a>
-    <a href="img/configure_job.png" title="Configuring a PHP job in Jenkins"><img alt="Configuring a PHP job in Jenkins" src="img/configure_job_thumbnail.png"/></a>
-    <a href="img/job_overview.png" title="Overview page for a PHP job in Jenkins"><img alt="Overview page for a PHP job in Jenkins" src="img/job_overview_thumbnail.png"/></a>
-    <a href="img/build_overview.png" title="Build overview page for a PHP job in Jenkins"><img alt="Build overview page for a PHP job in Jenkins" src="img/build_overview_thumbnail.png"/></a>
-    <a href="img/pmd.png" title="Results from PHP Mess Detector (PMD)"><img alt="Results from PHP Mess Detector (PMD)" src="img/pmd_thumbnail.png"/></a>
-    <a href="img/pdepend.png" title="Results from PHP_Depend"><img alt="Results from PHP_Depend" src="img/pdepend_thumbnail.png"/></a>
-    <a href="img/checkstyle.png" title="Results from PHP_CodeSniffer"><img alt="Results from PHP_CodeSniffer" src="img/checkstyle_thumbnail.png"/></a>
-    <a href="img/phploc.png" title="Results from PHPLOC"><img alt="Results from PHPLOC" src="img/phploc_thumbnail.png"/></a>
+    <h2>Demo</h2>
+    <p>An <a href="http://github.com/thePHPcc/bankaccount/">example project</a> that uses an Apache Ant build script like the one shown above is continuously integrated for <a href="http://ci.thephp.cc/job/bankaccount/">demonstration</a> purposes.</p>
     <h2>Related Projects</h2>
     <ul>
      <li><p>PHP Project Wizard (PPW)</p><p>The <a href="https://github.com/sebastianbergmann/php-project-wizard">PHP Project Wizard (PPW)</a> is a commandline tool that can be used to generate the scripts and configuration files necessary for the build automation of a PHP project.</p></li>
