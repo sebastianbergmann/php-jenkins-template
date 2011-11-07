@@ -178,7 +178,7 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
          description="Generate API documentation using PHPDocumentor"&gt;
   &lt;exec executable="phpdoc"&gt;
    &lt;arg value="--directory" /&gt;
-   &lt;arg path="${source}" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="--target" /&gt;
    &lt;arg path="${basedir}/build/api" /&gt;
   &lt;/exec&gt;
