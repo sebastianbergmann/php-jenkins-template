@@ -357,16 +357,30 @@
         </htmlpublisher.HtmlPublisherTarget>
       </reportTargets>
     </htmlpublisher.HtmlPublisher>
-    <com.thalesgroup.hudson.plugins.xunit.XUnitPublisher>
+    <xunit>
       <types>
-        <com.thalesgroup.dtkit.metrics.hudson.model.PHPUnitJunitHudsonTestType>
+        <PHPUnitJunitHudsonTestType>
           <pattern>build/logs/junit.xml</pattern>
           <faildedIfNotNew>true</faildedIfNotNew>
           <deleteOutputFiles>true</deleteOutputFiles>
           <stopProcessingIfError>true</stopProcessingIfError>
-        </com.thalesgroup.dtkit.metrics.hudson.model.PHPUnitJunitHudsonTestType>
+        </PHPUnitJunitHudsonTestType>
       </types>
-    </com.thalesgroup.hudson.plugins.xunit.XUnitPublisher>
+      <thresholds>
+        <org.jenkinsci.plugins.xunit.threshold.FailedThreshold>
+          <unstableThreshold></unstableThreshold>
+          <unstableNewThreshold></unstableNewThreshold>
+          <failureThreshold></failureThreshold>
+          <failureNewThreshold></failureNewThreshold>
+        </org.jenkinsci.plugins.xunit.threshold.FailedThreshold>
+        <org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
+          <unstableThreshold></unstableThreshold>
+          <unstableNewThreshold></unstableNewThreshold>
+          <failureThreshold></failureThreshold>
+          <failureNewThreshold></failureNewThreshold>
+        </org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
+      </thresholds>
+    </xunit>
     <hudson.plugins.jdepend.JDependRecorder>
       <configuredJDependFile>build/logs/jdepend.xml</configuredJDependFile>
     </hudson.plugins.jdepend.JDependRecorder>
