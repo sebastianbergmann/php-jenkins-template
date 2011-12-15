@@ -368,16 +368,16 @@
       </types>
       <thresholds>
         <org.jenkinsci.plugins.xunit.threshold.FailedThreshold>
-          <unstableThreshold></unstableThreshold>
-          <unstableNewThreshold></unstableNewThreshold>
-          <failureThreshold></failureThreshold>
-          <failureNewThreshold></failureNewThreshold>
+          <unstableThreshold>0</unstableThreshold>
+          <unstableNewThreshold>0</unstableNewThreshold>
+          <failureThreshold>0</failureThreshold>
+          <failureNewThreshold>0</failureNewThreshold>
         </org.jenkinsci.plugins.xunit.threshold.FailedThreshold>
         <org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
-          <unstableThreshold></unstableThreshold>
-          <unstableNewThreshold></unstableNewThreshold>
-          <failureThreshold></failureThreshold>
-          <failureNewThreshold></failureNewThreshold>
+          <unstableThreshold>0</unstableThreshold>
+          <unstableNewThreshold>0</unstableNewThreshold>
+          <failureThreshold>0</failureThreshold>
+          <failureNewThreshold>0</failureNewThreshold>
         </org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
       </thresholds>
     </xunit>
