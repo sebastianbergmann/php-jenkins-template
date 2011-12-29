@@ -131,7 +131,7 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
  &lt;/target&gt;
 
  &lt;target name="phpmd"
-         description="Perform project mess detection using PHPMD"&gt;
+         description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing."&gt;
   &lt;exec executable="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="text" /&gt;
@@ -140,7 +140,7 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
  &lt;/target&gt;
 
  &lt;target name="phpmd-ci"
-         description="Perform project mess detection using PHPMD"&gt;
+         description="Perform project mess detection using PHPMD creating a log file for the continues integration server"&gt;
   &lt;exec executable="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="xml" /&gt;
@@ -151,7 +151,7 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
  &lt;/target&gt;
 
  &lt;target name="phpcs"
-         description="Find coding standard violations using PHP_CodeSniffer"&gt;
+         description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing."&gt;
   &lt;exec executable="phpcs"&gt;
    &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
@@ -159,7 +159,7 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
  &lt;/target&gt;
 
  &lt;target name="phpcs-ci"
-         description="Find coding standard violations using PHP_CodeSniffer"&gt;
+         description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continues integration server"&gt;
   &lt;exec executable="phpcs" output="/dev/null"&gt;
    &lt;arg value="--report=checkstyle" /&gt;
    &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
