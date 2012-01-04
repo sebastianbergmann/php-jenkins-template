@@ -55,8 +55,7 @@ java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
     <pre>pear config-set auto_discover 1
 pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
     <h2>Build Automation</h2>
-    <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
-    <a href="build.xml">Download build.xml</a>
+    <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> (<a href="download/build.xml">download</a>) build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
     <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;project name="name-of-project" default="build"&gt;
@@ -203,9 +202,7 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 &lt;/project&gt;</pre>
-    <a href="build.xml">Download build.xml</a>
-
-    <p>The <code>build.xml</code> above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
+    <p>The <code>build.xml</code> (<a href="download/build.xml">download</a>) above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
     <pre>&lt;logging&gt;
  &lt;log type="coverage-html" target="build/coverage" title="Name of Project"
       charset="UTF-8" yui="true" highlight="true"
@@ -213,7 +210,7 @@ pear install pear.phpqatools.org/phpqatools PHPDocumentor</pre>
  &lt;log type="coverage-clover" target="build/logs/clover.xml"/&gt;
  &lt;log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/&gt;
 &lt;/logging&gt;</pre>
-    <p>Executing the <code>build.xml</code> script above will produce the following <code>build</code> directory:</p>
+    <p>Executing the <code>build.xml</code> (<a href="download/build.xml">download</a>) script above will produce the following <code>build</code> directory:</p>
     <pre>build
 |-- api ...
 |-- code-browser ...
