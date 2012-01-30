@@ -52,6 +52,9 @@ java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin xunit
 java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
     <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Jenkins installation.</p>
     <h2>Required PHP Tools</h2>
+    <p>The required PHP tools should be installed using the PEAR Installer, the backbone of the <a href="http://pear.php.net/">PHP Extension and Application Repository</a> that provides a distribution system for PHP packages.</p>
+    <p>Depending on your OS distribution and/or your PHP environment, you may need to install PEAR or update your existing PEAR installation before you can proceed with the following instructions. <code>sudo pear upgrade PEAR</code> usually suffices to upgrade an existing PEAR installation. The <a href="http://pear.php.net/manual/en/installation.getting.php">PEAR Manual</a> explains how to perform a fresh installation of PEAR.</p>
+    <p>The following two commands (which you may have to run as <code>root</code>) are all that is required to install the required PHP tools using the PEAR Installer:</p>
     <pre>pear config-set auto_discover 1
 pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
     <h2>Build Automation</h2>
