@@ -56,6 +56,7 @@ java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
     <p>Depending on your OS distribution and/or your PHP environment, you may need to install PEAR or update your existing PEAR installation before you can proceed with the following instructions. <code>sudo pear upgrade PEAR</code> usually suffices to upgrade an existing PEAR installation. The <a href="http://pear.php.net/manual/en/installation.getting.php">PEAR Manual</a> explains how to perform a fresh installation of PEAR.</p>
     <p>The following two commands (which you may have to run as <code>root</code>) are all that is required to install the required PHP tools using the PEAR Installer:</p>
     <pre>pear config-set auto_discover 1
+pear upgrade
 pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
     <h2>Build Automation</h2>
     <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> (<a href="download/build.xml">download</a>) build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
