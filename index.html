@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="en">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="The goal of this project is to provide a standard template for Jenkins jobs for PHP projects." />
   <meta name="author" content="Sebastian Bergmann" />
   <meta property="og:email" content="sb@sebastian-bergmann.de" />
@@ -11,50 +14,86 @@
   <meta property="og:url" content="http://jenkins-php.org/" />
   <link rel="canonical" href="http://jenkins-php.org/" />
   <title>Template for Jenkins Jobs for PHP Projects</title>
-  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
-  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
   <script type="text/javascript">var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-68261-16']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
  </head>
+
  <body>
-  <a href="http://github.com/sebastianbergmann/php-jenkins-template"><img class="github" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-  <div id="container">
-   <header>
-    <h1><a href="http://github.com/sebastianbergmann/php-jenkins-template">Template for Jenkins Jobs for PHP Projects</a></h1>
-   </header>
-   <article>
+  <div class="navbar navbar-fixed-top">
+   <div class="navbar-inner">
+    <div class="container">
+     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </a>
+     <a class="brand" href="index.html">Template for Jenkins Jobs for PHP Projects</a>
+     <div class="nav-collapse">
+      <ul class="nav">
+       <li class="active"><a href="index.html">Home</a></li>
+       <li><a href="http://oreilly.com/catalog/0636920021353/">Book</a></li>
+       <li><a href="http://ci.thephp.cc/job/bankaccount/">Demo</a></li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="container">
+   <div class="hero-unit">
+    <h2>Template for Jenkins Jobs for PHP Projects</h2>
     <p>Most web applications are changed and adapted quite frequently and quickly. Their environment, for example the size and the behaviour of the user base, are constantly changing. What was sufficient yesterday can be insufficient today. Especially in a web environment it is important to monitor and continuously improve the internal quality not only when developing, but also when maintaining the software.</p>
     <p><a href="http://jenkins-ci.org/">Jenkins</a> is the leading <a href="http://en.wikipedia.org/wiki/Open_Source">open-source</a> <a href="http://martinfowler.com/articles/continuousIntegration.html">continuous integration</a> server. Thanks to its thriving plugin ecosystem, it supports building and testing virtually any project.</p>
     <p>The goal of this project is to provide a standard template for Jenkins jobs for PHP projects.</p>
-    <h2>Required Jenkins Plugins</h2>
-    <p>You need to install the following plugins for Jenkins:</p>
-    <ul>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Checkstyle</a> (for processing <a href="http://pear.php.net/PHP_CodeSniffer">PHP_CodeSniffer</a> logfiles in Checkstyle format)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Clover+PHP+Plugin">Clover PHP</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> code coverage xml output)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/DRY+Plugin">DRY</a> (for processing <a href="https://github.com/sebastianbergmann/phpcpd">phpcpd</a> logfiles in PMD-CPD format)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin">HTML Publisher</a> (for publishing the <a href="http://www.phpunit.de/">PHPUnit</a> code coverage report, for instance)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/JDepend+Plugin">JDepend</a> (for processing <a href="http://pdepend.org/">PHP_Depend</a> logfiles in JDepend format)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin">Plot</a> (for processing <a href="https://github.com/sebastianbergmann/phploc">phploc</a> CSV output)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/PMD+Plugin">PMD</a> (for processing <a href="http://phpmd.org/">PHPMD</a> logfiles in PMD format)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Violations">Violations</a> (for processing various logfiles)</li>
-     <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin">xUnit</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> logfiles in JUnit format)</li>
-    </ul>
-    <p>You can install these plugins using the web frontend at <dl><dd><code>http://localhost:8080/pluginManager/available</code></dd></dl> or using the <a href="http://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CLI">Jenkins CLI</a>:</p>
-    <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+   </div>
+
+   <div class="row">
+    <div class="span6">
+     <h2>Required Jenkins Plugins</h2>
+     <p>You need to install the following plugins for Jenkins:</p>
+     <ul>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Checkstyle</a> (for processing <a href="http://pear.php.net/PHP_CodeSniffer">PHP_CodeSniffer</a> logfiles in Checkstyle format)</li>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Clover+PHP+Plugin">Clover PHP</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> code coverage xml output)</li>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/DRY+Plugin">DRY</a> (for processing <a href="https://github.com/sebastianbergmann/phpcpd">phpcpd</a> logfiles in PMD-CPD format)</li>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin">HTML Publisher</a> (for publishing the <a href="http://www.phpunit.de/">PHPUnit</a> code coverage report, for instance)</li>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/JDepend+Plugin">JDepend</a> (for processing <a href="http://pdepend.org/">PHP_Depend</a> logfiles in JDepend format)</li>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin">Plot</a> (for processing <a href="https://github.com/sebastianbergmann/phploc">phploc</a> CSV output)</li>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/PMD+Plugin">PMD</a> (for processing <a href="http://phpmd.org/">PHPMD</a> logfiles in PMD format)</li>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Violations">Violations</a> (for processing various logfiles)</li>
+      <li><a href="http://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin">xUnit</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> logfiles in JUnit format)</li>
+     </ul>
+     <p>You can install these plugins using the web frontend at <dl><dd><code>http://localhost:8080/pluginManager/available</code></dd></dl> or using the <a href="http://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CLI">Jenkins CLI</a>:</p>
+     <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar
 
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin \
 checkstyle cloverphp dry htmlpublisher jdepend plot pmd violations xunit
 
 java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
-    <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Jenkins installation.</p>
-    <h2>Required PHP Tools</h2>
-    <p>The required PHP tools should be installed using the PEAR Installer, the backbone of the <a href="http://pear.php.net/">PHP Extension and Application Repository</a> that provides a distribution system for PHP packages.</p>
-    <p>Depending on your OS distribution and/or your PHP environment, you may need to install PEAR or update your existing PEAR installation before you can proceed with the following instructions. <code>sudo pear upgrade PEAR</code> usually suffices to upgrade an existing PEAR installation. The <a href="http://pear.php.net/manual/en/installation.getting.php">PEAR Manual</a> explains how to perform a fresh installation of PEAR.</p>
-    <p>The following two commands (which you may have to run as <code>root</code>) are all that is required to install the required PHP tools using the PEAR Installer:</p>
-    <pre>pear config-set auto_discover 1
+     <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Jenkins installation.</p>
+    </div>
+    <div class="span6">
+     <h2>Required PHP Tools</h2>
+     <p>The required PHP tools should be installed using the PEAR Installer, the backbone of the <a href="http://pear.php.net/">PHP Extension and Application Repository</a> that provides a distribution system for PHP packages.</p>
+     <p>Depending on your OS distribution and/or your PHP environment, you may need to install PEAR or update your existing PEAR installation before you can proceed with the following instructions. <code>sudo pear upgrade PEAR</code> usually suffices to upgrade an existing PEAR installation. The <a href="http://pear.php.net/manual/en/installation.getting.php">PEAR Manual</a> explains how to perform a fresh installation of PEAR.</p>
+     <p>The following two commands (which you may have to run as <code>root</code>) are all that is required to install the required PHP tools using the PEAR Installer:</p>
+     <pre>pear config-set auto_discover 1
 pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
-    <h2>Build Automation</h2>
-    <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> (<a href="download/build.xml">download</a>) build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
-    <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    </div>
+   </div>
+
+   <div class="row">
+    <div class="span12">
+     <h2>Build Automation</h2>
+     <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> (<a href="download/build.xml">download</a>) build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
+     <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;project name="name-of-project" default="build"&gt;
  &lt;target name="build"
@@ -63,8 +102,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
  &lt;target name="build-parallel"
    depends="prepare,lint,tools-parallel,phpunit,phpcb"/&gt;
 
- &lt;target name="tools-parallel"
-         description="Run tools in parallel"&gt;
+ &lt;target name="tools-parallel" description="Run tools in parallel"&gt;
   &lt;parallel threadCount="2"&gt;
    &lt;sequential&gt;
     &lt;antcall target="pdepend"/&gt;
@@ -85,8 +123,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;delete dir="${basedir}/build/pdepend"/&gt;
  &lt;/target&gt;
 
- &lt;target name="prepare" depends="clean"
-         description="Prepare for build"&gt;
+ &lt;target name="prepare" depends="clean" description="Prepare for build"&gt;
   &lt;mkdir dir="${basedir}/build/api"/&gt;
   &lt;mkdir dir="${basedir}/build/code-browser"/&gt;
   &lt;mkdir dir="${basedir}/build/coverage"/&gt;
@@ -119,8 +156,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;target name="pdepend"
-         description="Calculate software metrics using PHP_Depend"&gt;
+ &lt;target name="pdepend" description="Calculate software metrics using PHP_Depend"&gt;
   &lt;exec executable="pdepend"&gt;
    &lt;arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" /&gt;
    &lt;arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" /&gt;
@@ -138,8 +174,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;target name="phpmd-ci"
-         description="Perform project mess detection using PHPMD creating a log file for the continuous integration server"&gt;
+ &lt;target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server"&gt;
   &lt;exec executable="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="xml" /&gt;
@@ -157,8 +192,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;target name="phpcs-ci"
-         description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server"&gt;
+ &lt;target name="phpcs-ci" description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server"&gt;
   &lt;exec executable="phpcs" output="/dev/null"&gt;
    &lt;arg value="--report=checkstyle" /&gt;
    &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
@@ -175,8 +209,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 
- &lt;target name="phpdox"
-         description="Generate API documentation using phpDox"&gt;
+ &lt;target name="phpdox" description="Generate API documentation using phpDox"&gt;
   &lt;exec executable="phpdox"/&gt;
  &lt;/target&gt;
 
@@ -184,8 +217,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;exec executable="phpunit" failonerror="true"/&gt;
  &lt;/target&gt;
 
- &lt;target name="phpcb"
-         description="Aggregate tool output with PHP_CodeBrowser"&gt;
+ &lt;target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser"&gt;
   &lt;exec executable="phpcb"&gt;
    &lt;arg value="--log" /&gt;
    &lt;arg path="${basedir}/build/logs" /&gt;
@@ -196,29 +228,40 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;/exec&gt;
  &lt;/target&gt;
 &lt;/project&gt;</pre>
-    <p>Here is an overview of the tasks defined in the above <code>build.xml</code> (<a href="download/build.xml">download</a>) script that are intended to be directly invoked:</p>
-    <ul>
-     <li><code>build</code> is the default build target. It invokes all the tools in such a way that XML logfiles are written to default locations.</li>
-     <li><code>build-parallel</code> is the same as <code>build</code> (see above) except that it executes the tools in parallel.</li>
-     <li><code>clean</code> can be used to clean up (delete) all build artifacts (logfiles, etc. that are produced during the build).</li>
-     <li><code>lint</code> can be used to perform a syntax check of the project sources using <code>php -l</code>.</li>
-     <li><code>phpdox</code> can be used to generate API documentation.</li>
-     <li><code>phpcs</code> can be used to find coding standard violations and print human readable output. This task is intended for usage on the command line before committing.</li>
-     <li><code>phploc</code> can be used to measure the project size.</li>
-     <li><code>phpmd</code> can be used to perform project mess detection and print human readable output. This task is intended for usage on the command line before committing.</li>
-     <li><code>phpunit</code> can be used to run unit tests.</li>
-    </ul>
-    <p>The other tasks can, of course, also be invoked directly but that is not their intended purpose. They are invoked by the tasks listed above.</p>
-    <p>The <code>phpunit</code> task in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
-    <pre>&lt;logging&gt;
+     <p>Here is an overview of the tasks defined in the above <code>build.xml</code> (<a href="download/build.xml">download</a>) script that are intended to be directly invoked:</p>
+     <ul>
+      <li><p><code>build</code> is the default build target. It invokes all the tools in such a way that XML logfiles are written to default locations.</p></li>
+      <li><p><code>build-parallel</code> is the same as <code>build</code> (see above) except that it executes the tools in parallel.</p></li>
+      <li><p><code>clean</code> can be used to clean up (delete) all build artifacts (logfiles, etc. that are produced during the build).</p></li>
+      <li><p><code>lint</code> can be used to perform a syntax check of the project sources using <code>php -l</code>.</p></li>
+      <li><p><code>phpdox</code> can be used to generate API documentation.</p></li>
+      <li><p><code>phpcs</code> can be used to find coding standard violations and print human readable output. This task is intended for usage on the command line before committing.</p></li>
+      <li><p><code>phploc</code> can be used to measure the project size.</p></li>
+      <li><p><code>phpmd</code> can be used to perform project mess detection and print human readable output. This task is intended for usage on the command line before committing.</p></li>
+      <li><p><code>phpunit</code> can be used to run unit tests.</p></li>
+     </ul>
+     <p>The other tasks can, of course, also be invoked directly but that is not their intended purpose. They are invoked by the tasks listed above.</p>
+    </div>
+   </div>
+
+   <div class="row">
+    <div class="span6">
+     <h2>PHPUnit</h2>
+     <p>The <code>phpunit</code> task in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
+     <pre>&lt;logging&gt;
  &lt;log type="coverage-html" target="build/coverage" title="Name of Project"
       charset="UTF-8" yui="true" highlight="true"
       lowUpperBound="35" highLowerBound="70"/&gt;
  &lt;log type="coverage-clover" target="build/logs/clover.xml"/&gt;
- &lt;log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/&gt;
+ &lt;log type="junit" target="build/logs/junit.xml"
+      logIncompleteSkipped="false"/&gt;
 &lt;/logging&gt;</pre>
-    <p>The <code>phpdox</code> task in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assumes that an XML configuration file for phpDox is used to configure the API documentation generation:</p>
-    <pre>&lt;phpdox xmlns="http://phpdox.de/config"&gt;
+    </div>
+
+    <div class="span6">
+     <h2>phpDox</h2>
+     <p>The <code>phpdox</code> task in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assumes that an XML configuration file for phpDox is used to configure the API documentation generation:</p>
+     <pre>&lt;phpdox xmlns="http://phpdox.de/config"&gt;
  &lt;project name="name-of-project" source="src" workdir="build/phpdox"&gt;
   &lt;collector publiconly="false"&gt;
    &lt;include mask="*.php" /&gt;
@@ -230,8 +273,13 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;/generator&gt;
  &lt;/project&gt;
 &lt;/phpdox&gt;</pre>
-    <p>Executing the <code>build.xml</code> (<a href="download/build.xml">download</a>) script above will produce the following <code>build</code> directory:</p>
-    <pre>build
+   </div>
+
+   <div class="row">
+    <div class="span12">
+     <h2>Build Artifacts</h2>
+     <p>Executing the <code>build.xml</code> (<a href="download/build.xml">download</a>) script above will produce the following <code>build</code> directory:</p>
+     <pre>build
 |-- api ...
 |-- code-browser ...
 |-- coverage ...
@@ -243,43 +291,54 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
     |-- phploc.csv
     |-- pmd-cpd.xml
     `-- pmd.xml</pre>
-    <p>These build artifacts will be processed by Jenkins.</p>
-    <h2>Using the Job Template</h2>
-    <ol>
-     <li>Check out the <code>php-jenkins-template</code> project from Git:
-     <pre>cd $JENKINS_HOME/jobs
+     <p>These build artifacts will be processed by Jenkins.</p>
+    </div>
+   </div>
+
+   <div class="row">
+    <div class="span12">
+     <h2>Using the Job Template</h2>
+     <ol>
+      <li><p>Check out the <code>php-jenkins-template</code> project from Git:</p>
+      <pre>cd $JENKINS_HOME/jobs
 git clone git://github.com/sebastianbergmann/php-jenkins-template.git php-template
 chown -R jenkins:nogroup php-template/</pre></li>
-     <li>Reload Jenkins' configuration, for instance using the Jenkins CLI:
-     <pre>java -jar jenkins-cli.jar -s http://localhost:8080 reload-configuration</pre></li>
-     <li>Click on "New Job".</li>
-     <li>Enter a "Job name".</li>
-     <li>Select "Copy existing job" and enter "php-template" into the "Copy from" field.</li>
-     <li>Click "OK".</li>
-     <li>Disable the "Disable Build" option.</li>
-     <li>Fill in your "Source Code Management" information.</li>
-     <li>Configure a "Build Trigger", for instance "Poll SCM".</li>
-     <li>Click "Save".</li>
-    </ol>
-    <h2>Demo</h2>
-    <p>An <a href="http://github.com/thePHPcc/bankaccount/">example project</a> that uses an Apache Ant build script like the one shown above is continuously integrated for <a href="http://ci.thephp.cc/job/bankaccount/">demonstration</a> purposes.</p>
-    <h2>Related Projects</h2>
-    <ul>
-     <li><p>PHP Project Wizard (PPW)</p><p>The <a href="https://github.com/sebastianbergmann/php-project-wizard">PHP Project Wizard (PPW)</a> is a commandline tool that can be used to generate the scripts and configuration files necessary for the build automation of a PHP project.</p></li>
-     <li><p>Virtualization with VirtualBox and Vagrant</p><p><a href="http://vagrantup.com/">Vagrant</a> is a tool for building and distributing virtualized development environments by providing automated creation of virtual machines using <a href="http://www.virtualbox.org/">VirtualBox</a> and provisioning them with <a href="http://www.opscode.com/chef">Chef</a> or <a href="http://www.puppetlabs.com/puppet">Puppet</a>.</p><p>Ladislav Prskavec maintains a <a href="http://github.com/abtris/vagrant-hudson">Vagrantfile</a> for such a virtualized development environment that is based on <a href="http://www.ubuntu.com/server">Ubuntu Linux</a> and contains Jenkins as well as the template for Jenkins jobs for PHP projects and all of its dependencies.</p></li>
-    </ul>
-    <h2>Further Reading</h2>
-    <p><em><a href="http://oreilly.com/catalog/0636920021353/">Integrate Your PHP Project with Jenkins</a></em> is a book that explains how you can leverage Jenkins to monitor the various aspects of software quality in a PHP software project.</p>
-    <p>The planning, execution, and automation of tests for the different layers and tiers of a PHP-based web application is also outside the scope of the aforementioned book. <em><a href="http://phpqabook.com/">Real-World Solutions for Developing High-Quality PHP Frameworks and Applications</a></em> is an excellent resource on these matters.</p>
-    <h2>Support</h2>
-    <p><a href="https://github.com/sebastianbergmann/php-jenkins-template/issues">Issues are tracked on GitHub</a>.</p>
-    <p>The <a href="irc://irc.freenode.net/#jenkins-php">#jenkins-php</a> channel on the <a href="http://freenode.net">FreeNode</a> IRC network can be used to discuss all issues related to Jenkins and PHP.</p>
-    <p><a href="http://thePHP.cc/" title="The PHP Consulting Company (thePHP.cc)">thePHP.cc</a> offers consulting and training that set you on a path to create, maintain and extend sustainable software of high quality with PHP and leverage Jenkins to monitor the various aspects of software quality.</p>
-   </article>
+      <li><p>Reload Jenkins' configuration, for instance using the Jenkins CLI:</p>
+      <pre>java -jar jenkins-cli.jar -s http://localhost:8080 reload-configuration</pre></li>
+      <li><p>Click on "New Job".</p></li>
+      <li><p>Enter a "Job name".</p></li>
+      <li><p>Select "Copy existing job" and enter "php-template" into the "Copy from" field.</p></li>
+      <li><p>Click "OK".</p></li>
+      <li><p>Disable the "Disable Build" option.</p></li>
+      <li><p>Fill in your "Source Code Management" information.</p></li>
+      <li><p>Configure a "Build Trigger", for instance "Poll SCM".</p></li>
+      <li><p>Click "Save".</p></li>
+     </ol>
+    </div>
+   </div>
+
+   <div class="row">
+    <div class="span6">
+     <h2>Further Reading</h2>
+     <p><em><a href="http://oreilly.com/catalog/0636920021353/">Integrate Your PHP Project with Jenkins</a></em> is a book that explains how you can leverage Jenkins to monitor the various aspects of software quality in a PHP software project.</p>
+     <p>The planning, execution, and automation of tests for the different layers and tiers of a PHP-based web application is also outside the scope of the aforementioned book. <em><a href="http://phpqabook.com/">Real-World Solutions for Developing High-Quality PHP Frameworks and Applications</a></em> is an excellent resource on these matters.</p>
+    </div>
+
+    <div class="span6">
+     <h2>Support</h2>
+     <p><a href="https://github.com/sebastianbergmann/php-jenkins-template/issues">Issues are tracked on GitHub</a>.</p>
+     <p>The <a href="irc://irc.freenode.net/#jenkins-php">#jenkins-php</a> channel on the <a href="http://freenode.net">FreeNode</a> IRC network can be used to discuss all issues related to Jenkins and PHP.</p>
+     <p><a href="http://thePHP.cc/" title="The PHP Consulting Company (thePHP.cc)">thePHP.cc</a> offers consulting and training that set you on a path to create, maintain and extend sustainable software of high quality with PHP and leverage Jenkins to monitor the various aspects of software quality.</p>
+    </div>
+   </div>
+
+   <hr>
+
    <footer>
-    <hr/>
-    <p>The "<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type"><a xmlns:cc="http://creativecommons.org/ns#" href="http://jenkins-php.org/" property="cc:attributionName" rel="cc:attributionURL">Template for Jenkins Jobs for PHP Projects</a></span>" by <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a> and his contributors is licensed under a<br/><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+    <p>The "<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type"><a xmlns:cc="http://creativecommons.org/ns#" href="http://jenkins-php.org/" property="cc:attributionName" rel="cc:attributionURL">Template for Jenkins Jobs for PHP Projects</a></span>" by <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a> and his contributors is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
    </footer>
   </div>
+
+  <script src="js/bootstrap.min.js"></script>
  </body>
 </html>
