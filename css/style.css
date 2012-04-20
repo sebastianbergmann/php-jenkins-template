@@ -2,3 +2,7 @@ body {
  padding-bottom: 40px;
  padding-top: 60px;
 }
+
+code, pre {
+ font-family: 'Droid Sans Mono', monospace;
+}
