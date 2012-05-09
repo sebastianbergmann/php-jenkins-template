@@ -135,7 +135,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;mkdir dir="${basedir}/build/phpdox"/&gt;
  &lt;/target&gt;
 
- &lt;target name="lint"&gt;
+ &lt;target name="lint" description="Perform syntax check of sourcecode files"&gt;
   &lt;apply executable="php" failonerror="true"&gt;
    &lt;arg value="-l" /&gt;
 
