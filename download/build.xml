@@ -2,13 +2,12 @@
 
 <project name="name-of-project" default="build">
  <target name="build"
-   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdoc,phpunit,phpcb"/>
+   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,phpcb"/>
 
  <target name="build-parallel"
    depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
 
- <target name="tools-parallel"
-         description="Run tools in parallel">
+ <target name="tools-parallel" description="Run tools in parallel">
   <parallel threadCount="2">
    <sequential>
     <antcall target="pdepend"/>
@@ -17,7 +16,7 @@
    <antcall target="phpcpd"/>
    <antcall target="phpcs-ci"/>
    <antcall target="phploc"/>
-   <antcall target="phpdoc"/>
+   <antcall target="phpdox"/>
   </parallel>
  </target>
 
@@ -29,16 +28,16 @@
   <delete dir="${basedir}/build/pdepend"/>
  </target>
 
- <target name="prepare" depends="clean"
-         description="Prepare for build">
+ <target name="prepare" depends="clean" description="Prepare for build">
   <mkdir dir="${basedir}/build/api"/>
   <mkdir dir="${basedir}/build/code-browser"/>
   <mkdir dir="${basedir}/build/coverage"/>
   <mkdir dir="${basedir}/build/logs"/>
   <mkdir dir="${basedir}/build/pdepend"/>
+  <mkdir dir="${basedir}/build/phpdox"/>
  </target>
 
- <target name="lint">
+ <target name="lint" description="Perform syntax check of sourcecode files">
   <apply executable="php" failonerror="true">
    <arg value="-l" />
 
@@ -62,8 +61,7 @@
   </exec>
  </target>
 
- <target name="pdepend"
-         description="Calculate software metrics using PHP_Depend">
+ <target name="pdepend" description="Calculate software metrics using PHP_Depend">
   <exec executable="pdepend">
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
@@ -81,8 +79,7 @@
   </exec>
  </target>
 
- <target name="phpmd-ci"
-         description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
+ <target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
   <exec executable="phpmd">
    <arg path="${basedir}/src" />
    <arg value="xml" />
@@ -100,8 +97,7 @@
   </exec>
  </target>
 
- <target name="phpcs-ci"
-         description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
+ <target name="phpcs-ci" description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
   <exec executable="phpcs" output="/dev/null">
    <arg value="--report=checkstyle" />
    <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
@@ -118,22 +114,15 @@
   </exec>
  </target>
 
- <target name="phpdoc"
-         description="Generate API documentation using PHPDocumentor">
-  <exec executable="phpdoc">
-   <arg value="--directory" />
-   <arg path="${basedir}/src" />
-   <arg value="--target" />
-   <arg path="${basedir}/build/api" />
-  </exec>
+ <target name="phpdox" description="Generate API documentation using phpDox">
+  <exec executable="phpdox"/>
  </target>
 
  <target name="phpunit" description="Run unit tests with PHPUnit">
   <exec executable="phpunit" failonerror="true"/>
  </target>
 
- <target name="phpcb"
-         description="Aggregate tool output with PHP_CodeBrowser">
+ <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
   <exec executable="phpcb">
    <arg value="--log" />
    <arg path="${basedir}/build/logs" />
