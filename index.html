@@ -321,6 +321,18 @@ chown -R jenkins:nogroup php-template/</pre></li>
    </div>
 
    <div class="row">
+    <div class="span12">
+     <h2>Troubleshooting</h2>
+     <h3>No "Copy existing job" option / "php-template" project doesn't show up</h3>
+     <p>Jenkins can't find the "php-template" job. Make sure you cloned to the right directory, check the permissions to make sure the Jenkins user has read & write access to the directory and restart Jenkins.</p>
+
+     <h3>General setup issues</h3>
+     <p>Check the management panel http://localhost:8080/manage and the Jenkins log https://wiki.jenkins-ci.org/display/JENKINS/Logging for messages.
+    </div>
+   </div>
+
+
+   <div class="row">
     <div class="span6">
      <h2>Further Reading</h2>
      <p><em><a href="http://oreilly.com/catalog/0636920021353/">Integrate Your PHP Project with Jenkins</a></em> is a book that explains how you can leverage Jenkins to monitor the various aspects of software quality in a PHP software project.</p>
