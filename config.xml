@@ -344,7 +344,7 @@
         <htmlpublisher.HtmlPublisherTarget>
           <reportName>API Documentation</reportName>
           <reportDir>build/api</reportDir>
-          <reportFiles>index.html</reportFiles>
+          <reportFiles>index.xhtml</reportFiles>
           <keepAll>true</keepAll>
           <wrapperName>htmlpublisher-wrapper.html</wrapperName>
         </htmlpublisher.HtmlPublisherTarget>
