@@ -259,6 +259,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
  &lt;log type="junit" target="build/logs/junit.xml"
       logIncompleteSkipped="false"/&gt;
 &lt;/logging&gt;</pre>
+     <p>More information can be found in the <a href="http://www.phpunit.de/manual/current/en/appendixes.configuration.html">documentation</a> for PHPUnit.</p>
     </div>
 
     <div class="span6">
@@ -276,6 +277,38 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;/generator&gt;
  &lt;/project&gt;
 &lt;/phpdox&gt;</pre>
+    </div>
+   </div>
+
+   <div class="row">
+    <div class="span6">
+     <h2>PHP_CodeSniffer</h2>
+     <p>The <code>phpcs</code> and <code>phpcs-ci</code> tasks in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assume that an XML configuration file for PHP_CodeSniffer is used to configure the coding standard:</p>
+     <pre class="prettyprint">&lt;ruleset name="name-of-your-coding-standard"&gt;
+ &lt;description&gt;Description of your coding standard&lt;/description&gt;
+
+ &lt;rule ref="Generic.PHP.DisallowShortOpenTag"/&gt;
+ &lt;!-- ... --&gt;
+&lt;/ruleset&gt;</pre>
+     <p>More information can be found in the <a href="http://pear.php.net/manual/en/package.php.php-codesniffer.annotated-ruleset.php">documentation</a> for PHP_CodeSniffer.</p>
+    </div>
+
+    <div class="span6">
+     <h2>PHPMD</h2>
+     <p>The <code>phpmd</code> and <code>phpmd-ci</code> tasks in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assume that an XML configuration file for PHPMD is used to configure the coding standard:</p>
+     <pre class="prettyprint">&lt;ruleset name="name-of-your-coding-standard"
+  xmlns="http://pmd.sf.net/ruleset/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
+                      http://pmd.sf.net/ruleset_xml_schema.xsd"
+  xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd"&gt;
+  &lt;description&gt;Description of your coding standard&lt;/description&gt;
+
+  &lt;rule ref="rulesets/codesize.xml/CyclomaticComplexity" /&gt;
+  &lt;!-- ... --&gt;
+&lt;/ruleset&gt;</pre>
+     <p>More information can be found in the <a href="http://phpmd.org/documentation/creating-a-ruleset.html">documentation</a> for PHPMD.</p>
+    </div>
    </div>
 
    <div class="row">
