@@ -337,7 +337,9 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
       <li><p>Check out the <code>php-jenkins-template</code> project from Git:</p>
       <pre>cd $JENKINS_HOME/jobs
 mkdir php-template
-wget http://raw.github.com/sebastianbergmann/php-jenkins-template/master/config.xml
+cd php-template
+wget https://raw.github.com/sebastianbergmann/php-jenkins-template/master/config.xml
+cd ..
 chown -R jenkins:nogroup php-template/</pre></li>
       <li><p>Reload Jenkins' configuration, for instance using the Jenkins CLI:</p>
       <pre>java -jar jenkins-cli.jar -s http://localhost:8080 reload-configuration</pre></li>
