@@ -380,6 +380,7 @@
           <failureNewThreshold>0</failureNewThreshold>
         </org.jenkinsci.plugins.xunit.threshold.SkippedThreshold>
       </thresholds>
+      <thresholdMode>1</thresholdMode>
     </xunit>
     <hudson.plugins.jdepend.JDependRecorder>
       <configuredJDependFile>build/logs/jdepend.xml</configuredJDependFile>
