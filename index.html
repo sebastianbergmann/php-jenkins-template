@@ -340,7 +340,7 @@ mkdir php-template
 cd php-template
 wget https://raw.github.com/sebastianbergmann/php-jenkins-template/master/config.xml
 cd ..
-chown -R jenkins:nogroup php-template/</pre></li>
+chown -R jenkins:jenkins php-template/</pre></li>
       <li><p>Reload Jenkins' configuration, for instance using the Jenkins CLI:</p>
       <pre>java -jar jenkins-cli.jar -s http://localhost:8080 reload-configuration</pre></li>
       <li><p>Click on "New Job".</p></li>
