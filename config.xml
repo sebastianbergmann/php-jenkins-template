@@ -168,51 +168,29 @@
           <useDescr>false</useDescr>
         </hudson.plugins.plot.Plot>
         <hudson.plugins.plot.Plot>
-          <title>G - Average Length</title>
-          <yaxis>Average Non-Comment Lines of Code</yaxis>
+          <title>C - Testing</title>
+          <yaxis>Count</yaxis>
           <series>
             <hudson.plugins.plot.CSVSeries>
               <file>build/logs/phploc.csv</file>
               <label></label>
               <fileType>csv</fileType>
               <strExclusionSet>
-                <string>Average Method Length (NCLOC)</string>
-                <string>Average Class Length (NCLOC)</string>
+                <string>Functions</string>
+                <string>Classes</string>
+                <string>Methods</string>
+                <string>Test Clases</string>
+                <string>Test Methods</string>
               </strExclusionSet>
               <inclusionFlag>INCLUDE_BY_STRING</inclusionFlag>
-              <exclusionValues>Average Class Length (NCLOC),Average Method Length (NCLOC)</exclusionValues>
+              <exclusionValues>Classes,Methods,Functions,Test Clases,Test Methods</exclusionValues>
               <url></url>
               <displayTableFlag>false</displayTableFlag>
             </hudson.plugins.plot.CSVSeries>
           </series>
           <group>phploc</group>
           <numBuilds>100</numBuilds>
-          <csvFileName>523405415.csv</csvFileName>
-          <csvLastModification>0</csvLastModification>
-          <style>line</style>
-          <useDescr>false</useDescr>
-        </hudson.plugins.plot.Plot>
-        <hudson.plugins.plot.Plot>
-          <title>H - Relative Cyclomatic Complexity</title>
-          <yaxis>Cyclomatic Complexity by Structure</yaxis>
-          <series>
-            <hudson.plugins.plot.CSVSeries>
-              <file>build/logs/phploc.csv</file>
-              <label></label>
-              <fileType>csv</fileType>
-              <strExclusionSet>
-                <string>Cyclomatic Complexity / Lines of Code</string>
-                <string>Cyclomatic Complexity / Number of Methods</string>
-              </strExclusionSet>
-              <inclusionFlag>INCLUDE_BY_STRING</inclusionFlag>
-              <exclusionValues>Cyclomatic Complexity / Lines of Code,Cyclomatic Complexity / Number of Methods</exclusionValues>
-              <url></url>
-              <displayTableFlag>false</displayTableFlag>
-            </hudson.plugins.plot.CSVSeries>
-          </series>
-          <group>phploc</group>
-          <numBuilds>100</numBuilds>
-          <csvFileName>186376189.csv</csvFileName>
+          <csvFileName>174807245.csv</csvFileName>
           <csvLastModification>0</csvLastModification>
           <style>line</style>
           <useDescr>false</useDescr>
@@ -298,29 +276,51 @@
           <useDescr>false</useDescr>
         </hudson.plugins.plot.Plot>
         <hudson.plugins.plot.Plot>
-          <title>C - Testing</title>
-          <yaxis>Count</yaxis>
+          <title>G - Average Length</title>
+          <yaxis>Average Non-Comment Lines of Code</yaxis>
           <series>
             <hudson.plugins.plot.CSVSeries>
               <file>build/logs/phploc.csv</file>
               <label></label>
               <fileType>csv</fileType>
               <strExclusionSet>
-                <string>Functions</string>
-                <string>Classes</string>
-                <string>Methods</string>
-                <string>Test Clases</string>
-                <string>Test Methods</string>
+                <string>Average Method Length (NCLOC)</string>
+                <string>Average Class Length (NCLOC)</string>
               </strExclusionSet>
               <inclusionFlag>INCLUDE_BY_STRING</inclusionFlag>
-              <exclusionValues>Classes,Methods,Functions,Test Clases,Test Methods</exclusionValues>
+              <exclusionValues>Average Class Length (NCLOC),Average Method Length (NCLOC)</exclusionValues>
               <url></url>
               <displayTableFlag>false</displayTableFlag>
             </hudson.plugins.plot.CSVSeries>
           </series>
           <group>phploc</group>
           <numBuilds>100</numBuilds>
-          <csvFileName>174807245.csv</csvFileName>
+          <csvFileName>523405415.csv</csvFileName>
+          <csvLastModification>0</csvLastModification>
+          <style>line</style>
+          <useDescr>false</useDescr>
+        </hudson.plugins.plot.Plot>
+        <hudson.plugins.plot.Plot>
+          <title>H - Relative Cyclomatic Complexity</title>
+          <yaxis>Cyclomatic Complexity by Structure</yaxis>
+          <series>
+            <hudson.plugins.plot.CSVSeries>
+              <file>build/logs/phploc.csv</file>
+              <label></label>
+              <fileType>csv</fileType>
+              <strExclusionSet>
+                <string>Cyclomatic Complexity / Lines of Code</string>
+                <string>Cyclomatic Complexity / Number of Methods</string>
+              </strExclusionSet>
+              <inclusionFlag>INCLUDE_BY_STRING</inclusionFlag>
+              <exclusionValues>Cyclomatic Complexity / Lines of Code,Cyclomatic Complexity / Number of Methods</exclusionValues>
+              <url></url>
+              <displayTableFlag>false</displayTableFlag>
+            </hudson.plugins.plot.CSVSeries>
+          </series>
+          <group>phploc</group>
+          <numBuilds>100</numBuilds>
+          <csvFileName>186376189.csv</csvFileName>
           <csvLastModification>0</csvLastModification>
           <style>line</style>
           <useDescr>false</useDescr>
