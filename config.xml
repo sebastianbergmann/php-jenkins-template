@@ -1,8 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>&lt;img type=&quot;image/svg+xml&quot; height=&quot;300&quot; src=&quot;ws/build/pdepend/overview-pyramid.svg&quot; width=&quot;500&quot;&gt;&lt;/img&gt;&#xd;
-&lt;img type=&quot;image/svg+xml&quot; height=&quot;300&quot; src=&quot;ws/build/pdepend/dependencies.svg&quot; width=&quot;500&quot;&gt;&lt;/img&gt;</description>
+ <description>&lt;img type=&quot;image/svg+xml&quot; height=&quot;300&quot; src=&quot;ws/build/pdepend/overview-pyramid.svg&quot; width=&quot;500&quot;&gt;&lt;/img&gt;&#xd;
+&lt;img type=&quot;image/svg+xml&quot; height=&quot;300&quot; src=&quot;ws/build/pdepend/dependencies.svg&quot; width=&quot;500&quot;&gt;&lt;/img&gt;&#xd;
+&lt;h3&gt;&lt;a href=&quot;ws/build/api/classes.svg&quot;&gt;Class Diagram&lt;/a&gt;&lt;/h3&gt;&#xd;
+&lt;img type=&quot;image/svg+xml&quot; height=&quot;300&quot; src=&quot;ws/build/api/classes.svg&quot; width=&quot;100%&quot;&gt;&lt;/img&gt;&#xd;
+&lt;h3&gt;&lt;a href=&quot;ws/build/api/index.html&quot;&gt;API Docs&lt;/a&gt;&lt;/h3&gt;&#xd;
+&lt;iframe src=&quot;ws/build/api/index.html&quot; style=&quot;width:1000px;height:400px;border:none;&quot;&gt;&lt;/iframe&gt;&#xd;
+&lt;h3&gt;&lt;a href=&quot;ws/build/coverage/index.html&quot;&gt;Test Coverage&lt;/a&gt;&lt;/h3&gt;&#xd;
+&lt;iframe src=&quot;ws/build/coverage/index.html&quot; style=&quot;width:1000px;height:400px;border:none;&quot;&gt;&lt;/iframe&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
