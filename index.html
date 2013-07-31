@@ -189,6 +189,8 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
          description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing."&gt;
   &lt;exec executable="phpcs"&gt;
    &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
+   &lt;arg value="--extensions=php" /&gt;
+   &lt;arg value="--ignore=vendor" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
@@ -198,6 +200,8 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
    &lt;arg value="--report=checkstyle" /&gt;
    &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
    &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
+   &lt;arg value="--extensions=php" /&gt;
+   &lt;arg value="--ignore=vendor" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
