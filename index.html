@@ -18,7 +18,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
-  <link href="css/prettify.css" type="text/css" rel="stylesheet" type="text/css" />
+  <link href="css/prettify.css" rel="stylesheet" type="text/css" />
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css" />
 
   <!--[if lt IE 9]>
@@ -82,7 +82,7 @@ java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
     </div>
     <div class="span6">
      <h2>Required PHP Tools</h2>
-     <p>The required PHP tools should be installed using the PEAR Installer, the backbone of the <a href="http://pear.php.net/">PHP Extension and Application Repository</a> that provides a distribution system for PHP packages.</p>
+     <p>The <a href="http://pear.phpqatools.org/">required PHP tools</a> should be installed using the PEAR Installer, the backbone of the <a href="http://pear.php.net/">PHP Extension and Application Repository</a> that provides a distribution system for PHP packages.</p>
      <p>Depending on your OS distribution and/or your PHP environment, you may need to install PEAR or update your existing PEAR installation before you can proceed with the following instructions. <code>sudo pear upgrade PEAR</code> usually suffices to upgrade an existing PEAR installation. The <a href="http://pear.php.net/manual/en/installation.getting.php">PEAR Manual</a> explains how to perform a fresh installation of PEAR.</p>
      <p>The following two commands (which you may have to run as <code>root</code>) are all that is required to install the required PHP tools using the PEAR Installer:</p>
      <pre>pear config-set auto_discover 1
@@ -92,8 +92,10 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
 
    <div class="row">
     <div class="span12">
-     <h2>Build Automation</h2>
-     <p>The <a href="http://ant.apache.org/">Apache Ant</a> <code>build.xml</code> (<a href="download/build.xml">download</a>) build script orchestrates the execution of the various tools. It assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
+     <h2 id="build_automation">Build Automation</h2>
+     <p><a href="http://ant.apache.org/">Apache Ant</a> is required for automating the build process.<br>
+		 It orchestrates the execution of the various tools in the <code>build.xml</code> build script (<a href="download/build.xml">download</a>).<br>
+		 The build script assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
      <pre class="prettyprint">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;project name="name-of-project" default="build"&gt;
@@ -240,6 +242,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
       <li><p><code>phploc</code> can be used to measure the project size.</p></li>
       <li><p><code>phpmd</code> can be used to perform project mess detection and print human readable output. This task is intended for usage on the command line before committing.</p></li>
       <li><p><code>phpunit</code> can be used to run unit tests.</p></li>
+      <li><p><code>phpcb</code> can be used to generate a browsable representation of the PHP code.</p></li>
      </ul>
      <p>The other tasks can, of course, also be invoked directly but that is not their intended purpose. They are invoked by the tasks listed above.</p>
     </div>
@@ -248,7 +251,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
    <div class="row">
     <div class="span6">
      <h2>PHPUnit</h2>
-     <p>The <code>phpunit</code> task in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
+     <p>The <code>phpunit</code> task in the <code>build.xml</code> <a href="#build_automation">above</a> assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
      <pre class="prettyprint">&lt;logging&gt;
  &lt;log type="coverage-html" target="build/coverage" title="Name of Project"
       charset="UTF-8" yui="true" highlight="true"
@@ -263,7 +266,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
 
     <div class="span6">
      <h2>phpDox</h2>
-     <p>The <code>phpdox</code> task in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assumes that an XML configuration file for phpDox is used to configure the API documentation generation:</p>
+     <p>The <code>phpdox</code> task in the <code>build.xml</code> <a href="#build_automation">above</a> assumes that an XML configuration file for phpDox is used to configure the API documentation generation:</p>
      <pre class="prettyprint">&lt;phpdox xmlns="http://phpdox.de/config"&gt;
  &lt;project name="name-of-project" source="src" workdir="build/phpdox"&gt;
   &lt;collector publiconly="false"&gt;
@@ -276,25 +279,27 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;/generator&gt;
  &lt;/project&gt;
 &lt;/phpdox&gt;</pre>
+	<p>More information can be found in the <a href="http://phpdox.de/getting-started.html">documentation</a> for phpDox.</p>
     </div>
    </div>
 
    <div class="row">
     <div class="span6">
      <h2>PHP_CodeSniffer</h2>
-     <p>The <code>phpcs</code> and <code>phpcs-ci</code> tasks in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assume that an XML configuration file for PHP_CodeSniffer is used to configure the coding standard:</p>
+     <p>The <code>phpcs</code> and <code>phpcs-ci</code> tasks in the <code>build.xml</code> <a href="#build_automation">above</a> assume that an XML configuration file for PHP_CodeSniffer is used to configure the coding standard:</p>
      <pre class="prettyprint">&lt;ruleset name="name-of-your-coding-standard"&gt;
  &lt;description&gt;Description of your coding standard&lt;/description&gt;
 
  &lt;rule ref="Generic.PHP.DisallowShortOpenTag"/&gt;
  &lt;!-- ... --&gt;
 &lt;/ruleset&gt;</pre>
+	 <p>The build script assumes that the rule sets for PHP_CodeSniffer is located at <code>build/phpcs.xml</code>.</p>
      <p>More information can be found in the <a href="http://pear.php.net/manual/en/package.php.php-codesniffer.annotated-ruleset.php">documentation</a> for PHP_CodeSniffer.</p>
     </div>
 
     <div class="span6">
      <h2>PHPMD</h2>
-     <p>The <code>phpmd</code> and <code>phpmd-ci</code> tasks in the <code>build.xml</code> (<a href="download/build.xml">download</a>) above assume that an XML configuration file for PHPMD is used to configure the coding standard:</p>
+     <p>The <code>phpmd</code> and <code>phpmd-ci</code> tasks in the <code>build.xml</code> <a href="#build_automation">above</a> assume that an XML configuration file for PHPMD is used to configure the coding standard:</p>
      <pre class="prettyprint">&lt;ruleset name="name-of-your-coding-standard"
   xmlns="http://pmd.sf.net/ruleset/1.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -306,6 +311,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
   &lt;rule ref="rulesets/codesize.xml/CyclomaticComplexity" /&gt;
   &lt;!-- ... --&gt;
 &lt;/ruleset&gt;</pre>
+	 <p>The build script assumes that the rule sets for PHPMD is located at <code>build/phpmd.xml</code>.</p>
      <p>More information can be found in the <a href="http://phpmd.org/documentation/creating-a-ruleset.html">documentation</a> for PHPMD.</p>
     </div>
    </div>
@@ -313,7 +319,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
    <div class="row">
     <div class="span12">
      <h2>Build Artifacts</h2>
-     <p>Executing the <code>build.xml</code> (<a href="download/build.xml">download</a>) script above will produce the following <code>build</code> directory:</p>
+     <p>Executing the <code>build.xml</code> script <a href="#build_automation">above</a> will produce the following <code>build</code> directory:</p>
      <pre>build
 |-- api ...
 |-- code-browser ...
