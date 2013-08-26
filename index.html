@@ -344,7 +344,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
       <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar</pre>
       <li><p>Download and install the job template:</p>
       <pre>curl https://raw.github.com/sebastianbergmann/php-jenkins-template/master/config.xml | \
-    java -jar jenkins-cli.jar -s http://localhost:8080/jenkins create-job php-template</pre>
+    java -jar jenkins-cli.jar -s http://localhost:8080 create-job php-template</pre>
       <p><strong>or</strong> add the template manually:</p>
       <pre>cd $JENKINS_HOME/jobs
 mkdir php-template
