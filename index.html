@@ -218,6 +218,8 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
 
  &lt;target name="phpunit" description="Run unit tests with PHPUnit"&gt;
   &lt;exec executable="phpunit" failonerror="true"/&gt;
+  &lt;value="--log-junit" /&lt;
+  &lt;path="${basedir}/build/logs/junit.xml" /&lt;
  &lt;/target&gt;
 
  &lt;target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser"&gt;
