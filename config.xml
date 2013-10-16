@@ -121,9 +121,10 @@
                 <string>Lines of Code (LOC)</string>
                 <string>Comment Lines of Code (CLOC)</string>
                 <string>Non-Comment Lines of Code (NCLOC)</string>
+                <string>Logical Lines of Code (LLOC)</string>
               </strExclusionSet>
               <inclusionFlag>INCLUDE_BY_STRING</inclusionFlag>
-              <exclusionValues>Lines of Code (LOC),Comment Lines of Code (CLOC),Non-Comment Lines of Code (NCLOC)</exclusionValues>
+              <exclusionValues>Lines of Code (LOC),Comment Lines of Code (CLOC),Non-Comment Lines of Code (NCLOC),Logical Lines of Code (LLOC)</exclusionValues>
               <url></url>
               <displayTableFlag>false</displayTableFlag>
             </hudson.plugins.plot.CSVSeries>
@@ -169,18 +170,18 @@
         </hudson.plugins.plot.Plot>
         <hudson.plugins.plot.Plot>
           <title>G - Average Length</title>
-          <yaxis>Average Non-Comment Lines of Code</yaxis>
+          <yaxis>Average Logical Lines of Code</yaxis>
           <series>
             <hudson.plugins.plot.CSVSeries>
               <file>build/logs/phploc.csv</file>
               <label></label>
               <fileType>csv</fileType>
               <strExclusionSet>
-                <string>Average Method Length (NCLOC)</string>
-                <string>Average Class Length (NCLOC)</string>
+                <string>Average Method Length (LLOC)</string>
+                <string>Average Class Length (LLOC)</string>
               </strExclusionSet>
               <inclusionFlag>INCLUDE_BY_STRING</inclusionFlag>
-              <exclusionValues>Average Class Length (NCLOC),Average Method Length (NCLOC)</exclusionValues>
+              <exclusionValues>Average Class Length (LLOC),Average Method Length (LLOC)</exclusionValues>
               <url></url>
               <displayTableFlag>false</displayTableFlag>
             </hudson.plugins.plot.CSVSeries>
@@ -309,11 +310,11 @@
                 <string>Functions</string>
                 <string>Classes</string>
                 <string>Methods</string>
-                <string>Test Clases</string>
+                <string>Test Classes</string>
                 <string>Test Methods</string>
               </strExclusionSet>
               <inclusionFlag>INCLUDE_BY_STRING</inclusionFlag>
-              <exclusionValues>Classes,Methods,Functions,Test Clases,Test Methods</exclusionValues>
+              <exclusionValues>Classes,Methods,Functions,Test Classes,Test Methods</exclusionValues>
               <url></url>
               <displayTableFlag>false</displayTableFlag>
             </hudson.plugins.plot.CSVSeries>
