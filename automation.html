@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The goal of this project is to provide a standard template for Jenkins jobs for PHP projects." />
+  <meta name="author" content="Sebastian Bergmann" />
+  <title>Template for Jenkins Jobs for PHP Projects: Automation</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/highlight.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <div id="wrap">
+   <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+       <span class="sr-only">Toggle Navigation</span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Template for Jenkins Jobs for PHP Projects</a>
+     </div>
+     <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+       <li><a href="index.html">Home</a></li>
+       <li><a href="installation.html">Installation</a></li>
+       <li class="active"><a href="automation.html">Automation</a></li>
+       <li><a href="configuration.html">Configuration</a></li>
+       <li><a href="integration.html">Integration</a></li>
+       <li><a href="support.html">Support</a></li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="container">
+    <div class="page-header">
+     <h1>Automation</h1>
+    </div>
+    <p>We use <a href="http://ant.apache.org/">Apache Ant</a> to automate the build process. It orchestrates the execution of the various tools in the <code>build.xml</code> build script (<a href="download/build.xml">download</a>). The build script assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
+    <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project name="name-of-project" default="build"&gt;
+ &lt;target name="build"
+   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit"/&gt;
+
+ &lt;target name="build-parallel"
+   depends="prepare,lint,tools-parallel,phpunit"/&gt;
+
+ &lt;target name="tools-parallel" description="Run tools in parallel"&gt;
+  &lt;parallel threadCount="2"&gt;
+   &lt;sequential&gt;
+    &lt;antcall target="pdepend"/&gt;
+    &lt;antcall target="phpmd-ci"/&gt;
+   &lt;/sequential&gt;
+   &lt;antcall target="phpcpd"/&gt;
+   &lt;antcall target="phpcs-ci"/&gt;
+   &lt;antcall target="phploc"/&gt;
+   &lt;antcall target="phpdox"/&gt;
+  &lt;/parallel&gt;
+ &lt;/target&gt;
+
+ &lt;target name="clean" description="Cleanup build artifacts"&gt;
+  &lt;delete dir="${basedir}/build/api"/&gt;
+  &lt;delete dir="${basedir}/build/coverage"/&gt;
+  &lt;delete dir="${basedir}/build/logs"/&gt;
+  &lt;delete dir="${basedir}/build/pdepend"/&gt;
+ &lt;/target&gt;
+
+ &lt;target name="prepare" depends="clean" description="Prepare for build"&gt;
+  &lt;mkdir dir="${basedir}/build/api"/&gt;
+  &lt;mkdir dir="${basedir}/build/coverage"/&gt;
+  &lt;mkdir dir="${basedir}/build/logs"/&gt;
+  &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
+  &lt;mkdir dir="${basedir}/build/phpdox"/&gt;
+ &lt;/target&gt;
+
+ &lt;target name="lint" description="Perform syntax check of sourcecode files"&gt;
+  &lt;apply executable="php" failonerror="true"&gt;
+   &lt;arg value="-l" /&gt;
+
+   &lt;fileset dir="${basedir}/src"&gt;
+    &lt;include name="**/*.php" /&gt;
+    &lt;modified /&gt;
+   &lt;/fileset&gt;
+
+   &lt;fileset dir="${basedir}/tests"&gt;
+    &lt;include name="**/*.php" /&gt;
+    &lt;modified /&gt;
+   &lt;/fileset&gt;
+  &lt;/apply&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phploc" description="Measure project size using PHPLOC"&gt;
+  &lt;exec executable="phploc"&gt;
+   &lt;arg value="--count-tests" /&gt;
+   &lt;arg value="--log-csv" /&gt;
+   &lt;arg value="${basedir}/build/logs/phploc.csv" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="pdepend" description="Calculate software metrics using PHP_Depend"&gt;
+  &lt;exec executable="pdepend"&gt;
+   &lt;arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" /&gt;
+   &lt;arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" /&gt;
+   &lt;arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpmd"
+         description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing."&gt;
+  &lt;exec executable="phpmd"&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+   &lt;arg value="text" /&gt;
+   &lt;arg value="${basedir}/build/phpmd.xml" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server"&gt;
+  &lt;exec executable="phpmd"&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+   &lt;arg value="xml" /&gt;
+   &lt;arg value="${basedir}/build/phpmd.xml" /&gt;
+   &lt;arg value="--reportfile" /&gt;
+   &lt;arg value="${basedir}/build/logs/pmd.xml" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpcs"
+         description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing."&gt;
+  &lt;exec executable="phpcs"&gt;
+   &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpcs-ci" description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server"&gt;
+  &lt;exec executable="phpcs" output="/dev/null"&gt;
+   &lt;arg value="--report=checkstyle" /&gt;
+   &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
+   &lt;arg value="--standard=${basedir}/build/phpcs.xml" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpcpd" description="Find duplicate code using PHPCPD"&gt;
+  &lt;exec executable="phpcpd"&gt;
+   &lt;arg value="--log-pmd" /&gt;
+   &lt;arg value="${basedir}/build/logs/pmd-cpd.xml" /&gt;
+   &lt;arg path="${basedir}/src" /&gt;
+  &lt;/exec&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpdox" description="Generate API documentation using phpDox"&gt;
+  &lt;exec executable="phpdox"/&gt;
+ &lt;/target&gt;
+
+ &lt;target name="phpunit" description="Run unit tests with PHPUnit"&gt;
+  &lt;exec executable="phpunit" failonerror="true"/&gt;
+ &lt;/target&gt;
+&lt;/project&gt;</code></pre>
+    <p>Here is an overview of the tasks defined in the above <code>build.xml</code> (<a href="download/build.xml">download</a>) script that are intended to be directly invoked:</p>
+    <ul>
+     <li><p><code>build</code> is the default build target. It invokes all the tools in such a way that XML logfiles are written to default locations.</p></li>
+     <li><p><code>build-parallel</code> is the same as <code>build</code> (see above) except that it executes the tools in parallel.</p></li>
+     <li><p><code>clean</code> can be used to clean up (delete) all build artifacts (logfiles, etc. that are produced during the build).</p></li>
+     <li><p><code>lint</code> can be used to perform a syntax check of the project sources using <code>php -l</code>.</p></li>
+     <li><p><code>phpdox</code> can be used to generate API documentation.</p></li>
+     <li><p><code>phpcs</code> can be used to find coding standard violations and print human readable output. This task is intended for usage on the command line before committing.</p></li>
+     <li><p><code>phploc</code> can be used to measure the project size.</p></li>
+     <li><p><code>phpmd</code> can be used to perform project mess detection and print human readable output. This task is intended for usage on the command line before committing.</p></li>
+     <li><p><code>phpunit</code> can be used to run unit tests.</p></li>
+    </ul>
+    <p>The other tasks can, of course, also be invoked directly but that is not their intended purpose. They are invoked by the tasks listed above.</p>
+    <p>Executing the <code>build.xml</code> script will produce the following <code>build</code> directory:</p>
+    <pre>build
+|-- api ...
+|-- coverage ...
+`-- logs
+    |-- checkstyle.xml
+    |-- clover.xml
+    |-- jdepend.xml
+    |-- junit.xml
+    |-- phploc.csv
+    |-- pmd-cpd.xml
+    `-- pmd.xml</pre>
+    <p>These build artifacts will be processed by Jenkins.</p>
+   </div>
+  </div>
+  <div id="footer">
+   <div class="container">
+    <p class="text-muted">The "<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type"><a xmlns:cc="http://creativecommons.org/ns#" href="http://jenkins-php.org/" property="cc:attributionName" rel="cc:attributionURL">Template for Jenkins Jobs for PHP Projects</a></span>" by <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a> and his contributors is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+   </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/highlight.pack.js"></script>
+  <script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "6"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+  </script>
+ </body>
+</html>
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The goal of this project is to provide a standard template for Jenkins jobs for PHP projects." />
+  <meta name="author" content="Sebastian Bergmann" />
+  <title>Template for Jenkins Jobs for PHP Projects: Installation</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <div id="wrap">
+   <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+       <span class="sr-only">Toggle Navigation</span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Template for Jenkins Jobs for PHP Projects</a>
+     </div>
+     <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+       <li><a href="index.html">Home</a></li>
+       <li class="active"><a href="installation.html">Installation</a></li>
+       <li><a href="automation.html">Automation</a></li>
+       <li><a href="configuration.html">Configuration</a></li>
+       <li><a href="integration.html">Integration</a></li>
+       <li><a href="support.html">Support</a></li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="container">
+    <div class="page-header">
+     <h1>Installation</h1>
+    </div>
+    <h2>Required Jenkins Plugins</h2>
+    <p>You need to install the following plugins for Jenkins:</p>
+    <ul>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Checkstyle</a> (for processing <a href="http://pear.php.net/PHP_CodeSniffer">PHP_CodeSniffer</a> logfiles in Checkstyle format)</p></li>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/Clover+PHP+Plugin">Clover PHP</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> code coverage xml output)</p></li>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/DRY+Plugin">DRY</a> (for processing <a href="https://github.com/sebastianbergmann/phpcpd">phpcpd</a> logfiles in PMD-CPD format)</p></li>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin">HTML Publisher</a> (for publishing the <a href="http://www.phpunit.de/">PHPUnit</a> code coverage report, for instance)</p></li>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/JDepend+Plugin">JDepend</a> (for processing <a href="http://pdepend.org/">PHP_Depend</a> logfiles in JDepend format)</p></li>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin">Plot</a> (for processing <a href="https://github.com/sebastianbergmann/phploc">phploc</a> CSV output)</p></li>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/PMD+Plugin">PMD</a> (for processing <a href="http://phpmd.org/">PHPMD</a> logfiles in PMD format)</p></li>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/Violations">Violations</a> (for processing various logfiles)</p></li>
+     <li><p><a href="http://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin">xUnit</a> (for processing <a href="http://www.phpunit.de/">PHPUnit</a> logfiles in JUnit format)</p></li>
+    </ul>
+    <p>You can install these plugins using the web frontend at <dl><dd><code>http://localhost:8080/pluginManager/available</code></dd></dl> or using the <a href="http://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CLI">Jenkins CLI</a>:</p>
+    <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin checkstyle cloverphp dry htmlpublisher jdepend plot pmd violations xunit
+
+java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
+    <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Jenkins installation.</p>
+    <h2>Required PHP Tools</h2>
+    <p>The <a href="http://pear.phpqatools.org/">required PHP tools</a> should be installed using the PEAR Installer, the backbone of the <a href="http://pear.php.net/">PHP Extension and Application Repository</a> that provides a distribution system for PHP packages.</p>
+    <p>Depending on your OS distribution and/or your PHP environment, you may need to install PEAR or update your existing PEAR installation before you can proceed with the following instructions. <code>sudo pear upgrade PEAR</code> usually suffices to upgrade an existing PEAR installation. The <a href="http://pear.php.net/manual/en/installation.getting.php">PEAR Manual</a> explains how to perform a fresh installation of PEAR.</p>
+    <p>The following two commands (which you may have to run as <code>root</code>) are all that is required to install the required PHP tools using the PEAR Installer:</p>
+    <pre>pear config-set auto_discover 1
+pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
+   </div>
+  </div>
+  <div id="footer">
+   <div class="container">
+    <p class="text-muted">The "<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type"><a xmlns:cc="http://creativecommons.org/ns#" href="http://jenkins-php.org/" property="cc:attributionName" rel="cc:attributionURL">Template for Jenkins Jobs for PHP Projects</a></span>" by <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a> and his contributors is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+   </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "6"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+  </script>
+ </body>
+</html>
+
