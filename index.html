@@ -3,8 +3,8 @@
 <html lang="en">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="The goal of this project is to provide a standard template for Jenkins jobs for PHP projects." />
   <meta name="author" content="Sebastian Bergmann" />
   <meta property="og:email" content="sb@sebastian-bergmann.de" />
@@ -29,6 +29,7 @@
  </head>
 
  <body onload="prettyPrint()">
+<!--
   <div class="navbar navbar-fixed-top">
    <div class="navbar-inner">
     <div class="container">
@@ -41,13 +42,12 @@
      <div class="nav-collapse">
       <ul class="nav">
        <li class="active"><a href="index.html">Home</a></li>
-       <li><a href="http://oreilly.com/catalog/0636920021353/">Book</a></li>
       </ul>
      </div>
     </div>
    </div>
   </div>
-
+-->
   <div class="container">
    <div class="hero-unit">
     <h2>Template for Jenkins Jobs for PHP Projects</h2>
@@ -93,8 +93,8 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
    <div class="row">
     <div class="span12">
      <h2 id="build_automation">Build Automation</h2>
-     <p><a href="http://ant.apache.org/">Apache Ant</a> is required for automating the build process.<br>
-		 It orchestrates the execution of the various tools in the <code>build.xml</code> build script (<a href="download/build.xml">download</a>).<br>
+     <p><a href="http://ant.apache.org/">Apache Ant</a> is required for automating the build process.<br/>
+		 It orchestrates the execution of the various tools in the <code>build.xml</code> build script (<a href="download/build.xml">download</a>).<br/>
 		 The build script assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
      <pre class="prettyprint">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
@@ -260,7 +260,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
  &lt;log type="junit" target="build/logs/junit.xml"
       logIncompleteSkipped="false"/&gt;
 &lt;/logging&gt;</pre>
-     <p>You can <a href="download/phpunit.xml.dist">download</a> a sample <code>phpunit.xml.dist</code> and place it in your project root to get started.
+     <p>You can <a href="download/phpunit.xml.dist">download</a> a sample <code>phpunit.xml.dist</code> and place it in your project root to get started.</p>
      <p>More information can be found in the <a href="http://www.phpunit.de/manual/current/en/appendixes.configuration.html">documentation</a> for PHPUnit.</p>
     </div>
 
@@ -341,7 +341,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
      <h2>Using the Job Template</h2>
      <ol>
       <li><p>Fetch the jenkins-cli.jar from your jenkins server:</p>
-      <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar</pre>
+      <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar</pre></li>
       <li><p>Download and install the job template:</p>
       <pre>curl https://raw.github.com/sebastianbergmann/php-jenkins-template/master/config.xml | \
     java -jar jenkins-cli.jar -s http://localhost:8080 create-job php-template</pre>
@@ -379,21 +379,24 @@ chown -R jenkins:jenkins php-template/</pre></li>
    </div>
 
    <div class="row">
-    <div class="span6">
-     <h2>Further Reading</h2>
-     <p><em><a href="http://oreilly.com/catalog/0636920021353/">Integrate Your PHP Project with Jenkins</a></em> is a book that explains how you can leverage Jenkins to monitor the various aspects of software quality in a PHP software project.</p>
-     <p>The planning, execution, and automation of tests for the different layers and tiers of a PHP-based web application is also outside the scope of the aforementioned book. <em><a href="http://phpqabook.com/">Real-World Solutions for Developing High-Quality PHP Frameworks and Applications</a></em> is an excellent resource on these matters.</p>
-    </div>
-
-    <div class="span6">
+    <div class="span12">
      <h2>Support</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="span6">
+     <h3>Issues</h3>
      <p><a href="https://github.com/sebastianbergmann/php-jenkins-template/issues">Issues are tracked on GitHub</a>.</p>
+     <h3>Internet Relay Chat (IRC)</h3>
      <p>The <a href="irc://irc.freenode.net/#jenkins-php">#jenkins-php</a> channel on the <a href="http://freenode.net">FreeNode</a> IRC network can be used to discuss all issues related to Jenkins and PHP.</p>
+    </div>
+    <div class="span6">
+     <h3>Professional Services</h3>
      <p><a href="http://thePHP.cc/" title="The PHP Consulting Company (thePHP.cc)">thePHP.cc</a> offers consulting and training that set you on a path to create, maintain and extend sustainable software of high quality with PHP and leverage Jenkins to monitor the various aspects of software quality.</p>
     </div>
    </div>
 
-   <hr>
+   <hr/>
 
    <footer>
     <p>The "<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type"><a xmlns:cc="http://creativecommons.org/ns#" href="http://jenkins-php.org/" property="cc:attributionName" rel="cc:attributionURL">Template for Jenkins Jobs for PHP Projects</a></span>" by <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a> and his contributors is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
@@ -404,3 +407,4 @@ chown -R jenkins:jenkins php-template/</pre></li>
   <script type="text/javascript">var _paq = _paq || [];_paq.push(["trackPageView"]);_paq.push(["enableLinkTracking"]);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";_paq.push(["setTrackerUrl", u+"piwik.php"]);_paq.push(["setSiteId", "6"]);var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);})();</script>
  </body>
 </html>
+
