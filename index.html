@@ -100,10 +100,10 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
 
 &lt;project name="name-of-project" default="build"&gt;
  &lt;target name="build"
-   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,phpcb"/&gt;
+   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit"/&gt;
 
  &lt;target name="build-parallel"
-   depends="prepare,lint,tools-parallel,phpunit,phpcb"/&gt;
+   depends="prepare,lint,tools-parallel,phpunit"/&gt;
 
  &lt;target name="tools-parallel" description="Run tools in parallel"&gt;
   &lt;parallel threadCount="2"&gt;
@@ -120,7 +120,6 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
 
  &lt;target name="clean" description="Cleanup build artifacts"&gt;
   &lt;delete dir="${basedir}/build/api"/&gt;
-  &lt;delete dir="${basedir}/build/code-browser"/&gt;
   &lt;delete dir="${basedir}/build/coverage"/&gt;
   &lt;delete dir="${basedir}/build/logs"/&gt;
   &lt;delete dir="${basedir}/build/pdepend"/&gt;
@@ -128,7 +127,6 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
 
  &lt;target name="prepare" depends="clean" description="Prepare for build"&gt;
   &lt;mkdir dir="${basedir}/build/api"/&gt;
-  &lt;mkdir dir="${basedir}/build/code-browser"/&gt;
   &lt;mkdir dir="${basedir}/build/coverage"/&gt;
   &lt;mkdir dir="${basedir}/build/logs"/&gt;
   &lt;mkdir dir="${basedir}/build/pdepend"/&gt;
@@ -220,17 +218,6 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
  &lt;target name="phpunit" description="Run unit tests with PHPUnit"&gt;
   &lt;exec executable="phpunit" failonerror="true"/&gt;
  &lt;/target&gt;
-
- &lt;target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser"&gt;
-  &lt;exec executable="phpcb"&gt;
-   &lt;arg value="--log" /&gt;
-   &lt;arg path="${basedir}/build/logs" /&gt;
-   &lt;arg value="--source" /&gt;
-   &lt;arg path="${basedir}/src" /&gt;
-   &lt;arg value="--output" /&gt;
-   &lt;arg path="${basedir}/build/code-browser" /&gt;
-  &lt;/exec&gt;
- &lt;/target&gt;
 &lt;/project&gt;</pre>
      <p>Here is an overview of the tasks defined in the above <code>build.xml</code> (<a href="download/build.xml">download</a>) script that are intended to be directly invoked:</p>
      <ul>
@@ -243,7 +230,6 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
       <li><p><code>phploc</code> can be used to measure the project size.</p></li>
       <li><p><code>phpmd</code> can be used to perform project mess detection and print human readable output. This task is intended for usage on the command line before committing.</p></li>
       <li><p><code>phpunit</code> can be used to run unit tests.</p></li>
-      <li><p><code>phpcb</code> can be used to generate a browsable representation of the PHP code.</p></li>
      </ul>
      <p>The other tasks can, of course, also be invoked directly but that is not their intended purpose. They are invoked by the tasks listed above.</p>
     </div>
@@ -323,7 +309,6 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
      <p>Executing the <code>build.xml</code> script <a href="#build_automation">above</a> will produce the following <code>build</code> directory:</p>
      <pre>build
 |-- api ...
-|-- code-browser ...
 |-- coverage ...
 `-- logs
     |-- checkstyle.xml
