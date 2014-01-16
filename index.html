@@ -153,6 +153,7 @@ pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox</pre>
 
  &lt;target name="phploc" description="Measure project size using PHPLOC"&gt;
   &lt;exec executable="phploc"&gt;
+   &lt;arg value="--count-tests" /&gt;
    &lt;arg value="--log-csv" /&gt;
    &lt;arg value="${basedir}/build/logs/phploc.csv" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
