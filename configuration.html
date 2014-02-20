@@ -48,12 +48,9 @@
     <h2>PHPUnit</h2>
     <p>The <code>phpunit</code> task in the <code>build.xml</code> (see "<a href="automation.html">Automation</a>") assumes that an XML configuration file for PHPUnit is used to configure the following logging targets:</p>
     <pre><code>&lt;logging&gt;
- &lt;log type="coverage-html" target="build/coverage" title="Name of Project"
-      charset="UTF-8" yui="true" highlight="true"
-      lowUpperBound="35" highLowerBound="70"/&gt;
+ &lt;log type="coverage-html" target="build/coverage"/&gt;
  &lt;log type="coverage-clover" target="build/logs/clover.xml"/&gt;
- &lt;log type="junit" target="build/logs/junit.xml"
-      logIncompleteSkipped="false"/&gt;
+ &lt;log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/&gt;
 &lt;/logging&gt;</code></pre>
     <p>You can <a href="download/phpunit.xml.dist">download</a> a sample <code>phpunit.xml.dist</code> and place it in your project root to get started.</p>
     <p>More information can be found in the <a href="http://www.phpunit.de/manual/current/en/appendixes.configuration.html">documentation</a> for PHPUnit.</p>
