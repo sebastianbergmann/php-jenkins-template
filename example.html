@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The goal of this project is to provide a standard template for Jenkins jobs for PHP projects." />
+  <meta name="author" content="Sebastian Bergmann" />
+  <meta property="og:email" content="sebastian@phpunit.de" />
+  <meta property="og:site_name" content="Template for Jenkins Jobs for PHP Projects" />
+  <meta property="og:title" content="Template for Jenkins Jobs for PHP Projects" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://jenkins-php.org/" />
+  <link rel="canonical" href="http://jenkins-php.org/" />
+  <title>Template for Jenkins Jobs for PHP Projects</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <div id="wrap">
+   <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+       <span class="sr-only">Toggle Navigation</span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Template for Jenkins Jobs for PHP Projects</a>
+     </div>
+     <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+       <li><a href="index.html">Home</a></li>
+       <li><a href="installation.html">Installation</a></li>
+       <li><a href="automation.html">Automation</a></li>
+       <li><a href="configuration.html">Configuration</a></li>
+       <li><a href="integration.html">Integration</a></li>
+       <li class="active"><a href="example.html">Example</a></li>
+       <li><a href="support.html">Support</a></li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="container">
+    <div class="page-header">
+     <h1>Example</h1>
+    </div>
+    <p>The <a href="https://github.com/sebastianbergmann/money">Money</a> project is an example that uses the <a href="automation.html">build automation</a> and <a href="configuration.html">configuration</a> as described here.</p>
+    <p>Simply clone the project's Git repository:</p>
+    <pre>$ git clone git@github.com:sebastianbergmann/money.git               
+Cloning into 'money'...
+remote: Reusing existing pack: 904, done.
+remote: Counting objects: 90, done.
+remote: Compressing objects: 100% (90/90), done.
+remote: Total 994 (delta 46), reused 0 (delta 0)
+Receiving objects: 100% (994/994), 2.91 MiB | 883.00 KiB/s, done.
+Resolving deltas: 100% (786/786), done.
+Checking connectivity... done.</pre>
+    <p>And invoke Apache Ant to build:</p>
+    <pre>$ ant
+Buildfile: /usr/local/src/money/build.xml
+
+clean:
+   [delete] Deleting directory /usr/local/src/money/build/api
+   [delete] Deleting directory /usr/local/src/money/build/coverage
+   [delete] Deleting directory /usr/local/src/money/build/logs
+   [delete] Deleting directory /usr/local/src/money/build/pdepend
+
+generate-code:
+     [exec] phpab 1.13.1 - Copyright (C) 2009 - 2014 by Arne Blankerts
+     [exec] 
+     [exec] Scanning directory /usr/local/src/money/src
+     [exec] 
+     [exec] Autoload file /usr/local/src/money/src/autoload.php generated.
+     [exec] 
+
+prepare:
+    [mkdir] Created dir: /usr/local/src/money/build/api
+    [mkdir] Created dir: /usr/local/src/money/build/coverage
+    [mkdir] Created dir: /usr/local/src/money/build/logs
+    [mkdir] Created dir: /usr/local/src/money/build/pdepend
+
+lint:
+    [apply] No syntax errors detected in /usr/local/src/money/src/exceptions/OverflowException.php
+
+phploc:
+     [exec] phploc 2.0.4 by Sebastian Bergmann.
+     [exec] 
+     [exec] Directories                                          4
+     [exec] Files                                              193
+     [exec] 
+     [exec] Size
+     [exec]   Lines of Code (LOC)                            13653
+     [exec]   Comment Lines of Code (CLOC)                    9997 (73.22%)
+     [exec]   Non-Comment Lines of Code (NCLOC)               3656 (26.78%)
+     [exec]   Logical Lines of Code (LLOC)                     538 (3.94%)
+     [exec]     Classes                                        247 (45.91%)
+     [exec]       Average Class Length                           1
+     [exec]       Average Method Length                          1
+     [exec]     Functions                                       98 (18.22%)
+     [exec]       Average Function Length                       98
+     [exec]     Not in classes or functions                    193 (35.87%)
+     [exec] 
+     [exec] Complexity
+     [exec]   Cyclomatic Complexity / LLOC                    0.03
+     [exec]   Cyclomatic Complexity / Number of Methods       1.07
+     [exec] 
+     [exec] Dependencies
+     [exec]   Global Accesses                                    0
+     [exec]     Global Constants                                 0 (0.00%)
+     [exec]     Global Variables                                 0 (0.00%)
+     [exec]     Super-Global Variables                           0 (0.00%)
+     [exec]   Attribute Accesses                                30
+     [exec]     Non-Static                                      24 (80.00%)
+     [exec]     Static                                           6 (20.00%)
+     [exec]   Method Calls                                     307
+     [exec]     Non-Static                                     126 (41.04%)
+     [exec]     Static                                         181 (58.96%)
+     [exec] 
+     [exec] Structure
+     [exec]   Namespaces                                         1
+     [exec]   Interfaces                                         2
+     [exec]   Traits                                             0
+     [exec]   Classes                                          187
+     [exec]     Abstract Classes                                 0 (0.00%)
+     [exec]     Concrete Classes                               187 (100.00%)
+     [exec]   Methods                                          210
+     [exec]     Scope
+     [exec]       Non-Static Methods                           210 (100.00%)
+     [exec]       Static Methods                                 0 (0.00%)
+     [exec]     Visibility
+     [exec]       Public Method                                206 (98.10%)
+     [exec]       Non-Public Methods                             4 (1.90%)
+     [exec]   Functions                                          1
+     [exec]     Named Functions                                  0 (0.00%)
+     [exec]     Anonymous Functions                              1 (100.00%)
+     [exec]   Constants                                          0
+     [exec]     Global Constants                                 0 (0.00%)
+     [exec]     Class Constants                                  0 (0.00%)
+     [exec] 
+     [exec] Tests
+     [exec]   Classes                                            3
+     [exec]   Methods                                           31
+
+pdepend:
+     [exec] PHP_Depend 1.1.4 by Manuel Pichler
+     [exec] 
+     [exec] Parsing source files:
+     [exec] ............................................................    60
+     [exec] ............................................................   120
+     [exec] ............................................................   180
+     [exec] ..........                                                     190
+     [exec] 
+     [exec] Executing Coupling-Analyzer:
+     [exec] .............................                                  595
+     [exec] 
+     [exec] Executing CyclomaticComplexity-Analyzer:
+     [exec] .............................                                  590
+     [exec] 
+     [exec] Executing Dependency-Analyzer:
+     [exec] ...................                                            400
+     [exec] 
+     [exec] Executing Inheritance-Analyzer:
+     [exec] .........                                                      194
+     [exec] 
+     [exec] Executing NodeCount-Analyzer:
+     [exec] ...................                                            400
+     [exec] 
+     [exec] Executing NodeLoc-Analyzer:
+     [exec] .............................                                  589
+     [exec] 
+     [exec] Generating pdepend log files, this may take a moment.
+     [exec] 
+     [exec] Time: 00:16; Memory: 18.25Mb
+
+phpmd-ci:
+
+phpcs-ci:
+
+phpcpd:
+     [exec] phpcpd 2.0.0 by Sebastian Bergmann.
+     [exec] 
+     [exec] 0.00% duplicated lines out of 13045 total lines of code.
+     [exec] 
+     [exec] Time: 494 ms, Memory: 9.00Mb
+
+phpunit:
+     [exec] PHPUnit 4.0.4 by Sebastian Bergmann.
+     [exec] 
+     [exec] Configuration read from /usr/local/src/money/build/phpunit.xml
+     [exec] 
+     [exec] ...............................
+     [exec] 
+     [exec] Time: 1.56 seconds, Memory: 15.25Mb
+     [exec] 
+     [exec] OK (31 tests, 50 assertions)
+     [exec] 
+     [exec] Generating code coverage report in Clover XML format ... done
+     [exec] 
+     [exec] Generating Crap4J report XML file ... done
+     [exec] 
+     [exec] Generating code coverage report in HTML format ... done
+
+phpdox:
+     [exec] phpDox 0.6.5 - Copyright (C) 2010 - 2014 by Arne Blankerts
+     [exec] 
+     [exec] [09.03.2014 - 09:17:05] Using config file './phpdox.xml'
+     [exec] [09.03.2014 - 09:17:05] Registered enricher 'build'
+     [exec] [09.03.2014 - 09:17:05] Registered enricher 'git'
+     [exec] [09.03.2014 - 09:17:05] Registered enricher 'checkstyle'
+     [exec] [09.03.2014 - 09:17:05] Registered enricher 'pmd'
+     [exec] [09.03.2014 - 09:17:05] Registered enricher 'phpunit'
+     [exec] [09.03.2014 - 09:17:05] Registered enricher 'phploc'
+     [exec] [09.03.2014 - 09:17:05] Registered output engine 'xml'
+     [exec] [09.03.2014 - 09:17:05] Registered output engine 'html'
+     [exec] [09.03.2014 - 09:17:05] Starting to process project 'Money'
+     [exec] [09.03.2014 - 09:17:05] Starting collector
+     [exec] [09.03.2014 - 09:17:05] Scanning directory '../src' for files to process
+     [exec] 
+     [exec] ..................................................	[50]
+     [exec] ..................................................	[100]
+     [exec] ..................................................	[150]
+     [exec] .......................................           	[189]
+     [exec] 
+     [exec] [09.03.2014 - 09:17:08] Saving results to directory 'phpdox'
+     [exec] [09.03.2014 - 09:17:09] Resolving inheritance
+     [exec] 
+     [exec] ..................................................	[50]
+     [exec] ..................................................	[100]
+     [exec] ..................................................	[150]
+     [exec] .......................................           	[189]
+     [exec] 
+     [exec] [09.03.2014 - 09:17:09] Collector process completed
+     [exec] 
+     [exec] [09.03.2014 - 09:17:09] Starting generator
+     [exec] [09.03.2014 - 09:17:09] Loading enrichers
+     [exec] [09.03.2014 - 09:17:09] Enricher Build Information initialized successfully
+     [exec] [09.03.2014 - 09:17:09] Enricher GIT information initialized successfully
+     [exec] [09.03.2014 - 09:17:09] Enricher PHPLoc xml initialized successfully
+     [exec] [09.03.2014 - 09:17:09] Enricher CheckStyle XML initialized successfully
+     [exec] [09.03.2014 - 09:17:09] Enricher PHPMessDetector XML initialized successfully
+     [exec] [09.03.2014 - 09:17:09] Starting event loop.
+     [exec] 
+     [exec] ..................................................	[50]
+     [exec] ..................................................	[100]
+     [exec] ..................................................	[150]
+     [exec] ..................................................	[200]
+     [exec] ..................................................	[250]
+     [exec] ..................................................	[300]
+     [exec] ..................................................	[350]
+     [exec] ..................................................	[400]
+     [exec] ..................................................	[450]
+     [exec] ..................................................	[500]
+     [exec] ..................................................	[550]
+     [exec] ..................................................	[600]
+     [exec] ..................................................	[650]
+     [exec] ........................................          	[690]
+     [exec] 
+     [exec] [09.03.2014 - 09:17:15] Generator process completed
+     [exec] [09.03.2014 - 09:17:15] Processing project 'Money' completed.
+     [exec] 
+     [exec] 
+     [exec] Time: 9 seconds, Memory: 15.75Mb
+     [exec] 
+
+build:
+
+BUILD SUCCESSFUL
+Total time: 1 minute 15 seconds</pre>
+    <h2>Screenshots</h2>
+    <p>The carousel below shows screenshots of a Jenkins job for the Money project.</p>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+     <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+     </ol>
+     <div class="carousel-inner">
+      <div class="item active">
+       <a href="images/dashboard.png"><img src="images/dashboard.png"></a>
+      </div>
+      <div class="item">
+       <a href="images/build_overview.png"><img src="images/build_overview.png"></a>
+      </div>
+      <div class="item">
+       <a href="images/code_coverage.png"><img src="images/code_coverage.png"></a>
+      </div>
+      <div class="item">
+       <a href="images/phpDox_dashboard.png"><img src="images/phpDox_dashboard.png"></a>
+      </div>
+      <div class="item">
+       <a href="images/phpDox_api_documentation.png"><img src="images/phpDox_api_documentation.png"></a>
+      </div>
+     </div>
+     <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+     </a>
+     <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+     </a>
+    </div>
+    <br/>
+   </div>
+  </div>
+  <div id="footer">
+   <div class="container">
+    <p class="text-muted">The "<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type"><a xmlns:cc="http://creativecommons.org/ns#" href="http://jenkins-php.org/" property="cc:attributionName" rel="cc:attributionURL">Template for Jenkins Jobs for PHP Projects</a></span>" by <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a> and his contributors is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+   </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "6"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+  </script>
+ </body>
+</html>
+
