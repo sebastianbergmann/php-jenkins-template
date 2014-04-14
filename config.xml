@@ -426,6 +426,10 @@
       <unhealthyTarget/>
       <failingTarget/>
     </org.jenkinsci.plugins.cloverphp.CloverPublisher>
+    <hudson.plugins.crap4j.Crap4JPublisher>
+      <reportPattern>build/logs/crap4j.xml</reportPattern>
+      <healthThreshold></healthThreshold>
+    </hudson.plugins.crap4j.Crap4JPublisher>
     <htmlpublisher.HtmlPublisher>
       <reportTargets>
         <htmlpublisher.HtmlPublisherTarget>
