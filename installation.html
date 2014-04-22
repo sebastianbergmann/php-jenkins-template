@@ -65,11 +65,8 @@
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin checkstyle cloverphp crap4j dry htmlpublisher jdepend plot pmd violations xunit
 
 java -jar jenkins-cli.jar -s http://localhost:8080 safe-restart</pre>
-
-    <p>If you stumble over an error message like "checkstyle is neither a valid file, URL, nor a plugin artifact name in the update center No update center data is retrieved yet", you need to update your plugin list manually:</p>
-
+    <p>If you see an error message such as "checkstyle is neither a valid file, URL, nor a plugin artifact name in the update center No update center data is retrieved yet", you need to update your plugin list manually:</p>
     <pre>curl -L http://updates.jenkins-ci.org/update-center.json | sed '1d;$d' | curl -X POST -H 'Accept: application/json' -d @- http://localhost:8080/updateCenter/byId/default/postBack</pre>
-
     <p>In the above, replace <code>localhost:8080</code> with the hostname and port of your Jenkins installation.</p>
     <h2>Required PHP Tools</h2>
     <p>The following PHP tools are required:</p>
