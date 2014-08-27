@@ -50,7 +50,7 @@
      <li><p>Fetch the jenkins-cli.jar from your jenkins server:</p>
      <pre>wget http://localhost:8080/jnlpJars/jenkins-cli.jar</pre></li>
      <li><p>Download and install the job template:</p>
-     <pre>curl https://raw.github.com/sebastianbergmann/php-jenkins-template/master/config.xml | \
+     <pre>curl -L https://raw.github.com/sebastianbergmann/php-jenkins-template/master/config.xml | \
      java -jar jenkins-cli.jar -s http://localhost:8080 create-job php-template</pre>
      <p><strong>or</strong> add the template manually:</p>
      <pre>cd $JENKINS_HOME/jobs
