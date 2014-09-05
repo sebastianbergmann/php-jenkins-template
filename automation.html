@@ -110,7 +110,7 @@
 
  &lt;target name="phploc"
          description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line."&gt;
-  &lt;exec executable="${basedir}/build/tools/phploc.phar"&gt;
+  &lt;exec executable="phploc"&gt;
    &lt;arg value="--count-tests" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg path="${basedir}/tests" /&gt;
@@ -120,7 +120,7 @@
  &lt;target name="phploc-ci"
          depends="prepare"
          description="Measure project size using PHPLOC and log result in CSV and XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${basedir}/build/tools/phploc.phar"&gt;
+  &lt;exec executable="phploc"&gt;
    &lt;arg value="--count-tests" /&gt;
    &lt;arg value="--log-csv" /&gt;
    &lt;arg path="${basedir}/build/logs/phploc.csv" /&gt;
@@ -134,7 +134,7 @@
  &lt;target name="pdepend"
          depends="prepare"
          description="Calculate software metrics using PHP_Depend and log result in XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${basedir}/build/tools/pdepend.phar"&gt;
+  &lt;exec executable="pdepend"&gt;
    &lt;arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" /&gt;
    &lt;arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" /&gt;
    &lt;arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" /&gt;
@@ -144,7 +144,7 @@
 
  &lt;target name="phpmd"
          description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing."&gt;
-  &lt;exec executable="${basedir}/build/tools/phpmd.phar"&gt;
+  &lt;exec executable="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="text" /&gt;
    &lt;arg path="${basedir}/build/phpmd.xml" /&gt;
@@ -154,7 +154,7 @@
  &lt;target name="phpmd-ci"
          depends="prepare"
          description="Perform project mess detection using PHPMD and log result in XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${basedir}/build/tools/phpmd.phar"&gt;
+  &lt;exec executable="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="xml" /&gt;
    &lt;arg path="${basedir}/build/phpmd.xml" /&gt;
@@ -165,7 +165,7 @@
 
  &lt;target name="phpcs"
          description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing."&gt;
-  &lt;exec executable="${basedir}/build/tools/phpcs.phar"&gt;
+  &lt;exec executable="phpcs"&gt;
    &lt;arg value="--standard=PSR2" /&gt;
    &lt;arg value="--extensions=php" /&gt;
    &lt;arg value="--ignore=autoload.php" /&gt;
@@ -177,7 +177,7 @@
  &lt;target name="phpcs-ci"
          depends="prepare"
          description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${basedir}/build/tools/phpcs.phar" output="/dev/null"&gt;
+  &lt;exec executable="phpcs" output="/dev/null"&gt;
    &lt;arg value="--report=checkstyle" /&gt;
    &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
    &lt;arg value="--standard=PSR2" /&gt;
@@ -189,7 +189,7 @@
 
  &lt;target name="phpcpd"
          description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing."&gt;
-  &lt;exec executable="${basedir}/build/tools/phpcpd.phar"&gt;
+  &lt;exec executable="phpcpd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
  &lt;/target&gt;
@@ -197,7 +197,7 @@
  &lt;target name="phpcpd-ci"
          depends="prepare"
          description="Find duplicate code using PHPCPD and log result in XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${basedir}/build/tools/phpcpd.phar"&gt;
+  &lt;exec executable="phpcpd"&gt;
    &lt;arg value="--log-pmd" /&gt;
    &lt;arg path="${basedir}/build/logs/pmd-cpd.xml" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
@@ -207,7 +207,7 @@
  &lt;target name="phpunit"
          depends="prepare"
          description="Run unit tests with PHPUnit"&gt;
-  &lt;exec executable="${basedir}/build/tools/phpunit.phar" failonerror="true"&gt;
+  &lt;exec executable="phpunit" failonerror="true"&gt;
    &lt;arg value="--configuration"/&gt;
    &lt;arg path="${basedir}/build/phpunit.xml"/&gt;
   &lt;/exec&gt;
@@ -216,7 +216,7 @@
  &lt;target name="phpdox"
          depends="phploc-ci,phpcs-ci,phpmd-ci"
          description="Generate project documentation using phpDox"&gt;
-  &lt;exec executable="${basedir}/build/tools/phpdox.phar" dir="${basedir}/build"/&gt;
+  &lt;exec executable="phpdox" dir="${basedir}/build"/&gt;
  &lt;/target&gt;
 &lt;/project&gt;</code></pre>
     <p>Here is an overview of the tasks defined in the above <code>build.xml</code> (<a href="download/build.xml">download</a>) script that are intended to be directly invoked:</p>

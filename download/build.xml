@@ -61,7 +61,7 @@
 
  <target name="phploc"
          description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">
-  <exec executable="${basedir}/build/tools/phploc.phar">
+  <exec executable="phploc">
    <arg value="--count-tests" />
    <arg path="${basedir}/src" />
    <arg path="${basedir}/tests" />
@@ -71,7 +71,7 @@
  <target name="phploc-ci"
          depends="prepare"
          description="Measure project size using PHPLOC and log result in CSV and XML format. Intended for usage within a continuous integration environment.">
-  <exec executable="${basedir}/build/tools/phploc.phar">
+  <exec executable="phploc">
    <arg value="--count-tests" />
    <arg value="--log-csv" />
    <arg path="${basedir}/build/logs/phploc.csv" />
@@ -85,7 +85,7 @@
  <target name="pdepend"
          depends="prepare"
          description="Calculate software metrics using PHP_Depend and log result in XML format. Intended for usage within a continuous integration environment.">
-  <exec executable="${basedir}/build/tools/pdepend.phar">
+  <exec executable="pdepend">
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
@@ -95,7 +95,7 @@
 
  <target name="phpmd"
          description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
-  <exec executable="${basedir}/build/tools/phpmd.phar">
+  <exec executable="phpmd">
    <arg path="${basedir}/src" />
    <arg value="text" />
    <arg path="${basedir}/build/phpmd.xml" />
@@ -105,7 +105,7 @@
  <target name="phpmd-ci"
          depends="prepare"
          description="Perform project mess detection using PHPMD and log result in XML format. Intended for usage within a continuous integration environment.">
-  <exec executable="${basedir}/build/tools/phpmd.phar">
+  <exec executable="phpmd">
    <arg path="${basedir}/src" />
    <arg value="xml" />
    <arg path="${basedir}/build/phpmd.xml" />
@@ -116,7 +116,7 @@
 
  <target name="phpcs"
          description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
-  <exec executable="${basedir}/build/tools/phpcs.phar">
+  <exec executable="phpcs">
    <arg value="--standard=PSR2" />
    <arg value="--extensions=php" />
    <arg value="--ignore=autoload.php" />
@@ -128,7 +128,7 @@
  <target name="phpcs-ci"
          depends="prepare"
          description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment.">
-  <exec executable="${basedir}/build/tools/phpcs.phar" output="/dev/null">
+  <exec executable="phpcs" output="/dev/null">
    <arg value="--report=checkstyle" />
    <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
    <arg value="--standard=PSR2" />
@@ -140,7 +140,7 @@
 
  <target name="phpcpd"
          description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
-  <exec executable="${basedir}/build/tools/phpcpd.phar">
+  <exec executable="phpcpd">
    <arg path="${basedir}/src" />
   </exec>
  </target>
@@ -148,7 +148,7 @@
  <target name="phpcpd-ci"
          depends="prepare"
          description="Find duplicate code using PHPCPD and log result in XML format. Intended for usage within a continuous integration environment.">
-  <exec executable="${basedir}/build/tools/phpcpd.phar">
+  <exec executable="phpcpd">
    <arg value="--log-pmd" />
    <arg path="${basedir}/build/logs/pmd-cpd.xml" />
    <arg path="${basedir}/src" />
@@ -158,7 +158,7 @@
  <target name="phpunit"
          depends="prepare"
          description="Run unit tests with PHPUnit">
-  <exec executable="${basedir}/build/tools/phpunit.phar" failonerror="true">
+  <exec executable="phpunit" failonerror="true">
    <arg value="--configuration"/>
    <arg path="${basedir}/build/phpunit.xml"/>
   </exec>
@@ -167,7 +167,7 @@
  <target name="phpdox"
          depends="phploc-ci,phpcs-ci,phpmd-ci"
          description="Generate project documentation using phpDox">
-  <exec executable="${basedir}/build/tools/phpdox.phar" dir="${basedir}/build"/>
+  <exec executable="phpdox" dir="${basedir}/build"/>
  </target>
 </project>
 
