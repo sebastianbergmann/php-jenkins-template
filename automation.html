@@ -88,7 +88,7 @@
 
  &lt;target name="prepare"
          unless="prepare.done"
-         depends="clean,generate-code"
+         depends="clean"
          description="Prepare for build"&gt;
   &lt;mkdir dir="${basedir}/build/api"/&gt;
   &lt;mkdir dir="${basedir}/build/coverage"/&gt;
