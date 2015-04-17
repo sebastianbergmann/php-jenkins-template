@@ -55,219 +55,428 @@
     <p>Simply clone the project's Git repository:</p>
     <pre>$ git clone git@github.com:sebastianbergmann/money.git               
 Cloning into 'money'...
-remote: Reusing existing pack: 904, done.
-remote: Counting objects: 90, done.
-remote: Compressing objects: 100% (90/90), done.
-remote: Total 994 (delta 46), reused 0 (delta 0)
-Receiving objects: 100% (994/994), 2.91 MiB | 883.00 KiB/s, done.
-Resolving deltas: 100% (786/786), done.
+remote: Counting objects: 1802, done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 1802 (delta 1), reused 0 (delta 0), pack-reused 1795
+Receiving objects: 100% (1802/1802), 10.10 MiB | 296.00 KiB/s, done.
+Resolving deltas: 100% (1449/1449), done.
 Checking connectivity... done.</pre>
     <p>And invoke Apache Ant to build:</p>
     <pre>$ ant
-Buildfile: /usr/local/src/money/build.xml
+Buildfile: /tmp/money/build.xml
 
 clean:
-   [delete] Deleting directory /usr/local/src/money/build/api
-   [delete] Deleting directory /usr/local/src/money/build/coverage
-   [delete] Deleting directory /usr/local/src/money/build/logs
-   [delete] Deleting directory /usr/local/src/money/build/pdepend
 
 generate-code:
-     [exec] phpab 1.13.1 - Copyright (C) 2009 - 2014 by Arne Blankerts
-     [exec] 
-     [exec] Scanning directory /usr/local/src/money/src
-     [exec] 
-     [exec] Autoload file /usr/local/src/money/src/autoload.php generated.
-     [exec] 
+[generate-code] phpab 1.16.1 - Copyright (C) 2009 - 2015 by Arne Blankerts
+[generate-code] 
+[generate-code] Scanning directory /tmp/money/src
+[generate-code] 
+[generate-code] Autoload file /tmp/money/src/autoload.php generated.
+[generate-code] 
 
 prepare:
-    [mkdir] Created dir: /usr/local/src/money/build/api
-    [mkdir] Created dir: /usr/local/src/money/build/coverage
-    [mkdir] Created dir: /usr/local/src/money/build/logs
-    [mkdir] Created dir: /usr/local/src/money/build/pdepend
+    [mkdir] Created dir: /tmp/money/build/api
+    [mkdir] Created dir: /tmp/money/build/coverage
+    [mkdir] Created dir: /tmp/money/build/logs
+    [mkdir] Created dir: /tmp/money/build/pdepend
 
 lint:
-    [apply] No syntax errors detected in /usr/local/src/money/src/exceptions/OverflowException.php
+     [lint] No syntax errors detected in /tmp/money/src/Currency.php
+     [lint] No syntax errors detected in /tmp/money/src/IntlFormatter.php
+     [lint] No syntax errors detected in /tmp/money/src/Money.php
+     [lint] No syntax errors detected in /tmp/money/src/autoload.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/AED.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/AFN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ALL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/AMD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ANG.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/AOA.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ARS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/AUD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/AWG.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/AZN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BAM.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BBD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BDT.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BGN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BHD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BIF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BMD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BND.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BOB.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BOV.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BRL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BSD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BTN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BWP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BYR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/BZD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CAD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CDF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CHE.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CHF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CHW.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CLF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CLP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CNY.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/COP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/COU.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CRC.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CUC.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CUP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CVE.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/CZK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/DJF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/DKK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/DOP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/DZD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/EGP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ERN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ETB.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/EUR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/FJD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/FKP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/GBP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/GEL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/GHS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/GIP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/GMD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/GNF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/GTQ.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/GYD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/HKD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/HNL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/HRK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/HTG.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/HUF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/IDR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ILS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/INR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/IQD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/IRR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ISK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/JMD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/JOD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/JPY.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KES.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KGS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KHR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KMF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KPW.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KRW.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KWD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KYD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/KZT.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/LAK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/LBP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/LKR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/LRD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/LSL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/LTL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/LVL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/LYD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MAD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MDL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MGA.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MKD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MMK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MNT.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MOP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MRO.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MUR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MVR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MWK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MXN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MXV.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MYR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/MZN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/NAD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/NGN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/NIO.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/NOK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/NPR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/NZD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/OMR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/PAB.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/PEN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/PGK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/PHP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/PKR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/PLN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/PYG.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/QAR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/RON.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/RSD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/RUB.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/RWF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SAR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SBD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SCR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SDG.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SEK.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SGD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SHP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SLL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SOS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SRD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SSP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/STD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SVC.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SYP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/SZL.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/THB.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/TJS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/TMT.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/TND.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/TOP.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/TTD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/TWD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/TZS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/UAH.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/UGX.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/USD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/USN.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/USS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/UYI.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/UYU.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/UZS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/VEF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/VND.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/VUV.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/WST.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XAF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XAG.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XAU.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XBA.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XBB.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XBC.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XBD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XCD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XDR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XFU.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XOF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XPD.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XPF.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XPT.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XSU.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XTS.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XUA.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/XXX.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/YER.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ZAR.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ZMW.php
+     [lint] No syntax errors detected in /tmp/money/src/currency/ZWL.php
+     [lint] No syntax errors detected in /tmp/money/src/exceptions/CurrencyMismatchException.php
+     [lint] No syntax errors detected in /tmp/money/src/exceptions/InvalidArgumentException.php
+     [lint] No syntax errors detected in /tmp/money/src/exceptions/OverflowException.php
+     [lint] No syntax errors detected in /tmp/money/src/interfaces/Exception.php
+     [lint] No syntax errors detected in /tmp/money/src/interfaces/Formatter.php
+     [lint] No syntax errors detected in /tmp/money/tests/CurrencyTest.php
+     [lint] No syntax errors detected in /tmp/money/tests/IntlFormatterTest.php
+     [lint] No syntax errors detected in /tmp/money/tests/MoneyTest.php
 
-phploc:
-     [exec] phploc 2.0.4 by Sebastian Bergmann.
-     [exec] 
-     [exec] Directories                                          4
-     [exec] Files                                              193
-     [exec] 
-     [exec] Size
-     [exec]   Lines of Code (LOC)                            13653
-     [exec]   Comment Lines of Code (CLOC)                    9997 (73.22%)
-     [exec]   Non-Comment Lines of Code (NCLOC)               3656 (26.78%)
-     [exec]   Logical Lines of Code (LLOC)                     538 (3.94%)
-     [exec]     Classes                                        247 (45.91%)
-     [exec]       Average Class Length                           1
-     [exec]       Average Method Length                          1
-     [exec]     Functions                                       98 (18.22%)
-     [exec]       Average Function Length                       98
-     [exec]     Not in classes or functions                    193 (35.87%)
-     [exec] 
-     [exec] Complexity
-     [exec]   Cyclomatic Complexity / LLOC                    0.03
-     [exec]   Cyclomatic Complexity / Number of Methods       1.07
-     [exec] 
-     [exec] Dependencies
-     [exec]   Global Accesses                                    0
-     [exec]     Global Constants                                 0 (0.00%)
-     [exec]     Global Variables                                 0 (0.00%)
-     [exec]     Super-Global Variables                           0 (0.00%)
-     [exec]   Attribute Accesses                                30
-     [exec]     Non-Static                                      24 (80.00%)
-     [exec]     Static                                           6 (20.00%)
-     [exec]   Method Calls                                     307
-     [exec]     Non-Static                                     126 (41.04%)
-     [exec]     Static                                         181 (58.96%)
-     [exec] 
-     [exec] Structure
-     [exec]   Namespaces                                         1
-     [exec]   Interfaces                                         2
-     [exec]   Traits                                             0
-     [exec]   Classes                                          187
-     [exec]     Abstract Classes                                 0 (0.00%)
-     [exec]     Concrete Classes                               187 (100.00%)
-     [exec]   Methods                                          210
-     [exec]     Scope
-     [exec]       Non-Static Methods                           210 (100.00%)
-     [exec]       Static Methods                                 0 (0.00%)
-     [exec]     Visibility
-     [exec]       Public Method                                206 (98.10%)
-     [exec]       Non-Public Methods                             4 (1.90%)
-     [exec]   Functions                                          1
-     [exec]     Named Functions                                  0 (0.00%)
-     [exec]     Anonymous Functions                              1 (100.00%)
-     [exec]   Constants                                          0
-     [exec]     Global Constants                                 0 (0.00%)
-     [exec]     Class Constants                                  0 (0.00%)
-     [exec] 
-     [exec] Tests
-     [exec]   Classes                                            3
-     [exec]   Methods                                           31
+phploc-ci:
+   [phploc] phploc 2.1.1 by Sebastian Bergmann.
+   [phploc] 
+   [phploc] Directories                                          4
+   [phploc] Files                                              193
+   [phploc] 
+   [phploc] Size
+   [phploc]   Lines of Code (LOC)                             7732
+   [phploc]   Comment Lines of Code (CLOC)                    3673 (47.50%)
+   [phploc]   Non-Comment Lines of Code (NCLOC)               4059 (52.50%)
+   [phploc]   Logical Lines of Code (LLOC)                     589 (7.62%)
+   [phploc]     Classes                                        266 (45.16%)
+   [phploc]       Average Class Length                           1
+   [phploc]         Minimum Class Length                         0
+   [phploc]         Maximum Class Length                        67
+   [phploc]       Average Method Length                          1
+   [phploc]         Minimum Method Length                        1
+   [phploc]         Maximum Method Length                       12
+   [phploc]     Functions                                      130 (22.07%)
+   [phploc]       Average Function Length                      130
+   [phploc]     Not in classes or functions                    193 (32.77%)
+   [phploc] 
+   [phploc] Cyclomatic Complexity
+   [phploc]   Average Complexity per LLOC                     0.04
+   [phploc]   Average Complexity per Class                    1.10
+   [phploc]     Minimum Class Complexity                      1.00
+   [phploc]     Maximum Class Complexity                     19.00
+   [phploc]   Average Complexity per Method                   1.09
+   [phploc]     Minimum Method Complexity                     1.00
+   [phploc]     Maximum Method Complexity                     4.00
+   [phploc] 
+   [phploc] Dependencies
+   [phploc]   Global Accesses                                    0
+   [phploc]     Global Constants                                 0 (0.00%)
+   [phploc]     Global Variables                                 0 (0.00%)
+   [phploc]     Super-Global Variables                           0 (0.00%)
+   [phploc]   Attribute Accesses                                39
+   [phploc]     Non-Static                                      30 (76.92%)
+   [phploc]     Static                                           9 (23.08%)
+   [phploc]   Method Calls                                     343
+   [phploc]     Non-Static                                     155 (45.19%)
+   [phploc]     Static                                         188 (54.81%)
+   [phploc] 
+   [phploc] Structure
+   [phploc]   Namespaces                                         1
+   [phploc]   Interfaces                                         2
+   [phploc]   Traits                                             0
+   [phploc]   Classes                                          187
+   [phploc]     Abstract Classes                                 0 (0.00%)
+   [phploc]     Concrete Classes                               187 (100.00%)
+   [phploc]   Methods                                          219
+   [phploc]     Scope
+   [phploc]       Non-Static Methods                           214 (97.72%)
+   [phploc]       Static Methods                                 5 (2.28%)
+   [phploc]     Visibility
+   [phploc]       Public Methods                               213 (97.26%)
+   [phploc]       Non-Public Methods                             6 (2.74%)
+   [phploc]   Functions                                          1
+   [phploc]     Named Functions                                  0 (0.00%)
+   [phploc]     Anonymous Functions                              1 (100.00%)
+   [phploc]   Constants                                          0
+   [phploc]     Global Constants                                 0 (0.00%)
+   [phploc]     Class Constants                                  0 (0.00%)
+   [phploc] 
+   [phploc] Tests
+   [phploc]   Classes                                            3
+   [phploc]   Methods                                           44
 
 pdepend:
-     [exec] PHP_Depend 1.1.4 by Manuel Pichler
-     [exec] 
-     [exec] Parsing source files:
-     [exec] ............................................................    60
-     [exec] ............................................................   120
-     [exec] ............................................................   180
-     [exec] ..........                                                     190
-     [exec] 
-     [exec] Executing Coupling-Analyzer:
-     [exec] .............................                                  595
-     [exec] 
-     [exec] Executing CyclomaticComplexity-Analyzer:
-     [exec] .............................                                  590
-     [exec] 
-     [exec] Executing Dependency-Analyzer:
-     [exec] ...................                                            400
-     [exec] 
-     [exec] Executing Inheritance-Analyzer:
-     [exec] .........                                                      194
-     [exec] 
-     [exec] Executing NodeCount-Analyzer:
-     [exec] ...................                                            400
-     [exec] 
-     [exec] Executing NodeLoc-Analyzer:
-     [exec] .............................                                  589
-     [exec] 
-     [exec] Generating pdepend log files, this may take a moment.
-     [exec] 
-     [exec] Time: 00:16; Memory: 18.25Mb
+  [pdepend] PDepend 2.0.6
+  [pdepend] 
+  [pdepend] Parsing source files:
+  [pdepend] ............................................................    60
+  [pdepend] ............................................................   120
+  [pdepend] ............................................................   180
+  [pdepend] ..........                                                     190
+  [pdepend] 
+  [pdepend] Calculating Dependency metrics:
+  [pdepend] ....................                                           409
+  [pdepend] 
+  [pdepend] Calculating Coupling metrics:
+  [pdepend] ..............................                                 604
+  [pdepend] 
+  [pdepend] Calculating Cyclomatic Complexity metrics:
+  [pdepend] .............................                                  599
+  [pdepend] 
+  [pdepend] Calculating Inheritance metrics:
+  [pdepend] .........                                                      194
+  [pdepend] 
+  [pdepend] Calculating Node Count metrics:
+  [pdepend] ....................                                           409
+  [pdepend] 
+  [pdepend] Calculating Node Loc metrics:
+  [pdepend] .............................                                  598
+  [pdepend] 
+  [pdepend] Generating pdepend log files, this may take a moment.
+  [pdepend] 
+  [pdepend] Time: 0:00:06; Memory: 21.50Mb
 
 phpmd-ci:
 
 phpcs-ci:
 
-phpcpd:
-     [exec] phpcpd 2.0.0 by Sebastian Bergmann.
-     [exec] 
-     [exec] 0.00% duplicated lines out of 13045 total lines of code.
-     [exec] 
-     [exec] Time: 494 ms, Memory: 9.00Mb
+phpcpd-ci:
+   [phpcpd] phpcpd 2.0.2 by Sebastian Bergmann.
+   [phpcpd] 
+   [phpcpd] 0.00% duplicated lines out of 6996 total lines of code.
+   [phpcpd] 
+   [phpcpd] Time: 67 ms, Memory: 9.75Mb
 
 phpunit:
-     [exec] PHPUnit 4.0.4 by Sebastian Bergmann.
-     [exec] 
-     [exec] Configuration read from /usr/local/src/money/build/phpunit.xml
-     [exec] 
-     [exec] ...............................
-     [exec] 
-     [exec] Time: 1.56 seconds, Memory: 15.25Mb
-     [exec] 
-     [exec] OK (31 tests, 50 assertions)
-     [exec] 
-     [exec] Generating code coverage report in Clover XML format ... done
-     [exec] 
-     [exec] Generating Crap4J report XML file ... done
-     [exec] 
-     [exec] Generating code coverage report in HTML format ... done
+  [phpunit] PHPUnit 4.6.4 by Sebastian Bergmann and contributors.
+  [phpunit] 
+  [phpunit] Configuration read from /tmp/money/build/phpunit.xml
+  [phpunit] 
+  [phpunit] ............................................
+  [phpunit] 
+  [phpunit] Time: 1.05 seconds, Memory: 23.00Mb
+  [phpunit] 
+  [phpunit] OK (44 tests, 70 assertions)
+  [phpunit] 
+  [phpunit] Generating code coverage report in Clover XML format ... done
+  [phpunit] 
+  [phpunit] Generating Crap4J report XML file ... done
+  [phpunit] 
+  [phpunit] Generating code coverage report in HTML format ... done
+  [phpunit] 
+  [phpunit] Generating code coverage report in PHPUnit XML format ... done
 
 phpdox:
-     [exec] phpDox 0.6.5 - Copyright (C) 2010 - 2014 by Arne Blankerts
-     [exec] 
-     [exec] [09.03.2014 - 09:17:05] Using config file './phpdox.xml'
-     [exec] [09.03.2014 - 09:17:05] Registered enricher 'build'
-     [exec] [09.03.2014 - 09:17:05] Registered enricher 'git'
-     [exec] [09.03.2014 - 09:17:05] Registered enricher 'checkstyle'
-     [exec] [09.03.2014 - 09:17:05] Registered enricher 'pmd'
-     [exec] [09.03.2014 - 09:17:05] Registered enricher 'phpunit'
-     [exec] [09.03.2014 - 09:17:05] Registered enricher 'phploc'
-     [exec] [09.03.2014 - 09:17:05] Registered output engine 'xml'
-     [exec] [09.03.2014 - 09:17:05] Registered output engine 'html'
-     [exec] [09.03.2014 - 09:17:05] Starting to process project 'Money'
-     [exec] [09.03.2014 - 09:17:05] Starting collector
-     [exec] [09.03.2014 - 09:17:05] Scanning directory '../src' for files to process
-     [exec] 
-     [exec] ..................................................	[50]
-     [exec] ..................................................	[100]
-     [exec] ..................................................	[150]
-     [exec] .......................................           	[189]
-     [exec] 
-     [exec] [09.03.2014 - 09:17:08] Saving results to directory 'phpdox'
-     [exec] [09.03.2014 - 09:17:09] Resolving inheritance
-     [exec] 
-     [exec] ..................................................	[50]
-     [exec] ..................................................	[100]
-     [exec] ..................................................	[150]
-     [exec] .......................................           	[189]
-     [exec] 
-     [exec] [09.03.2014 - 09:17:09] Collector process completed
-     [exec] 
-     [exec] [09.03.2014 - 09:17:09] Starting generator
-     [exec] [09.03.2014 - 09:17:09] Loading enrichers
-     [exec] [09.03.2014 - 09:17:09] Enricher Build Information initialized successfully
-     [exec] [09.03.2014 - 09:17:09] Enricher GIT information initialized successfully
-     [exec] [09.03.2014 - 09:17:09] Enricher PHPLoc xml initialized successfully
-     [exec] [09.03.2014 - 09:17:09] Enricher CheckStyle XML initialized successfully
-     [exec] [09.03.2014 - 09:17:09] Enricher PHPMessDetector XML initialized successfully
-     [exec] [09.03.2014 - 09:17:09] Starting event loop.
-     [exec] 
-     [exec] ..................................................	[50]
-     [exec] ..................................................	[100]
-     [exec] ..................................................	[150]
-     [exec] ..................................................	[200]
-     [exec] ..................................................	[250]
-     [exec] ..................................................	[300]
-     [exec] ..................................................	[350]
-     [exec] ..................................................	[400]
-     [exec] ..................................................	[450]
-     [exec] ..................................................	[500]
-     [exec] ..................................................	[550]
-     [exec] ..................................................	[600]
-     [exec] ..................................................	[650]
-     [exec] ........................................          	[690]
-     [exec] 
-     [exec] [09.03.2014 - 09:17:15] Generator process completed
-     [exec] [09.03.2014 - 09:17:15] Processing project 'Money' completed.
-     [exec] 
-     [exec] 
-     [exec] Time: 9 seconds, Memory: 15.75Mb
-     [exec] 
+   [phpdox] phpDox 0.7.0-114-gc4abab4 - Copyright (C) 2010 - 2015 by Arne Blankerts
+   [phpdox] 
+   [phpdox] [17.04.2015 - 11:44:51] Using config file './phpdox.xml'
+   [phpdox] [17.04.2015 - 11:44:51] Registered collector backend 'parser'
+   [phpdox] [17.04.2015 - 11:44:51] Registered enricher 'build'
+   [phpdox] [17.04.2015 - 11:44:51] Registered enricher 'git'
+   [phpdox] [17.04.2015 - 11:44:51] Registered enricher 'checkstyle'
+   [phpdox] [17.04.2015 - 11:44:51] Registered enricher 'phpcs'
+   [phpdox] [17.04.2015 - 11:44:51] Registered enricher 'pmd'
+   [phpdox] [17.04.2015 - 11:44:51] Registered enricher 'phpunit'
+   [phpdox] [17.04.2015 - 11:44:51] Registered enricher 'phploc'
+   [phpdox] [17.04.2015 - 11:44:51] Registered output engine 'xml'
+   [phpdox] [17.04.2015 - 11:44:51] Registered output engine 'html'
+   [phpdox] [17.04.2015 - 11:44:51] Starting to process project 'Money'
+   [phpdox] [17.04.2015 - 11:44:51] Starting collector
+   [phpdox] [17.04.2015 - 11:44:51] Scanning directory '../src' for files to process
+   [phpdox] 
+   [phpdox] ..................................................	[50]
+   [phpdox] ..................................................	[100]
+   [phpdox] ..................................................	[150]
+   [phpdox] .......................................           	[189]
+   [phpdox] 
+   [phpdox] [17.04.2015 - 11:44:51] Saving results to directory 'phpdox'
+   [phpdox] [17.04.2015 - 11:44:52] Resolving inheritance
+   [phpdox] 
+   [phpdox] ..................................................	[50]
+   [phpdox] ..................................................	[100]
+   [phpdox] ..................................................	[150]
+   [phpdox] .......................................           	[189]
+   [phpdox] 
+   [phpdox] [17.04.2015 - 11:44:52] Collector process completed
+   [phpdox] 
+   [phpdox] [17.04.2015 - 11:44:52] Starting generator
+   [phpdox] [17.04.2015 - 11:44:52] Loading enrichers
+   [phpdox] [17.04.2015 - 11:44:52] Enricher Build Information initialized successfully
+   [phpdox] [17.04.2015 - 11:44:52] Enricher GIT information initialized successfully
+   [phpdox] [17.04.2015 - 11:44:52] Enricher PHPLoc xml initialized successfully
+   [phpdox] [17.04.2015 - 11:44:52] Enricher CheckStyle XML initialized successfully
+   [phpdox] [17.04.2015 - 11:44:52] Enricher PHPMessDetector XML initialized successfully
+   [phpdox] [17.04.2015 - 11:44:52] Enricher PHPUnit Coverage XML initialized successfully
+   [phpdox] [17.04.2015 - 11:44:52] Starting event loop.
+   [phpdox] 
+   [phpdox] ..................................................	[50]
+   [phpdox] ..................................................	[100]
+   [phpdox] ..................................................	[150]
+   [phpdox] ..................................................	[200]
+   [phpdox] ..................................................	[250]
+   [phpdox] ..................................................	[300]
+   [phpdox] ..................................................	[350]
+   [phpdox] ..................................................	[400]
+   [phpdox] ..................................................	[450]
+   [phpdox] ..................................................	[500]
+   [phpdox] ..................................................	[550]
+   [phpdox] ..................................................	[600]
+   [phpdox] ..................................................	[650]
+   [phpdox] ..................................................	[700]
+   [phpdox] ..................................................	[750]
+   [phpdox] ..................................................	[800]
+   [phpdox] ..................................................	[850]
+   [phpdox] ..................................................	[900]
+   [phpdox] ..................................................	[950]
+   [phpdox] ..................................................	[1000]
+   [phpdox] ..................................................	[1050]
+   [phpdox] ..............................                    	[1080]
+   [phpdox] 
+   [phpdox] [17.04.2015 - 11:44:56] Generator process completed
+   [phpdox] [17.04.2015 - 11:44:56] Processing project 'Money' completed.
+   [phpdox] 
+   [phpdox] 
+   [phpdox] Time: 5.43 seconds, Memory: 19.00Mb
+   [phpdox] 
 
 build:
 
