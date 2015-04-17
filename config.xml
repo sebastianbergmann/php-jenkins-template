@@ -18,7 +18,7 @@
     </hudson.tasks.Ant>
   </builders>
   <publishers>
-    <hudson.plugins.warnings.CheckStylePublisher>
+    <hudson.plugins.warnings.WarningsPublisher>
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
@@ -55,7 +55,7 @@
           <parserName>PHP Runtime</parserName>
         </hudson.plugins.warnings.ConsoleParser>
       </consoleParsers>
-    </hudson.plugins.warnings.CheckStylePublisher>
+    </hudson.plugins.warnings.WarningsPublisher>
     <hudson.plugins.checkstyle.CheckStylePublisher>
       <healthy></healthy>
       <unHealthy></unHealthy>
