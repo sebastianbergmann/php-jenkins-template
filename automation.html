@@ -50,10 +50,31 @@
     <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;project name="name-of-project" default="build"&gt;
  &lt;!-- By default, we assume all tools to be on the $PATH --&gt;
- &lt;property name="toolsdir" value=""/&gt;
+ &lt;property name="pdepend" value="pdepend"/&gt;
+ &lt;property name="phpcpd"  value="phpcpd"/&gt;
+ &lt;property name="phpcs"   value="phpcs"/&gt;
+ &lt;property name="phpdox"  value="phpdox"/&gt;
+ &lt;property name="phploc"  value="phploc"/&gt;
+ &lt;property name="phpmd"   value="phpmd"/&gt;
+ &lt;property name="phpunit" value="phpunit"/&gt;
 
- &lt;!-- Uncomment the following when the tools are in ${basedir}/vendor/bin --&gt;
- &lt;!-- &lt;property name="toolsdir" value="${basedir}/vendor/bin/"/&gt; --&gt;
+ &lt;!-- Use this when the tools are located as PHARs in ${basedir}/build/tools
+ &lt;property name="pdepend" value="${basedir}/build/tools/pdepend.phar"/&gt;
+ &lt;property name="phpcpd"  value="${basedir}/build/tools/phpcpd.phar"/&gt;
+ &lt;property name="phpcs"   value="${basedir}/build/tools/phpcs.phar"/&gt;
+ &lt;property name="phpdox"  value="${basedir}/build/tools/phpdox.phar"/&gt;
+ &lt;property name="phploc"  value="${basedir}/build/tools/phploc.phar"/&gt;
+ &lt;property name="phpmd"   value="${basedir}/build/tools/phpmd.phar"/&gt;
+ &lt;property name="phpunit" value="${basedir}/build/tools/phpunit.phar"/&gt; --&gt;
+
+ &lt;!-- Use this when the tools are managed by Composer in ${basedir}/vendor/bin
+ &lt;property name="pdepend" value="${basedir}/vendor/bin/pdepend"/&gt;
+ &lt;property name="phpcpd"  value="${basedir}/vendor/bin/phpcpd"/&gt;
+ &lt;property name="phpcs"   value="${basedir}/vendor/bin/phpcs"/&gt;
+ &lt;property name="phpdox"  value="${basedir}/vendor/bin/phpdox"/&gt;
+ &lt;property name="phploc"  value="${basedir}/vendor/bin/phploc"/&gt;
+ &lt;property name="phpmd"   value="${basedir}/vendor/bin/phpmd"/&gt;
+ &lt;property name="phpunit" value="${basedir}/vendor/bin/phpunit"/&gt; --&gt;
 
  &lt;target name="build"
          depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
@@ -121,7 +142,7 @@
  &lt;target name="phploc"
          unless="phploc.done"
          description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line."&gt;
-  &lt;exec executable="${toolsdir}phploc" taskname="phploc"&gt;
+  &lt;exec executable="${phploc}" taskname="phploc"&gt;
    &lt;arg value="--count-tests" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg path="${basedir}/tests" /&gt;
@@ -134,7 +155,7 @@
          unless="phploc.done"
          depends="prepare"
          description="Measure project size using PHPLOC and log result in CSV and XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${toolsdir}phploc" taskname="phploc"&gt;
+  &lt;exec executable="${phploc}" taskname="phploc"&gt;
    &lt;arg value="--count-tests" /&gt;
    &lt;arg value="--log-csv" /&gt;
    &lt;arg path="${basedir}/build/logs/phploc.csv" /&gt;
@@ -151,7 +172,7 @@
          unless="pdepend.done"
          depends="prepare"
          description="Calculate software metrics using PHP_Depend and log result in XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${toolsdir}pdepend" taskname="pdepend"&gt;
+  &lt;exec executable="${pdepend}" taskname="pdepend"&gt;
    &lt;arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" /&gt;
    &lt;arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" /&gt;
    &lt;arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" /&gt;
@@ -164,7 +185,7 @@
  &lt;target name="phpmd"
          unless="phpmd.done"
          description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing."&gt;
-  &lt;exec executable="${toolsdir}phpmd" taskname="phpmd"&gt;
+  &lt;exec executable="${phpmd}" taskname="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="text" /&gt;
    &lt;arg path="${basedir}/build/phpmd.xml" /&gt;
@@ -177,7 +198,7 @@
          unless="phpmd.done"
          depends="prepare"
          description="Perform project mess detection using PHPMD and log result in XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${toolsdir}phpmd" taskname="phpmd"&gt;
+  &lt;exec executable="${phpmd}" taskname="phpmd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
    &lt;arg value="xml" /&gt;
    &lt;arg path="${basedir}/build/phpmd.xml" /&gt;
@@ -191,7 +212,7 @@
  &lt;target name="phpcs"
          unless="phpcs.done"
          description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing."&gt;
-  &lt;exec executable="${toolsdir}phpcs" taskname="phpcs"&gt;
+  &lt;exec executable="${phpcs}" taskname="phpcs"&gt;
    &lt;arg value="--standard=PSR2" /&gt;
    &lt;arg value="--extensions=php" /&gt;
    &lt;arg value="--ignore=autoload.php" /&gt;
@@ -206,7 +227,7 @@
          unless="phpcs.done"
          depends="prepare"
          description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${toolsdir}phpcs" output="/dev/null" taskname="phpcs"&gt;
+  &lt;exec executable="${phpcs}" output="/dev/null" taskname="phpcs"&gt;
    &lt;arg value="--report=checkstyle" /&gt;
    &lt;arg value="--report-file=${basedir}/build/logs/checkstyle.xml" /&gt;
    &lt;arg value="--standard=PSR2" /&gt;
@@ -222,7 +243,7 @@
  &lt;target name="phpcpd"
          unless="phpcpd.done"
          description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing."&gt;
-  &lt;exec executable="${toolsdir}phpcpd" taskname="phpcpd"&gt;
+  &lt;exec executable="${phpcpd}" taskname="phpcpd"&gt;
    &lt;arg path="${basedir}/src" /&gt;
   &lt;/exec&gt;
 
@@ -233,7 +254,7 @@
          unless="phpcpd.done"
          depends="prepare"
          description="Find duplicate code using PHPCPD and log result in XML format. Intended for usage within a continuous integration environment."&gt;
-  &lt;exec executable="${toolsdir}phpcpd" taskname="phpcpd"&gt;
+  &lt;exec executable="${phpcpd}" taskname="phpcpd"&gt;
    &lt;arg value="--log-pmd" /&gt;
    &lt;arg path="${basedir}/build/logs/pmd-cpd.xml" /&gt;
    &lt;arg path="${basedir}/src" /&gt;
@@ -246,7 +267,7 @@
          unless="phpunit.done"
          depends="prepare"
          description="Run unit tests with PHPUnit"&gt;
-  &lt;exec executable="${toolsdir}phpunit" failonerror="true" taskname="phpunit"&gt;
+  &lt;exec executable="${phpunit}" failonerror="true" taskname="phpunit"&gt;
    &lt;arg value="--configuration"/&gt;
    &lt;arg path="${basedir}/build/phpunit.xml"/&gt;
   &lt;/exec&gt;
@@ -258,7 +279,7 @@
          unless="phpdox.done"
          depends="phploc-ci,phpcs-ci,phpmd-ci"
          description="Generate project documentation using phpDox"&gt;
-  &lt;exec executable="${toolsdir}phpdox" dir="${basedir}/build" taskname="phpdox"/&gt;
+  &lt;exec executable="${phpdox}" dir="${basedir}/build" taskname="phpdox"/&gt;
 
   &lt;property name="phpdox.done" value="true"/&gt;
  &lt;/target&gt;
