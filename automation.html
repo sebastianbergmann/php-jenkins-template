@@ -77,11 +77,11 @@
  &lt;property name="phpunit" value="${basedir}/vendor/bin/phpunit"/&gt; --&gt;
 
  &lt;target name="build"
-         depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
+         depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox,-check-failure"
          description="Performs static analysis, runs the tests, and generates project documentation"/&gt;
 
  &lt;target name="build-parallel"
-         depends="prepare,lint,tools-parallel,phpunit,phpdox"
+         depends="prepare,lint,tools-parallel,phpunit,phpdox,-check-failure"
          description="Performs static analysis (executing the tools in parallel), runs the tests, and generates project documentation"/&gt;
 
  &lt;target name="tools-parallel" description="Run tools in parallel"&gt;
@@ -122,7 +122,7 @@
  &lt;target name="lint"
          unless="lint.done"
          description="Perform syntax check of sourcecode files"&gt;
-  &lt;apply executable="php" failonerror="true" taskname="lint"&gt;
+  &lt;apply executable="php" taskname="lint"&gt;
    &lt;arg value="-l" /&gt;
 
    &lt;fileset dir="${basedir}/src"&gt;
@@ -267,7 +267,7 @@
          unless="phpunit.done"
          depends="prepare"
          description="Run unit tests with PHPUnit"&gt;
-  &lt;exec executable="${phpunit}" failonerror="true" taskname="phpunit"&gt;
+  &lt;exec executable="${phpunit}" resultproperty="result.phpunit" taskname="phpunit"&gt;
    &lt;arg value="--configuration"/&gt;
    &lt;arg path="${basedir}/build/phpunit.xml"/&gt;
   &lt;/exec&gt;
@@ -282,6 +282,16 @@
   &lt;exec executable="${phpdox}" dir="${basedir}/build" taskname="phpdox"/&gt;
 
   &lt;property name="phpdox.done" value="true"/&gt;
+ &lt;/target&gt;
+
+ &lt;target name="-check-failure"&gt;
+  &lt;fail message="PHPUnit did not finish successfully"&gt;
+   &lt;condition&gt;
+    &lt;not&gt;
+     &lt;equals arg1="${result.phpunit}" arg2="0"/&gt;
+    &lt;/not&gt;
+   &lt;/condition&gt;
+  &lt;/fail&gt;
  &lt;/target&gt;
 &lt;/project&gt;</code></pre>
     <p>Here is an overview of the tasks defined in the above <code>build.xml</code> (<a href="download/build.xml">download</a>) script that are intended to be directly invoked:</p>

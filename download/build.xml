@@ -28,11 +28,11 @@
  <property name="phpunit" value="${basedir}/vendor/bin/phpunit"/> -->
 
  <target name="build"
-         depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
+         depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox,-check-failure"
          description="Performs static analysis, runs the tests, and generates project documentation"/>
 
  <target name="build-parallel"
-         depends="prepare,lint,tools-parallel,phpunit,phpdox"
+         depends="prepare,lint,tools-parallel,phpunit,phpdox,-check-failure"
          description="Performs static analysis (executing the tools in parallel), runs the tests, and generates project documentation"/>
 
  <target name="tools-parallel" description="Run tools in parallel">
@@ -73,7 +73,7 @@
  <target name="lint"
          unless="lint.done"
          description="Perform syntax check of sourcecode files">
-  <apply executable="php" failonerror="true" taskname="lint">
+  <apply executable="php" taskname="lint">
    <arg value="-l" />
 
    <fileset dir="${basedir}/src">
@@ -218,7 +218,7 @@
          unless="phpunit.done"
          depends="prepare"
          description="Run unit tests with PHPUnit">
-  <exec executable="${phpunit}" failonerror="true" taskname="phpunit">
+  <exec executable="${phpunit}" resultproperty="result.phpunit" taskname="phpunit">
    <arg value="--configuration"/>
    <arg path="${basedir}/build/phpunit.xml"/>
   </exec>
@@ -233,6 +233,16 @@
   <exec executable="${phpdox}" dir="${basedir}/build" taskname="phpdox"/>
 
   <property name="phpdox.done" value="true"/>
+ </target>
+
+ <target name="-check-failure">
+  <fail message="PHPUnit did not finish successfully">
+   <condition>
+    <not>
+     <equals arg1="${result.phpunit}" arg2="0"/>
+    </not>
+   </condition>
+  </fail>
  </target>
 </project>
 
