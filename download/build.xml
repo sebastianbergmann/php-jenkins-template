@@ -29,11 +29,11 @@
 
  <target name="build"
          depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
-         description=""/>
+         description="Performs static analysis, runs the tests, and generates project documentation"/>
 
  <target name="build-parallel"
          depends="prepare,lint,tools-parallel,phpunit,phpdox"
-         description=""/>
+         description="Performs static analysis (executing the tools in parallel), runs the tests, and generates project documentation"/>
 
  <target name="tools-parallel" description="Run tools in parallel">
   <parallel threadCount="2">
