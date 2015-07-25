@@ -48,7 +48,7 @@
     </div>
     <p>We use <a href="http://ant.apache.org/">Apache Ant</a> to automate the build process. It orchestrates the execution of the various tools in the <code>build.xml</code> build script (<a href="download/build.xml">download</a>). The build script assumes that the rule sets for PHP_CodeSniffer and PHPMD are located at <code>build/phpcs.xml</code> and <code>build/phpmd.xml</code>.</p>
     <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;project name="name-of-project" default="build"&gt;
+&lt;project name="name-of-project" default="full-build"&gt;
  &lt;!-- By default, we assume all tools to be on the $PATH --&gt;
  &lt;property name="pdepend" value="pdepend"/&gt;
  &lt;property name="phpcpd"  value="phpcpd"/&gt;
@@ -76,20 +76,31 @@
  &lt;property name="phpmd"   value="${basedir}/vendor/bin/phpmd"/&gt;
  &lt;property name="phpunit" value="${basedir}/vendor/bin/phpunit"/&gt; --&gt;
 
- &lt;target name="build"
-         depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox,-check-failure"
+ &lt;target name="full-build"
+         depends="prepare,static-analysis,phpunit,phpdox,-check-failure"
          description="Performs static analysis, runs the tests, and generates project documentation"/&gt;
 
- &lt;target name="build-parallel"
-         depends="prepare,lint,tools-parallel,phpunit,phpdox,-check-failure"
+ &lt;target name="full-build-parallel"
+         depends="prepare,static-analysis-parallel,phpunit,phpdox,-check-failure"
          description="Performs static analysis (executing the tools in parallel), runs the tests, and generates project documentation"/&gt;
 
- &lt;target name="tools-parallel" description="Run tools in parallel"&gt;
+ &lt;target name="quick-build"
+         depends="prepare,lint,phpunit-no-coverage"
+         description="Performs a lint check and runs the tests (without generating code coverage reports)"/&gt;
+
+ &lt;target name="static-analysis"
+         depends="lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci"
+         description="Performs static analysis" /&gt;
+
+ &lt;!-- Adjust the threadCount attribute's value to the number of CPUs --&gt;
+ &lt;target name="static-analysis-parallel"
+         description="Performs static analysis (executing the tools in parallel)"&gt;
   &lt;parallel threadCount="2"&gt;
    &lt;sequential&gt;
     &lt;antcall target="pdepend"/&gt;
     &lt;antcall target="phpmd-ci"/&gt;
    &lt;/sequential&gt;
+   &lt;antcall target="lint"/&gt;
    &lt;antcall target="phpcpd-ci"/&gt;
    &lt;antcall target="phpcs-ci"/&gt;
    &lt;antcall target="phploc-ci"/&gt;
@@ -275,6 +286,19 @@
   &lt;property name="phpunit.done" value="true"/&gt;
  &lt;/target&gt;
 
+ &lt;target name="phpunit-no-coverage"
+         unless="phpunit.done"
+         depends="prepare"
+         description="Run unit tests with PHPUnit (without generating code coverage reports)"&gt;
+  &lt;exec executable="${phpunit}" failonerror="true" taskname="phpunit"&gt;
+   &lt;arg value="--configuration"/&gt;
+   &lt;arg path="${basedir}/build/phpunit.xml"/&gt;
+   &lt;arg value="--no-coverage"/&gt;
+  &lt;/exec&gt;
+
+  &lt;property name="phpunit.done" value="true"/&gt;
+ &lt;/target&gt;
+
  &lt;target name="phpdox"
          unless="phpdox.done"
          depends="phploc-ci,phpcs-ci,phpmd-ci"
@@ -296,8 +320,9 @@
 &lt;/project&gt;</code></pre>
     <p>Here is an overview of the tasks defined in the above <code>build.xml</code> (<a href="download/build.xml">download</a>) script that are intended to be directly invoked:</p>
     <ul>
-     <li><p><code>build</code> is the default build target. It invokes all the tools in such a way that XML logfiles are written to default locations.</p></li>
-     <li><p><code>build-parallel</code> is the same as <code>build</code> (see above) except that it executes the tools in parallel.</p></li>
+     <li><p><code>full-build</code> is the default build target. It invokes all the tools in such a way that XML logfiles are written to default locations. Running the full build may take a considerable amount of time and might only be useful to perform nightly.</p></li>
+     <li><p><code>full-build-parallel</code> is the same as <code>full-build</code> (see above) except that it executes the static analysis tools in parallel. Even when leveraging multiple CPUs, running the full build may take a considerable amount of time and might only be useful to perform nightly.</p></li>
+     <li><p><code>quick-build</code> is a build target intended to be run by jobs that are triggered for every push to a repository. It performs a lint check and runs the tests (without generating code coverage reports).</p></li>
      <li><p><code>clean</code> can be used to clean up (delete) all build artifacts (logfiles, etc. that are produced during the build).</p></li>
      <li><p><code>lint</code> can be used to perform a syntax check of the project sources using <code>php -l</code>.</p> This task can be used before committing.</li>
      <li><p><code>phpcs</code> can be used to find coding standard violations and print human readable output. This task can be used before committing.</p></li>
